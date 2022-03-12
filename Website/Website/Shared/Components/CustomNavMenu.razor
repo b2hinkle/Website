@@ -1,19 +1,46 @@
-﻿<nav class="navbar @*fixed-top*@ navbar-expand-sm navbar-dark bg-dark">
+﻿<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="#page-top">
+			Start Bootstrap
+		</a>
+        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item mx-0 mx-lg-1">
+					<a class="nav-link py-3 px-0 px-lg-3 rounded" href="">Portfolio</a>
+				</li>
+                <li class="nav-item mx-0 mx-lg-1">
+					<a class="nav-link py-3 px-0 px-lg-3 rounded" href="">About</a>
+				</li>
+                <li class="nav-item mx-0 mx-lg-1">
+					<a class="nav-link py-3 px-0 px-lg-3 rounded" href="">Contact</a>
+				</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+				
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
 	<div  class="container-fluid">
+		<a href="#" class="navbar-brand mb-0 h1">
+			Start Bootstrap
+		</a>
+		
+
+
 		<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse justify-content-center" id="navbarNav">	@*Everything in here is centered*@
-			<ul class="navbar-nav">
-				<li class="nav-item active">
-					<a href="/" class="nav-link font-weight-bold">
-						<b>Home</b> 
-					</a>
-				</li>
-				@*
-					Dropdown menu functionality here if needed later
-					<li class="nav-item active dropdown">
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ms-auto">
+					@*<li class="nav-item active dropdown">
 					<a href="#" role="button" class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-aria-expanded="false">
 						Features
 					</a>
@@ -37,7 +64,17 @@
 				</li>*@
 				<li class="nav-item active">
 					<a href="counter" class="nav-link">
-						Counter
+						Portfolio
+					</a>
+				</li>
+				<li class="nav-item active">
+					<a href="counter" class="nav-link">
+						About
+					</a>
+				</li>
+				<li class="nav-item active">
+					<a href="counter" class="nav-link">
+						Contact
 					</a>
 				</li>
 
@@ -45,3 +82,4 @@
 		</div>
 	</div>
 </nav>
+
