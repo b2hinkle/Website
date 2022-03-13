@@ -97,6 +97,10 @@
         }
 }*/
 
+/* global variables*/
+:root {
+    /*--value: 5;*/
+}
 
 .jumbotron {
     height: 40vh;   /* vh is the percentage of the viewport's height it takes up */
@@ -109,14 +113,13 @@
     overflow: hidden;
 }
 
-.jumbotron h1 {
-    margin: 30px 0;
-    font-size: 30px;
-    line-height: 1.5;
+.container {
+    position: relative;
+    z-index: 2;
 }
 
-/* id to stick in a <video> tag to give the nice fullscreen look */
-#video-background {
+/* class to stick in a <video> tag to give the nice fullscreen look */
+.video-background {
     position: absolute;
     height: auto;
     width: auto;
