@@ -1,5 +1,5 @@
 ﻿@page "/"
-@*@layout Shared.Layouts.EmptyLayout;*@
+@inject IJSRuntime jsRuntime;
 
 <PageTitle>Index</PageTitle>
 
@@ -88,3 +88,17 @@
 <br/>
 <br/>
 <br/>
+
+
+@code{
+    IJSObjectReference jsObjRef;    // Our js interface
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Index.razor.js");
+    }
+    
+    async Task Test()
+    {
+        await jsObjRef.InvokeAsync<bool>("showPrompt");
+    }
+}
