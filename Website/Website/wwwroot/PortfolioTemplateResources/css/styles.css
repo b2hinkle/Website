@@ -11414,7 +11414,7 @@ html {
 }
 .form-floating input.form-control,
 .form-floating textarea.form-control {
-  font-size: 1.5rem;
+  font-size: 1rem;
   border-left: 0;
   border-right: 0;
   border-top: 0;
@@ -11426,7 +11426,7 @@ html {
   box-shadow: none;
 }
 .form-floating label {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #6c757d;
 }
 
