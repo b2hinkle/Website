@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <None Remove="Pages\Index.razor.css" />
+    <None Remove="Shared\Layouts\MainLayout.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Pages\Index.razor.css" />
+    <Content Include="Shared\Layouts\MainLayout.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
