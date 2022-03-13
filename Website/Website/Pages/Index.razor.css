@@ -1,4 +1,4 @@
-﻿* {
+﻿/** {
     margin: 0;
     padding: 0;
     font-family: "Source Serif Pro"
@@ -25,12 +25,12 @@
 
     .intro img {
         width: 220px;
-    }
+    }*/
 
 
 
 /*navbar stuff*/
-.navbar-nav a {
+/*.navbar-nav a {
     color: white !important;
     margin: 0 20px;
     margin-top: 30px;
@@ -95,4 +95,39 @@
             width: 200px;
             padding-top: 50px;
         }
+}*/
+
+
+.jumbotron {
+    height: 40vh;   /* vh is the percentage of the viewport's height it takes up */
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    border-radius: 0px !important;
+
+    position: relative;
+    overflow: hidden;
 }
+
+.jumbotron h1 {
+    margin: 30px 0;
+    font-size: 30px;
+    line-height: 1.5;
+}
+
+/* id to stick in a <video> tag to give the nice fullscreen look */
+#video-background {
+    position: absolute;
+    height: auto;
+    width: auto;
+    min-height: 100%;
+    min-width: 100%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 1;
+}
+
+
+
