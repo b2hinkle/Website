@@ -5,19 +5,9 @@
 
 
 
-<div class="jumbotron">
-  <video class="video-background" muted autoplay loop>
-    <source src="videos/TestVid.mp4" type="video/mp4">
-  </video>
-  <div class="container text-center" style="padding-top: 20vh; color: #ffffff;">
-      <h1>Hello</h1>
-  </div>
-</div>
-
 
 <div class="jumbotron">
-  <video class="video-background" data-parallax="scroll" data-image-src="Plugin/images/background.jpg" muted autoplay loop>
-    <source src="videos/TestVid.mp4" type="video/mp4">
+  <video class="video-background" data-parallax="scroll"  data-image-src="images/background.jpg" muted autoplay loop>
   </video>
   <div class="container text-center" style="padding-top: 20vh; color: #ffffff;">
       <h1>Hello</h1>
@@ -26,27 +16,28 @@
 
 
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 <div class="jumbotron">
-  <video class="video-background" muted autoplay loop>
+  <video class="video-background" data-parallax="scroll" muted autoplay loop>
     <source src="videos/TestVid.mp4" type="video/mp4">
   </video>
   <div class="container text-center" style="padding-top: 20vh; color: #ffffff;">
@@ -107,11 +98,10 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Index.razor.js");
-       await jsObjRef.InvokeVoidAsync("init");
     }
     
     /*async Task CallJsFunction()
     {
-        await jsObjRef.InvokeAsync<bool>("jsFunction");
+       await jsObjRef.InvokeVoidAsync("TestFunction");
     }*/
 }
