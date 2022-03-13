@@ -95,6 +95,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Index.razor.js");
+       await jsObjRef.InvokeVoidAsync("init");
     }
     
     /*async Task CallJsFunction()
