@@ -91,14 +91,14 @@
 
 
 @code{
-    IJSObjectReference jsObjRef;    // Our js interface
+    IJSObjectReference jsObjRef;    // js interactor
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Index.razor.js");
     }
     
-    async Task Test()
+    /*async Task CallJsFunction()
     {
-        await jsObjRef.InvokeAsync<bool>("showPrompt");
-    }
+        await jsObjRef.InvokeAsync<bool>("jsFunction");
+    }*/
 }
