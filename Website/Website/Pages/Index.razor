@@ -6,16 +6,15 @@
 
 
 
-<div class="jumbotron">
-  <video class="video-background" data-parallax="scroll"  data-image-src="images/background.jpg" muted autoplay loop>
-  </video>
-  <div class="container text-center" style="padding-top: 20vh; color: #ffffff;">
-      <h1>Hello</h1>
+
+
+<div class="parallax-window">
+  <div class="parallax-slider">
+    <span style="position:absolute; top: 400px; left: 400px;">Some Text</span>
+	<p>Some other Content</p>
   </div>
 </div>
-
-
-
+    
 
 
 <br/>
@@ -36,14 +35,14 @@
 <br/>
 <br/>
 
-<div class="jumbotron">
+@*<div class="jumbotron">
   <video class="video-background" data-parallax="scroll" muted autoplay loop>
     <source src="videos/TestVid.mp4" type="video/mp4">
   </video>
   <div class="container text-center" style="padding-top: 20vh; color: #ffffff;">
       <h1>Hello</h1>
   </div>
-</div>
+</div>*@
 
 <br/>
 <br/>
@@ -97,7 +96,8 @@
     IJSObjectReference jsObjRef;    // js interactor
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Index.razor.js");
+       jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Index.razor.js");
+       await jsObjRef.InvokeVoidAsync("init");
     }
     
     /*async Task CallJsFunction()
