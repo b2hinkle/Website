@@ -1,13 +1,24 @@
 ﻿@page "/Portfolio"
 @layout Shared.Layouts.PortfolioLayout;
+@inject IJSRuntime jsRuntime;
 @using Website.Shared.Components;
 
 
 <PageTitle>Portfolio</PageTitle>
 
 <!-- Masthead-->
-<header class="masthead bg-primary text-white text-center">
-    <div class="container d-flex align-items-center flex-column">
+<header class="text-center">
+
+    <div style="position: relative; overflow: hidden; height: 30vh;">                                               @* video cropper div *@
+        <div class="rellax">
+            <video class="FullScreen" data-rellax-speed="4" data-rellax-zindex="0" muted autoplay loop>             @* fullscreen video *@
+                <source src="videos/TestVid.mp4" type="video/mp4">
+            </video>
+        </div>
+        <h1 style="position: relative; z-index: 2; padding-top: 20vh;">Hellooooooooooo</h1>
+    </div>
+
+    @*<div class="container d-flex align-items-center flex-column">
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5" src="PortfolioTemplateResources/assets/img/avataaars.svg" alt="..." />
         <!-- Masthead Heading-->
@@ -20,7 +31,7 @@
         </div>
         <!-- Masthead Subheading-->
         <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
-    </div>
+    </div>*@
 </header>
 <!-- Portfolio Section-->
 <section class="page-section portfolio" id="portfolio">
@@ -398,3 +409,15 @@
 
 @*add our custom component at the end to make the hashed paths work right (so it can scroll to the right element)*@
 <AnchorNavigation/>
+
+
+
+
+@code{
+    IJSObjectReference jsObjRef;    // js interactor
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+       jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Portfolio.razor.js");
+       await jsObjRef.InvokeVoidAsync("init");
+    }
+}

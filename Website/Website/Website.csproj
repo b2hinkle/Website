@@ -7,19 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\**" />
+    <Content Remove="Data\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Pages\TestPages\Index.razor.js" />
     <None Remove="Pages\TestPages\ParallaxWindowTest.razor.js" />
+    <None Remove="Pages\TestPages\Portfolio.razor.js" />
     <None Remove="Shared\Layouts\MainLayout.razor.css" />
     <None Remove="Shared\Layouts\MainLayout.razor.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Pages\Portfolio.razor.js" />
     <Content Include="Pages\TestPages\ParallaxWindowTest.razor.js" />
     <Content Include="Shared\Layouts\MainLayout.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

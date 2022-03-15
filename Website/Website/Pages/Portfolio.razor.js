@@ -1,3 +1,12 @@
+﻿export function init()
+{
+    // Also can pass in optional settings block
+    var rellax = new Rellax('.rellax');
+}
+
+
+
+
 /*!
 * Start Bootstrap - Freelancer v7.0.5 (https://startbootstrap.com/theme/freelancer)
 * Copyright 2013-2021 Start Bootstrap
