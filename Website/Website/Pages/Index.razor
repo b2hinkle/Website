@@ -1,107 +1,13 @@
 ﻿@page "/"
-@inject IJSRuntime jsRuntime;
 
 <PageTitle>Index</PageTitle>
 
 
 
 
-
-
-<div class="parallax-window">
-  <div class="parallax-slider">
-    <span style="position:absolute; top: 400px; left: 400px;">Some Text</span>
-	<p>Some other Content</p>
-  </div>
-</div>
-    
-
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-@*<div class="jumbotron">
-  <video class="video-background" data-parallax="scroll" muted autoplay loop>
-    <source src="videos/TestVid.mp4" type="video/mp4">
-  </video>
-  <div class="container text-center" style="padding-top: 20vh; color: #ffffff;">
-      <h1>Hello</h1>
-  </div>
-</div>*@
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-
 @code{
-    IJSObjectReference jsObjRef;    // js interactor
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override void OnAfterRender(bool firstRender)
     {
-       jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Index.razor.js");
-       await jsObjRef.InvokeVoidAsync("init");
+       
     }
-    
-    /*async Task CallJsFunction()
-    {
-       await jsObjRef.InvokeVoidAsync("TestFunction");
-    }*/
 }
