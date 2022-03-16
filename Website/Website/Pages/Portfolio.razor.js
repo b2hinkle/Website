@@ -14,3 +14,14 @@
         $.fn['scrollspy'].call($spy, $spy.data());
     }
 }
+
+
+
+
+
+
+
+// fired when new scrollsby element is active
+$('[data-spy="scroll"]').on('activate.bs.scrollspy', function () {
+    /*alert("This is a warning message!");*/
+})
