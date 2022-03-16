@@ -4,15 +4,14 @@
     var rellax = new Rellax('.rellax');
 
 
-    // Make our ScrollSpy work
-    var scrollSpys = [].slice.call(document.querySelectorAll('[data-spy="scroll"]'));
-    var scrollSpysLength = scrollSpys.length;
-
-    for (var i = scrollSpysLength; i--;) {
-        var $spy = $(scrollSpys[i]);
-
-        $.fn['scrollspy'].call($spy, $spy.data());
-    }
+    // Activate Bootstrap scrollspy on the main nav element
+    const mainNav = document.body.querySelector('#PortfolioNavbar');
+    if (mainNav) {
+        new bootstrap.ScrollSpy(document.body, {
+            target: '#PortfolioNavbar',
+            offset: 72,
+        });
+    };
 }
 
 

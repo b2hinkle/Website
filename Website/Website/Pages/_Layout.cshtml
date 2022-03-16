@@ -25,7 +25,7 @@
     <link href="Website.styles.css" rel="stylesheet" />     @*this is the thing that looks for the css file associated with a certain page at the same file path (ie. Index.razor.css). File not found error if project doesn't have any of those*@
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
-<body>
+<body data-spy="scroll">    @* bootstrap requires this attribute to be on the body if we want to use ScrollSpy. Kinda weird in Blazor but we'll see if it ever causes problems *@
     @RenderBody()
 
     <div id="blazor-error-ui">
