@@ -1,8 +1,20 @@
-﻿export function init()
+﻿const PortfolioNavbarSizeChanged = new ResizeObserver(function (entries)
+{
+    var navbarHeight = document.getElementById("PortfolioNavbar").getBoundingClientRect().height;
+    document.getElementById("PageContent").style.paddingTop = navbarHeight.toString() + "px";
+});
+
+
+
+export function init()
 {
     // Also can pass in optional settings block
-    //var rellax = new Rellax('.rellax');
+    var rellax = new Rellax('.rellax');
 
+
+    // start observing for resize
+    PortfolioNavbarSizeChanged.observe(document.querySelector("#PortfolioNavbar"));
+    
 
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#PortfolioNavbar');
@@ -13,14 +25,3 @@
         });
     };
 }
-
-
-
-
-
-
-
-// fired when new scrollsby element is active
-$('[data-spy="scroll"]').on('activate.bs.scrollspy', function () {
-    /*alert("This is a warning message!");*/
-})
