@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Pages\Portfolio.razor.js" />
     <None Remove="Pages\TestPages\Index.razor.js" />
     <None Remove="Pages\TestPages\ParallaxWindowTest.razor.js" />
     <None Remove="Pages\TestPages\Portfolio.razor.js" />
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <Content Include="Pages\Portfolio.razor.js" />
+    <Content Include="Pages\PortfolioTemplate.razor.js" />
     <Content Include="Pages\TestPages\ParallaxWindowTest.razor.js" />
   </ItemGroup>
 
