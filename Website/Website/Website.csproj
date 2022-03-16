@@ -27,4 +27,8 @@
     <Content Include="Pages\TestPages\ParallaxWindowTest.razor.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Classes\" />
+  </ItemGroup>
+
 </Project>

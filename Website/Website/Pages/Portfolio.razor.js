@@ -1,7 +1,7 @@
 ﻿export function init()
 {
     // Also can pass in optional settings block
-    var rellax = new Rellax('.rellax');
+    //var rellax = new Rellax('.rellax');
 
 
     // Activate Bootstrap scrollspy on the main nav element
