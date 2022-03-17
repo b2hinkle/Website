@@ -4,7 +4,7 @@
 @inject IJSRuntime jsRuntime;
 @inject NavigationManager NavManager;
 
-<nav id="PortfolioNavbar" class="navbar fixed-top navbar-expand-sm navbar-dark" style="background-color: rgba(33, 37, 41, .75)">
+<nav id="PortfolioNavbar" class="navbar fixed-top navbar-expand-sm navbar-dark" style="background-color: rgba(33, 37, 41, .75); transition: background-color .25s;">
 	<div  class="container-fluid">
 	    <a href="/" class="navbar-brand mb-0 h1">Brian Hinkle</a>
         <button id="NavbarExpandButton" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,22 +18,25 @@
                     Instead we're just manually scrolling using javascript, also this allows us to implement scrolling with the NavbarOffset.
                 *@
                 <li class="nav-item">
-                    <a class="nav-link" @onclick:preventDefault href="#portfolio"   @onclick="@( () => ScrollToElementWithNavbarOffset("portfolio")     )"   >Portfolio</a>
+                    <a class="nav-link" @onclick:preventDefault href="#portfolio"   @onclick="@( () => ScrollToElementWithNavbarOffset("portfolio")     )"      >Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" @onclick:preventDefault href="#about"       @onclick="@( () => ScrollToElementWithNavbarOffset("about")         )"       >About</a>
+                    <a class="nav-link" @onclick:preventDefault href="#about"       @onclick="@( () => ScrollToElementWithNavbarOffset("about")         )"      >About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" @onclick:preventDefault href="#contact"     @onclick="@( () => ScrollToElementWithNavbarOffset("contact")       )"     >Contact</a>
+                    <a class="nav-link" @onclick:preventDefault href="#contact"     @onclick="@( () => ScrollToElementWithNavbarOffset("contact")       )"      >Contact</a>
+                </li>
+                @*NOTE: Only reason we have this "Header" li is so we can take advantage of ScrollSpy's section watching logic for the header. We don't want a navbar button for the header but ScrollSpy requires it so we collapse it.*@
+                <li class="nav-item collapse">
+                    <a class="nav-link" @onclick:preventDefault href="#header">Header</a>
                 </li>
             </ul>
 		</div>
 	</div>
 </nav>
 
-<div id="PageContent">
     <!-- Masthead-->
-<header class="text-center">
+<header id="header" class="text-center">
     <div style="position: relative; overflow: hidden; height: 70vh;">
         <div class="rellax">
             <video class="FullScreen" data-rellax-speed="4" data-rellax-zindex="0" muted autoplay loop>
@@ -179,8 +182,6 @@
     <p>...</p>
     <p>...</p>
     <p>...</p>
-</div>
-
 
 
 
