@@ -39,19 +39,26 @@ export function init()
             target: '#PortfolioNavbar',
             offset: document.getElementById("PortfolioNavbar").getBoundingClientRect().height+1,
         });
+
+
+
+        navbarBgColorForHeaderSection = mainNav.style.backgroundColor;
+        // Fires when we scrolled by a certain section
+        $(window).on('activate.bs.scrollspy', function (e)
+        {
+            console.log(e.relatedTarget);
+            if (e.relatedTarget == "#portfolio")
+            {
+                mainNav.style.backgroundColor = navbarBgColorForNonHeaderSections;
+            }
+            else if (e.relatedTarget == "#header")
+            {
+                mainNav.style.backgroundColor = navbarBgColorForHeaderSection;
+            }
+        });
     };
 
-    navbarBgColorForHeaderSection = mainNav.style.backgroundColor;
-    // Fires when we scrolled by a certain section
-    $(window).on('activate.bs.scrollspy', function (e) {
-        console.log(e.relatedTarget);
-        if (e.relatedTarget == "#portfolio") {
-            mainNav.style.backgroundColor = navbarBgColorForNonHeaderSections;
-        }
-        else if (e.relatedTarget == "#header") {
-            mainNav.style.backgroundColor = navbarBgColorForHeaderSection;
-        }
-    });
+    
 }
 
 
