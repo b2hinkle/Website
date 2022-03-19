@@ -19,3 +19,20 @@
     transform: translate3d(-50%, -50%, 0);
     z-index: 1;
 }
+
+/* full screen used for simple-parallax plugin. We remove the position: absolute part because it was stepping on the toes of the plugin */
+.SimpleParallaxFullScreen {
+    height: auto;
+    width: auto;
+    min-height: 100%;
+    min-width: 100%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 1;
+}
+
+.wrapper {
+
+}
