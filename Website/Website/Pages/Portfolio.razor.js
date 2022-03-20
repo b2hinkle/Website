@@ -22,7 +22,9 @@ const PortfolioNavbarSizeChanged = new ResizeObserver(function (entries)
 
 export function init() {
     var parallaxElements = document.getElementsByClassName('parallax');
-    new simpleParallax(parallaxElements);
+    new simpleParallax(parallaxElements, {
+        scale: 1.9
+    });
 
 
     // start observing for resize
