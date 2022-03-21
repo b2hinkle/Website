@@ -136,40 +136,54 @@
 
 
 <div id="contact">
-    <h2>Contact</h2>
-    <br />
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
-    <p>hey hey hey hey hey hey hey hey hey hey hey hey </p>
+    <!-- Contact Section-->
+    <section class="page-section">
+        <div class="container">
+            <!-- Contact Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Contact Section Form-->
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <form id="contactForm" action="https://getform.io/f/23f61656-c8ea-499d-b237-96bdaf8cdfae" method="POST">
+                      <!-- Name input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." required/>
+                            <label for="name">
+                                <span style="Color:red" >*</span> Full name
+                            </label>
+                        </div>
+                        <!-- Email address input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="email" name="email" type="email" placeholder="name@example.com" required/>
+                            <label for="email">
+                                <span style="Color:red" >*</span> Email address
+                                </label>
+                        </div>
+                        <!-- Phone number input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="phone" name="Phone" type="tel" placeholder="Enter your phone..."/>
+                            <label for="phone">Phone number <i>(opt.)</i></label>
+                        </div>
+                        <!-- Message input-->
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="message" name="message" type="text" placeholder="Enter your message here..." style="height: 10rem" required></textarea>
+                            <label for="message">
+                                <span style="Color:red" >*</span> Message
+                                </label>
+                        </div>
+                        <!-- Submit Button-->
+                        <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 
