@@ -45,17 +45,25 @@
 <br />
 <br />
 <br />
-    <div class="container-fluid parallax" style="border: 3px solid green; border-color: black; background-color: yellow; height: 200px; position: relative;">
-        
-        
-        
-            <video class="FullScreen" muted autoplay loop>
-                <source src="videos/TestVid.mp4" type="video/mp4">
-            </video>
+<div>
+    @* Stacked divs........ *@
 
-        <h1 style="margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Title!!!!!</h1>
-
+    @* Text div (top) *@
+    <div class="PageHeader d-flex align-items-center justify-content-center" style="position: absolute; z-index:1;">
+        <h1>Title!!!!!</h1>
     </div>
+
+    @* Video div (bottom) *@
+    <div class="PageHeader parallax" >       @* window div *@
+        <video class="FullScreen" muted autoplay loop>
+            <source src="videos/TestVid.mp4" type="video/mp4">
+        </video>
+    </div>
+        
+
+</div>
+
+    
     <h4 id="portfolio">Portfolio</h4>
     <p>...</p>
     <p>...</p>
@@ -77,6 +85,17 @@
     <p>...</p>
     <p>...</p>
     <p>...</p>
+
+    @*<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center bg-warning">
+        <h1>Title</h1>
+        <p>helo. helo. helo. helo. helo. helo. helo. helo. helo. helo. helo. </p>
+        <button class="btn btn-primary">Get Started</button>
+    </div>*@
+
+    <div class="bg-info border d-flex align-items-center justify-content-center" style="height:500px">
+          <p>This is a content</p>
+     </div>
+
     <p>...</p>
     <p>...</p>
     <p>...</p>
