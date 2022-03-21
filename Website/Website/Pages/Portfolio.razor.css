@@ -12196,6 +12196,16 @@ html {
     width: 100%;
 }
 
+.PortfolioSection {
+    background-color: grey;
+}
+
+.PortfolioProjectEntry {
+    height: 25vh;
+    width: 100%;
+    overflow: hidden;
+}
+
 
 
 
