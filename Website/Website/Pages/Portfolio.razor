@@ -175,76 +175,60 @@
 
 <!-- Contact Section-->
 <div id="contact" class="page-section" style="background-color: pink;">
-    
-    
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
 
-
-
-
-
-
-                    <div class="mask d-flex align-items-center h-100">
-                      <div class="container">
-                        <div class="row justify-content-center">
-                          <div class="col-12">
-                            <div class="card">
-                              <div class="card-body p-5 text-white">
-
-                                <div class="my-4">
-
-                                  <h2 class="text-center mb-5">Register Form</h2>
-
-                                  <form>
-                                    <!-- 2 column grid layout with text inputs for the first and last names -->
-                                    <div class="row">
-
-                                        <!-- Name input -->
-                                        <div class="col-12 col-md-4 mb-3">
-                                            <div class="form-outline form-white">
-                                                <input class="form-control form-control-lg" id="name" name="name" type="text" placeholder="Your Name" required/>
-                                                <label class="form-label" for="name">Your Name</label>
-                                            </div>
+                    <!-- Contact Heading -->
+                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+                    <div class="divider-custom">
+                        <div class="divider-custom-line"></div>
+                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                        <div class="divider-custom-line"></div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="p-5">
+                        <div class="my-4">
+                            <form action="https://getform.io/f/de2c95c1-1b08-45bb-9091-c1cc4b13bced" method="POST">
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="row">
+                                    <!-- Name input -->
+                                    <div class="col-12 col-md-4 mb-3">
+                                        <div class="form-outline form-white">
+                                            <input class="form-control form-control-lg" id="name" name="name" type="text" placeholder="Your Name" required/>
                                         </div>
-                                        
-                                        <!-- Email address input -->
-                                        <div class="col-12 col-md-4 mb-3">
-                                            <div class="form-outline form-white">
-                                                <input class="form-control form-control-lg" id="email" name="email" type="email" placeholder="Your Email" required/>
-                                                <label class="form-label" for="email">Email</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Phone number input -->
-                                        <div class="col-12 col-md-4 mb-3">
-                                            <div class="form-outline form-white">
-                                                <input class="form-control form-control-lg" id="phone" name="phone" type="tel" placeholder="Your Phone" required/>
-                                                <label class="form-label" for="phone">Phone number <i>(opt.)</i></label>
-                                            </div>
-                                        </div>
-
                                     </div>
-
-                                    <!-- Message input-->
-                                    <div class="col-12">
-                                        <textarea class="form-control" id="message" name="message" type="text" placeholder="Enter your message here..." rows="10" required></textarea>
+                                        
+                                    <!-- Email address input -->
+                                    <div class="col-12 col-md-4 mb-3">
+                                        <div class="form-outline form-white">
+                                            <input class="form-control form-control-lg" id="email" name="email" type="email" placeholder="Your Email" required/>
+                                        </div>
                                     </div>
-                                    <!-- Submit Button-->
-                                    <button class="btn btn-primary btn-xl col-12" id="submitButton" type="submit">Send</button>
-                                  </form>
-
+                                        
+                                    <!-- Subject -->
+                                    <div class="col-12 col-md-4 mb-3">
+                                        <div class="form-outline form-white">
+                                            <input class="form-control form-control-lg" id="subject" name="subject" type="tel" placeholder="Subject" required/>
+                                        </div>
+                                    </div>
                                 </div>
 
-                              </div>
-                            </div>
-                          </div>
+                                <!-- Message input -->
+                                <div class="col-12">
+                                    <textarea class="form-control" id="message" name="message" type="text" placeholder="Enter your message here..." rows="10" required></textarea>
+                                </div>
+                                <!-- Submit Button -->
+                                <button class="btn btn-primary btn-xl col-12" id="submitButton" type="submit">Send</button>
+                            </form>
                         </div>
-                      </div>
                     </div>
-
-
-
-
-
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
