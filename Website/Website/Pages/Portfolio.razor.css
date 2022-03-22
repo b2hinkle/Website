@@ -11918,22 +11918,6 @@ html {
     scroll-padding-top: calc(4.5rem - 1px);
 }
 
-.page-section {
-    padding: 6rem 0;
-}
-
-    .page-section .page-section-heading {
-        font-size: 2.25rem;
-        line-height: 2rem;
-    }
-
-@media (min-width: 992px) {
-    .page-section .page-section-heading {
-        font-size: 3rem;
-        line-height: 2.5rem;
-    }
-}
-
 .divider-custom {
     margin: 1.25rem 0 1.5rem;
     width: 100%;
@@ -12196,9 +12180,24 @@ html {
     width: 100%;
 }
 
-.PortfolioSection {
-    background-color: grey;
+
+.page-section {
+    padding: 6rem 0;
 }
+
+.page-section .page-section-heading {
+    font-size: 2.25rem;
+    line-height: 2rem;
+}
+
+@media (min-width: 992px) {
+    .page-section .page-section-heading {
+        font-size: 3rem;
+        line-height: 2.5rem;
+    }
+}
+
+
 
 .PortfolioProjectEntry {
     height: 25vh;
