@@ -24,7 +24,7 @@ export function init() {
     var parallaxElements = document.getElementsByClassName('parallax');
     new simpleParallax(parallaxElements, {
         orientation: 'down',
-        scale: 1.8,
+        scale: 1.9,   // higher scale = slower scrolling (and more zoomed in). Value of 1 is no different than normal scrolling
     });
 
 
