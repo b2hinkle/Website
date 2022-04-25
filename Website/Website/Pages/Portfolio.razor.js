@@ -59,7 +59,8 @@ export function init() {
         });
     };
 
-    
+
+    AOS.init();
 }
 
 
