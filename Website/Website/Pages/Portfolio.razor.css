@@ -12213,8 +12213,24 @@ html {
     background-color: #1a252f;
 }
 
+/* global variables*/
+:root {
+    --dotSize: 5;
+}
 
-
+/* TODO: 
+    - constant dot size accross all zoom/window-sizes
+    - tweak dot spacing and size
+    - maybe have the dots fade in a certain direction
+    - maybe gradient the background color
+    
+    ref: https://www.halowaypoint.com/en-us
+*/
+.DottedOverlay {
+    background: rgb(20, 20, 20);
+    background-image: radial-gradient(rgba(255,255,255,1) 5%, transparent 5%, transparent 100%); /* % values for first 2 colors are the size of the dot */
+    background-size: 20px 20px;
+}
 
 
 
