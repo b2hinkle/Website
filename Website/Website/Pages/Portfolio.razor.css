@@ -12180,6 +12180,33 @@ html {
     width: 100%;
 }
 
+/* full screen */
+.FullScreen {
+    position: absolute;
+    height: auto;
+    width: auto;
+    min-height: 100%;
+    min-width: 100%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+}
+/* full screen */
+#FullScreenBG {
+    position: fixed;
+    /*height: Body element's height (set in js);*/
+    width: 100vw;
+    top: 0%;
+    left: 0%;
+
+    /*-webkit-transform: translate3d(0%, 0%, 0);
+    transform: translate3d(0%, 0%, 0);*/
+
+    background-image: radial-gradient(rgba(255,255,255,.2) 5%, transparent 5%, transparent 100%), /* % values for first 2 colors are the size of the dot */
+    linear-gradient(rgb(20, 20, 20), #481217);
+    background-size: 40px 40px, auto auto;
+}
 
 .page-section {
     padding: 6rem 0;

@@ -21,10 +21,15 @@ const PortfolioNavbarSizeChanged = new ResizeObserver(function (entries)
 
 
 export function init() {
+    var bodyHeight = (document.body.offsetHeight);
+    var bgHeight = bodyHeight.toString() + "px";
+    document.getElementById("FullScreenBG").style.height = bgHeight;
+
     var parallaxElements = document.getElementsByClassName('parallax');
     new simpleParallax(parallaxElements, {
-        orientation: 'down',
-        scale: 1.9,   // higher scale = slower scrolling (and more zoomed in). Value of 1 is no different than normal scrolling
+        orientation: 'up',
+        scale: 1.025,   // lower scale = slower scrolling (and less zoomed in). Value of 1 is no different than normal scrolling
+        overflow: true
     });
 
 
@@ -58,6 +63,7 @@ export function init() {
             }
         });
     };
+
 
 
     AOS.init();
