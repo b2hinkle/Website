@@ -1,0 +1,181 @@
+﻿@page "/RollyTest"
+@inject IJSRuntime jsRuntime;
+
+@*
+  TODO:
+    - divs not appearing until at the top
+*@
+
+<div class="app">
+    <div data-scene="custom" data-speed=".1" 
+    style="background-image: radial-gradient(rgba(255,255,255,.2) 5%, transparent 5%, transparent 100%), linear-gradient(rgb(20, 20, 20), #481217); background-size: 40px 40px, auto auto;">
+
+        <div data-child="a" style="background-color:lightblue;">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>1
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+        
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <div data-child="b" data-speed="2" style="background-color:pink; z-index:400;">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>2
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+        
+        <br/>
+        <br/>
+        <br/>
+
+        @*<div data-scene style="background-color:yellow;">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>3
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+        
+        <br/>
+        <br/>
+        <br/>
+
+        <div data-scene style="background-color:darkblue;">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>4
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+        
+        <br/>
+        <br/>
+        <br/>
+
+        <div data-scene style="background-color:grey;">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>5
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>*@
+    </div>
+
+</div>
+
+@*<div class="app">
+    <section data-scene="custom">
+      <div data-child="a">
+
+      </div>
+      <div data-child="b" data-speed="2">
+
+      </div>
+    </section>
+</div>*@
+
+
+@code{
+    IJSObjectReference jsObjRef;    // js interactor
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/TestPages/RollyTest.razor.js");
+            await jsObjRef.InvokeVoidAsync("init");
+        }
+    }
+}

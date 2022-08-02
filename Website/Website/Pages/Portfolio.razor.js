@@ -21,16 +21,6 @@ const PortfolioNavbarSizeChanged = new ResizeObserver(function (entries)
 
 
 export function init() {
-    var bodyHeight = (document.body.offsetHeight);
-    var bgHeight = bodyHeight.toString() + "px";
-    document.getElementById("FullScreenBG").style.height = bgHeight;
-
-    var parallaxElements = document.getElementsByClassName('parallax');
-    new simpleParallax(parallaxElements, {
-        orientation: 'up',
-        scale: 1.025,   // lower scale = slower scrolling (and less zoomed in). Value of 1 is no different than normal scrolling
-        overflow: true
-    });
 
 
     // start observing for resize
