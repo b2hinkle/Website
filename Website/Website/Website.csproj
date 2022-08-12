@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -17,7 +17,6 @@
     <None Remove="Pages\Portfolio.razor.js" />
     <None Remove="Pages\TestPages\Index.razor.js" />
     <None Remove="Pages\TestPages\ParallaxWindowTest.razor.js" />
-    <None Remove="Pages\TestPages\RollyTest.razor.js" />
     <None Remove="Shared\Layouts\MainLayout.razor.js" />
   </ItemGroup>
 
@@ -26,7 +25,6 @@
     <Content Include="Pages\Portfolio.razor.js" />
     <Content Include="Pages\PortfolioTemplate.razor.js" />
     <Content Include="Pages\TestPages\ParallaxWindowTest.razor.js" />
-    <Content Include="Pages\TestPages\RollyTest.razor.js" />
   </ItemGroup>
 
   <ItemGroup>
