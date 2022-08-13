@@ -5,8 +5,23 @@
 .PortfolioDottedBG {
     background-image: 
         radial-gradient(rgba(255,255,255,.2) 5%, transparent 5%, transparent 100%), /* % values for first 2 colors are the size of the dot */
-        linear-gradient(rgb(20, 20, 20), #481217);
+        linear-gradient(rgba(20, 20, 20, 1), #481217);
     background-size: 
         40px 40px,
         auto auto;
 }
+
+
+
+.Foreground {
+    position: relative;
+    transform: translateY(var(--ForegroundTranslationAmt));
+    will-change: transform;
+}
+.Background {
+    position: absolute;
+    transform: translateY(var(--BackgroundTranslationAmt));
+    will-change: transform;
+}
+
+

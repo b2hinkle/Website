@@ -2,17 +2,48 @@
 
 export function init()
 {
-	// in the HTML, data-speed is additive, so children get parents speed and specifying another data-speed on the child element will add that speed to the accumulated parents
-	// So far this library seems almost perfect. Things i'm currently confused on....
-	//	- WTF does the speed value mean
-	//		- How do I make a super slow parallax speed (basically not moving)?
-	//		- What is the max speed? Seems to be 40 from what I can tell because after 40 things start breaking I think.
-	//	- Is scroll easing built in and not disableable? oof
-	luxy.init({
-		wrapper: '#luxy',
-		targets: '.luxy-el',
-		wrapperSpeed: 0.08,
-		targetSpeed: 0.02,
-		targetPercentage: 0.1
-	});
+	var ForegroundTranslationAmt = -1000;
+	var BackgroundTranslationAmt = 0;
+	
+	document.querySelectorAll('.Foreground').forEach((elem) =>
+	{
+		//const modifier = elem.getAttribute('data-modifier')
+
+		basicScroll.create(
+		{
+			elem: elem,
+			from: 0, // at scroll position of 0
+			to: 900, // stop the animation when the bottom of the element reaches the top of the viewport
+			direct: true,
+			props:
+			{
+				'--ForegroundTranslationAmt':
+				{
+					from: '0',
+					to: `${ForegroundTranslationAmt}px`
+				}
+			}
+		}).start()
+	})
+
+	document.querySelectorAll('.Background').forEach((elem) =>
+	{
+		//const modifier = elem.getAttribute('data-modifier')
+
+		basicScroll.create(
+		{
+			elem: elem,
+			from: 'top-top', // at scroll position of 0
+			to: 'bottom-bottom', // stop the animation when the bottom of the element reaches the top of the viewport
+			direct: true,
+			props:
+			{
+				'--BackgroundTranslationAmt':
+				{
+					from: '0',
+					to: `${-BackgroundTranslationAmt}px`
+				}
+			}
+		}).start()
+	})
 }
