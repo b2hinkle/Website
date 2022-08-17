@@ -4,7 +4,7 @@
 @inject IJSRuntime jsRuntime;
 
 <div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@
-    <div style="transform-style: preserve-3d; position: relative;"> @* 2nd wrapper solely for the pourpose of having a dynamic size depending on its content. Preserve 3d again because it only applies to 1st decendents. Position relative to make height percentages of child elements work *@
+    <div style="transform-style: preserve-3d; position: relative; width: 100%;"> @* 2nd wrapper solely for the pourpose of having a dynamic size depending on its content. Preserve 3d again because it only applies to 1st decendents. Position relative to make height percentages of child elements work *@
         
         <div class="PortfolioDottedBG" style="position:absolute; z-index:-1; width:100%; height:100%;"/>   @* background *@
 
