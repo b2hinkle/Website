@@ -6,7 +6,7 @@
 <div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@
     <div style="transform-style: preserve-3d; position: relative; width: 100%;"> @* 2nd wrapper solely for the pourpose of having a dynamic size depending on its content. Preserve 3d again because it only applies to 1st decendents. Position relative to make height percentages of child elements work *@
         
-        <div class="PortfolioDottedBG" style="position:absolute; z-index:-1; width:100%; height:100%; transform:translateZ(-50px) scale(51);"/>   @* background *@
+        <div class="PortfolioDottedBG" style="position:absolute; z-index:-1; width:200%; height:100%; transform:translateZ(-50px) scale(51);"/>   @* background. Does a large scale make load time slower? Especially if the bg is pure css? *@
 
         <div class="container" style="background-color:aqua;">
             <div class="row align-items-center">
