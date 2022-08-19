@@ -9,8 +9,31 @@
     background-size: 
         40px 40px,
         auto auto;
+    /* vertical */
+    /*background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,1) 48%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 52%, rgba(0,0,0,1) 100%);*/
+    /* horizontal */
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 49.9%, rgba(0,0,0,1) 49.9%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 5.1%, rgba(0,0,0,1) 100%);
 }
 
+.PortfolioDottedBGTransform {
+    position: absolute;
+    z-index: -1;
+
+/* BEGIN center div to parent el */
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    margin: auto;
+/* END center div to parent el */
+
+    width: 100%;
+    height: 100%;
+
+    transform: translateZ(-50px) scale(81);
+}
 
 
 #ParallaxWrapper {
@@ -23,9 +46,15 @@
     perspective: 1px; /* easy value (translating on z by -1 will make it appear twice as small, so just scale it up by 2) */
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d; /* also do this on the body? */
-    overflow-x: hidden; /* since we are working in 3D now, we don't want the horizontal scrollbar to appear for content that is offscreen just because it's moved on the Z. */
+    overflow-x: auto; /* since we are working in 3D now, we don't want the horizontal scrollbar to appear for content that is offscreen just because it's moved on the Z. */
     overflow-y: auto; /* this div's scrolling will only be allowed if overflow occurs (not really needing scrolling for this div) */
 }
+#ParallaxWrapper2 {
+    transform-style: preserve-3d;
+    position: relative;
+    width: inherit;
+}
+
 /*.ParallaxWrapper * {*/    /* all descendants */
     /*transform-style:preserve-3d; 
 }*/
