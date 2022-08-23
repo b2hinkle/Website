@@ -44,13 +44,21 @@
     width: 100vw;
     height: 100vh;
     perspective: 1px; /* easy value (translating on z by -1 will make it appear twice as small, so just scale it up by 2) */
+    
+    /* BEGIN 3D rendering context */
     -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d; /* also do this on the body? */
+    transform-style: preserve-3d;
+    /* END 3D rendering context */
+
     overflow-x: auto; /* since we are working in 3D now, we don't want the horizontal scrollbar to appear for content that is offscreen just because it's moved on the Z. */
     overflow-y: auto; /* this div's scrolling will only be allowed if overflow occurs (not really needing scrolling for this div) */
 }
 #ParallaxWrapper2 {
+    /* BEGIN 3D rendering context */
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
+    /* END 3D rendering context */
+
     position: relative;
     width: inherit;
 }
