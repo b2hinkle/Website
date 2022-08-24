@@ -1,4 +1,27 @@
-﻿/* TODO: 
+﻿#ParallaxWrapper {
+    position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
+    width: 100vw;
+    height: 100vh;
+    box-sizing:border-box;
+
+    /* BEGIN 3D rendering context */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    /* END 3D rendering context */
+    perspective-origin: center; /* vanishing point in center of screen */
+    perspective: 1px; /* easy value (translating on z by -1 will make it appear twice as small, so just scale it up by 2) */
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+
+
+
+
+
+/* TODO: 
     - maybe have the dots fade in a certain direction
     - maybe gradient the background color
 */
@@ -28,6 +51,8 @@
     top: 0px;
     margin: auto;
 /* END center div to parent el */
+    /* So now we are centered in the wrapper div, which is only the height of the viewport, but we want our BG's center to start where the content's center is so we will offset it down some.... */
+    top: 1000%; /* offset */
 
     width: 100%;
     height: 100%;
@@ -35,44 +60,4 @@
     transform: translateZ(-50px) scale(81);
 }
 
-
-#ParallaxWrapper {
-    /*will-change: transform;*/
-    perspective-origin: center; /* vanishing point in center of screen */
-    position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
-    /* vh instead of % because % would adhear to the size of the parent element (the body) which we don't want since that may scroll. Basically we're ditching any scrolling outside this wrapper div. We essentially want this wrapper div to be the new body tag so we kind of want to ditch anything from the body. */
-    width: 100vw;
-    height: 100vh;
-    perspective: 1px; /* easy value (translating on z by -1 will make it appear twice as small, so just scale it up by 2) */
-    
-    /* BEGIN 3D rendering context */
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    /* END 3D rendering context */
-
-    overflow-x: auto; /* since we are working in 3D now, we don't want the horizontal scrollbar to appear for content that is offscreen just because it's moved on the Z. */
-    overflow-y: auto; /* this div's scrolling will only be allowed if overflow occurs (not really needing scrolling for this div) */
-}
-#ParallaxWrapper2 {
-    /* BEGIN 3D rendering context */
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    /* END 3D rendering context */
-
-    position: relative;
-    width: inherit;
-}
-
-/*.ParallaxWrapper * {*/    /* all descendants */
-    /*transform-style:preserve-3d; 
-}*/
-
-/*.ParallaxGroup*/  /* all the content that will be given depth */
-/*{
-    .ParallaxLayer
-    {
-        position: absolute;
-        inset: 0;
-    } 
-}*/
 
