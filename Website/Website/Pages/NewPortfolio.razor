@@ -3,7 +3,7 @@
 @layout Shared.Layouts.EmptyLayout;
 @inject IJSRuntime jsRuntime;
 
-<div id="ParallaxWrapper" style="background-color:aquamarine">  @* Wrapper the size of the viewport *@   
+<div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@   
     <div id="BG" class="HorizontalDebugBG PortfolioDottedBGTransform"/>   @* background. Both css and js work together to give this the same size as "#PageContent" and to center it in it too *@
 
     <div id="PageContent">
@@ -458,12 +458,11 @@
         {
             jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/NewPortfolio.razor.js");
 
-            await jsObjRef.InvokeVoidAsync("init");
+            await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
         }
 
 
 
 
-        await jsObjRef.InvokeVoidAsync("UpdateBGTransform");
     }
 }
