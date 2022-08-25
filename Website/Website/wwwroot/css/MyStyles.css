@@ -5,4 +5,13 @@
 
 
 
+.VerticalDebugBG {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,1) 48%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 52%, rgba(0,0,0,1) 100%);
+}
+
+.HorizontalDebugBG {
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 49.9%, rgba(0,0,0,1) 49.9%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 5.1%, rgba(0,0,0,1) 100%);
+}
 
