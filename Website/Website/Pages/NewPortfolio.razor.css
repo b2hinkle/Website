@@ -55,7 +55,7 @@
     
     transform: translateZ(-100px) scale(125);
 }
-.PortfolioDottedBGTransform {
+.BGTransform {
 /* Transform stuff..... */
 
     position: absolute;
