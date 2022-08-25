@@ -1,4 +1,8 @@
-﻿#ParallaxWrapper {
+﻿:root {
+    
+}
+
+#ParallaxWrapper {
     position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
     width: 100vw;
     height: 100vh;
@@ -40,7 +44,6 @@
     z-index: -1;
 
     width: 100vw;
-    height: 100vh;
 
 /* BEGIN center div to parent el */
     left: 0px;
@@ -49,10 +52,25 @@
     top: 0px;
     margin: auto;
 /* END center div to parent el */
-    /* So now we are centered in the wrapper div, which is only the height of the viewport, but we want our BG's center to start where the content's center is so we will offset it down some.... */
-    top: 1200vh; /* hard coded offset. Height and this should be dynamically calculated. We should set it in js to always be at the center of the page's content. */
-    
     
     transform: translateZ(-100px) scale(125);
 }
+.PortfolioDottedBGTransform {
+/* Transform stuff..... */
 
+    position: absolute;
+    z-index: -1;
+
+    width: 100vw;
+    height: 0vh;  /* JS will set this so lets just act right now as if the div isn't even loaded yet or something like that */
+
+/* BEGIN center div to parent el */
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    margin: auto;
+/* END center div to parent el */
+    
+    transform: translateZ(-100px) scale(101);
+}
