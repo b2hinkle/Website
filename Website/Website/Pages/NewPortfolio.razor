@@ -451,15 +451,19 @@
 
 @code 
 {
-    float portfolioDivsSpeed = 40;
-
-    IJSObjectReference jsObjRef = null;    // js interactor
+    private IJSObjectReference jsObjRef;    // js interactor
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/NewPortfolio.razor.js");
+
             await jsObjRef.InvokeVoidAsync("init");
         }
+
+
+
+
+        await jsObjRef.InvokeVoidAsync("UpdateBGTransform");
     }
 }

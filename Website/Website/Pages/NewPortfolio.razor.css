@@ -72,5 +72,5 @@
     margin: auto;
 /* END center div to parent el */
     
-    transform: translateZ(-100px) scale(101);
+    transform: translateZ(-1px) scale(2);
 }

@@ -1,6 +1,10 @@
 
 export function init()
 {
+
+}
+
+export function UpdateBGTransform() {
 	var PageContentHeight = document.getElementById("PageContent").offsetHeight;
 	var PageBGElement = document.getElementById("BG")
 
