@@ -35,25 +35,6 @@
     background-size: /* NOTE: not the actual size of the div. Just creates an effect for the gradients */
         40px 40px,
         auto auto;
-
-
-
-/* Transform stuff..... */
-
-  position: absolute;
-    z-index: -1;
-
-    width: 100vw;
-
-/* BEGIN center div to parent el */
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px;
-    margin: auto;
-/* END center div to parent el */
-    
-    transform: translateZ(-100px) scale(125);
 }
 .BGTransform {
 /* Transform stuff..... */
@@ -72,5 +53,5 @@
     margin: auto;
 /* END center div to parent el */
     
-    transform: translateZ(-1px) scale(2);
+    transform: translateZ(-100px) scale(125);
 }
