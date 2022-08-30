@@ -36,8 +36,11 @@ export function UpdateBGTransform()
 {
 	var PageContentHeight = PageContentElement.offsetHeight;
 
-	BGElement.style.height = `${PageContentHeight}px`;	// give BG div same height as PageContent div (PageContent basically holds everything on the page)
-	BGElement.style.top = `${PageContentHeight / 2}px`;	// vertically center the BG div in the center of our PageContent div
+    console.log(PageContentElement.style.minHeight.toString());
+	//BGElement.style.minHeight= `${PageContentHeight}px`;	// give BG div same height as PageContent div (PageContent basically holds everything on the page)
+	
+/*    BGElement.clientTop = PageContentElement.getBoundingClientRect().top;*/
+
 }
 
 

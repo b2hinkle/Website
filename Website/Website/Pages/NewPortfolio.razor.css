@@ -1,8 +1,4 @@
-﻿:root {
-    
-}
-
-#ParallaxWrapper {
+﻿#ParallaxWrapper {
     position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
     width: 100vw;
     height: 100vh;
@@ -18,7 +14,13 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
+#PageContent {
 
+    /* BEGIN 3D rendering context */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    /* END 3D rendering context */
+}
 
 
 
@@ -36,22 +38,19 @@
         40px 40px,
         auto auto;
 }
+
 .BGTransform {
-/* Transform stuff..... */
-
-    position: absolute;
+    /* Transform stuff..... */
+    position: fixed;
     z-index: -1;
-
     width: 100vw;
-    height: 0vh;  /* JS will set this so lets just act right now as if the div isn't even loaded yet or something like that */
+    height: 100%;   /* percentages will work since we are using position: fixed */
 
-/* BEGIN center div to parent el */
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px;
-    margin: auto;
-/* END center div to parent el */
-    
-    transform: translateZ(-100px) scale(125);
+    transform: translateZ(-1px) scale(2);   /* Only problem rn is that it contributes to the scrolling for the parent */
 }
+
+
+@media all and (max-height: 500px) {
+    
+}
+
