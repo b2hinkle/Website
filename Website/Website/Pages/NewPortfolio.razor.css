@@ -8,8 +8,11 @@
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     /* END 3D rendering context */
+    
+    /* BEGIN Perspective */
     perspective-origin: center; /* vanishing point in center of screen */
     perspective: 1px; /* easy value (translating on z by -1 will make it appear twice as small, so just scale it up by 2) */
+    /* BEGIN Perspective */
 
     overflow-x: hidden;
     overflow-y: auto;
