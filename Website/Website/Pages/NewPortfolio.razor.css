@@ -3,27 +3,23 @@
     width: 100vw;
     height: 100vh;
     box-sizing:border-box;
-
-    /* BEGIN 3D rendering context */
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    /* END 3D rendering context */
     
-    /* BEGIN Perspective */
-    perspective-origin: center bottom; /* vanishing point at 50% 100% */
-    perspective: 1px; /* easy value (translating on z by -1 will make it appear twice as small, so just scale it up by 2) */
-    /* BEGIN Perspective */
-
     overflow-x: hidden;
     overflow-y: auto;
+
+    /* BEGIN Perspective */ /* We define the perspective here since this is our scrolling div */
+    perspective-origin: center bottom; /* vanishing point at 50% 100% */
+    perspective: 1px; /* easy value (translating on z by -1 will make it appear twice as small, so just scale it up by 2) */
+    /* END Perspective */
 }
+/* Pourpose for this 2nd wrapper is so that the content of the page can be parented to a div who'se size isn't hard coded to 100vw 100vh */
 #PageContent {
-    /* BEGIN 3D rendering context */
+    /* BEGIN 3D rendering context */ /* This is where our 3D content starts */
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     /* END 3D rendering context */
 
-    height: 1500px; /* set height as a place holder for content */
+    height: 1500px; /* temporary setting height to emulate place holder content */
 }
 
 .BGTransform {
@@ -34,5 +30,5 @@
     height: 100%;
     
     transform-origin: center bottom;
-    transform: translateZ(-1px) scale(2, 1.4); /* Y scale value is not the same accross different #PageContent heights. FIX THIS. This might have to do with origin being at the bottom. */
+    transform: translateZ(-1px) scale(2, 2); /* Y scale value is not the same accross different #PageContent heights. FIX THIS. This might have to do with origin being at the bottom. */
 }
