@@ -51,7 +51,7 @@
     height: 100%;
     
     transform-origin: center bottom;
-    transform: translateZ(-1px) scale(2, 1.4); /* rn 1.4 seams to be a close number to where it needs to be, but it only works for a certain #PageContent height (so it depends on height/zoom-amt). This might have to do with origin being at the bottom. */
+    transform: translateZ(-1px) scale(2, 1.4); /* Y scale value is not the same accross different #PageContent heights. FIX THIS. This might have to do with origin being at the bottom. */
 }
 
 
