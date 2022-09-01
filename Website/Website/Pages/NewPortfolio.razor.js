@@ -34,12 +34,9 @@ export function OnAfterRenderAsync()
 
 export function UpdateBGTransform()
 {
-	var PageContentHeight = PageContentElement.offsetHeight;
+    var PageContentHeight = PageContentElement.offsetHeight;
 
-    console.log(PageContentElement.style.minHeight.toString());
-	//BGElement.style.minHeight= `${PageContentHeight}px`;	// give BG div same height as PageContent div (PageContent basically holds everything on the page)
-	
-/*    BGElement.clientTop = PageContentElement.getBoundingClientRect().top;*/
+    //BGElement.style.transform = `translateZ(${-1}px) scale(${2}, ${2})`;     // use if we find out we end up needing to set this in js
 
 }
 

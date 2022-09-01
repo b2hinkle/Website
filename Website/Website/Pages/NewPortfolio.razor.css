@@ -10,7 +10,7 @@
     /* END 3D rendering context */
     
     /* BEGIN Perspective */
-    perspective-origin: center; /* vanishing point in center of screen */
+    perspective-origin: center bottom; /* vanishing point at 50% 100% */
     perspective: 1px; /* easy value (translating on z by -1 will make it appear twice as small, so just scale it up by 2) */
     /* BEGIN Perspective */
 
@@ -44,12 +44,13 @@
 
 .BGTransform {
     /* Transform stuff..... */
-    position: fixed;
+    position: absolute;
     z-index: -1;
     width: 100vw;
-    height: 100%;   /* percentages will work since we are using position: fixed */
-
-    transform: translateZ(-1px) scale(2);   /* Only problem rn is that it contributes to the scrolling for the parent */
+    height: 100%;
+    
+    transform-origin: center bottom;
+    transform: translateZ(-1px) scale(2, 1.4); /* rn 1.4 seams to be a close number to where it needs to be, but it only works for a certain #PageContent height (so it depends on height/zoom-amt). This might have to do with origin being at the bottom. */
 }
 
 
