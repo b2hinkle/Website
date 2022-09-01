@@ -26,23 +26,6 @@
     height: 1500px; /* set height as a place holder for content */
 }
 
-
-
-
-
-/* TODO: 
-    - maybe have the dots fade in a certain direction
-    - maybe gradient the background color
-*/
-.PortfolioDottedBG {
-    background-image: 
-        radial-gradient(rgba(255,255,255,.2) 5%, transparent 5%, transparent 100%), /* % values for first 2 colors are the size of the dot */
-        linear-gradient(rgba(20, 20, 20, 1), #481217);
-    background-size: /* NOTE: not the actual size of the div. Just creates an effect for the gradients */
-        40px 40px,
-        auto auto;
-}
-
 .BGTransform {
     /* Transform stuff..... */
     position: absolute;
@@ -53,9 +36,3 @@
     transform-origin: center bottom;
     transform: translateZ(-1px) scale(2, 1.4); /* Y scale value is not the same accross different #PageContent heights. FIX THIS. This might have to do with origin being at the bottom. */
 }
-
-
-@media all and (max-height: 500px) {
-    
-}
-

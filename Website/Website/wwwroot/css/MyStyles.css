@@ -10,6 +10,18 @@
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,1) 48%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 52%, rgba(0,0,0,1) 100%);
 }
 
+
+/* TODO: 
+    - maybe have the dots fade in a certain direction
+    - maybe gradient the background color
+*/
+.PortfolioDottedBG {
+    background-image: radial-gradient(rgba(255,255,255,.2) 5%, transparent 5%, transparent 100%), /* % values for first 2 colors are the size of the dot */
+    linear-gradient(rgba(20, 20, 20, 1), #481217);
+    background-size: /* NOTE: not the actual size of the div. Just creates an effect for the gradients */
+    40px 40px, auto auto;
+}
+
 .HorizontalDebugBG {
     background: rgb(2,0,36);
     background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 49.9%, rgba(0,0,0,1) 49.9%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 5.1%, rgba(0,0,0,1) 100%);
