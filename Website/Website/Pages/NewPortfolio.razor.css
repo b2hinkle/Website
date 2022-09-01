@@ -18,11 +18,12 @@
     overflow-y: auto;
 }
 #PageContent {
-
     /* BEGIN 3D rendering context */
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     /* END 3D rendering context */
+
+    height: 1500px; /* set height as a place holder for content */
 }
 
 
