@@ -21,9 +21,15 @@
     transform-style: preserve-3d;
     /* END 3D rendering context */
 
-    height: 1500px; /* temporary setting height to emulate place holder content */
+    height: 200vh; /* temporarly setting height to emulate place holder content */
 }
 
+/*
+ * When the BG div origin is at the bottom of the page it's no longer as simple as scaling the BG up by 2 because now it scales past the top of the page (2 is too big)
+ * Stuff I figured out:
+ * - The correct scale value is dependent on the page's height (it changes if page's height changes)
+ * - The correct scale value for a page height of 200vh is 1.5 (fits perfect)
+ */
 .BGTransform {
     /* Transform stuff..... */
     position: absolute;
@@ -32,5 +38,5 @@
     height: 100%;
     
     transform-origin: center bottom;
-    transform: translateZ(-1px) scale(2, 2); /* Y scale value is not the same accross different #PageContent heights. FIX THIS. This might have to do with origin being at the bottom. */
+    transform: translateZ(-1px) scale(1.5);
 }

@@ -2,6 +2,13 @@ var BGElement = document.getElementById("BG");
 var PageContentElement = document.getElementById("PageContent");
 var ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
 
+
+function vhToPx(inVh)
+{
+    return (ParallaxWrapperElement.clientHeight / (100 / inVh));
+}
+
+
 // JQuery's ready event for when DOM is fully loaded and ready to manipulate
 $(function ()
 {
@@ -32,14 +39,19 @@ export function OnAfterRenderAsync()
 
 }
 
+
 export function UpdateBGTransform()
 {
-    var PageContentHeight = PageContentElement.offsetHeight;
+    //BGElement.style.transform = `translateZ(${-1}px) scale(${1.5})`;
 
-    //BGElement.style.transform = `translateZ(${-1}px) scale(${2}, ${2})`;     // use if we find out we end up needing to set this in js
 
+
+// Stuff I was messing arround with when figuring out the ratio that would need to be applied to the scale of 2 
+/*    var PageHeight = PageContentElement.clientHeight;
+
+    var ratio = (3 / 4); // ratio at 200vh
+    BGElement.style.transform = `translateZ(${-1}px) scale(${2 * ratio})`;*/
 }
-
 
 
 
