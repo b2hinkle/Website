@@ -12245,19 +12245,6 @@ html {
     --dotSize: 5;
 }
 
-/* TODO: 
-    - maybe have the dots fade in a certain direction
-    - maybe gradient the background color
-*/
-.PortfolioDottedBG {
-    background-image: 
-        radial-gradient(rgba(255,255,255,.2) 5%, transparent 5%, transparent 100%), /* % values for first 2 colors are the size of the dot */
-        linear-gradient(rgb(20, 20, 20), #481217);
-    background-size: 
-        40px 40px,
-        auto auto;
-}
-
 
 
 

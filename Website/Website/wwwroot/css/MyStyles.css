@@ -15,7 +15,7 @@
     - maybe have the dots fade in a certain direction
     - maybe gradient the background color
 */
-.PortfolioDottedBG {
+.CoolDottedBG {
     background-image: radial-gradient(rgba(255,255,255,.2) 5%, transparent 5%, transparent 100%), /* % values for first 2 colors are the size of the dot */
     linear-gradient(rgba(20, 20, 20, 1), #481217);
     background-size: /* NOTE: not the actual size of the div. Just creates an effect for the gradients */
