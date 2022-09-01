@@ -21,7 +21,7 @@
     transform-style: preserve-3d;
     /* END 3D rendering context */
 
-    height: 200vh; /* temporarly setting height to emulate place holder content */
+    height: 2111px; /* temporarly setting height to emulate place holder content */
 }
 
 /*
@@ -38,5 +38,5 @@
     height: 100%;
     
     transform-origin: center bottom;
-    transform: translateZ(-1px) scale(1.5);
+    /*transform: translateZ(-1px) scale(1.5);*/
 }

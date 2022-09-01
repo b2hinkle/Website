@@ -42,7 +42,11 @@ export function OnAfterRenderAsync()
 
 export function UpdateBGTransform()
 {
-    //BGElement.style.transform = `translateZ(${-1}px) scale(${1.5})`;
+    var PageHeight = PageContentElement.clientHeight;
+
+    // Formula is: scale = 1 + (100vh/PageHeight)
+    console.log(`1 + 100vh/PageHeight: ${vhToPx(100)}/${PageHeight}=${1 + (vhToPx(100) / PageHeight)}`);
+    BGElement.style.transform = `translateZ(${-1}px) scale(${1 + (vhToPx(100)/PageHeight)})`;
 
 
 
