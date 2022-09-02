@@ -46,7 +46,10 @@ export function UpdateBGTransform()
 
     // Formula is: scale = 1 + (100vh/PageHeight)
     console.log(`1 + 100vh/PageHeight: 1 + ${vhToPx(100)}/${PageHeight}=${1 + (vhToPx(100) / PageHeight)}`);
-    BGElement.style.transform = `translateZ(${-1}px) scale(${1 + (vhToPx(100)/PageHeight)})`;
+
+    var ScreenPxOf100vh = vhToPx(100) * px_ratio;
+    var ScreenPxOfPageHeight = (PageHeight * px_ratio);
+    BGElement.style.transform = `translateZ(${-1}px) scale(${1 + (ScreenPxOf100vh / ScreenPxOfPageHeight)})`;
 
 
 
