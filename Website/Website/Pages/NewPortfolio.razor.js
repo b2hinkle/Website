@@ -1,6 +1,7 @@
 var BGElement = document.getElementById("BG");
 var PageContentElement = document.getElementById("PageContent");
 var ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
+var px_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;  // conversion ratio.... (physical pixel/CSS_px)
 
 
 function vhToPx(inVh)
@@ -16,7 +17,6 @@ $(function ()
 });
 
 // JQuery event detecting zoom/resizing of the window
-var px_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;
 $(window).resize(function ()
 {
     var newPx_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;
