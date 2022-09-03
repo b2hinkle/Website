@@ -39,6 +39,10 @@ export function OnAfterRenderAsync()
 
 }
 
+function GetScaleValueThatCountersZTransform(inZTransform)  // Only works when origin in in center of element
+{
+    return -inZTransform + 1
+}
 
 export function UpdateBGTransform()
 {
