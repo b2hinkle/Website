@@ -13,7 +13,7 @@ function vhToPx(inVh)
 // JQuery's ready event for when DOM is fully loaded and ready to manipulate
 $(function ()
 {
-	UpdateBGTransform();
+    UpdateBGScale();
 });
 
 // JQuery event detecting zoom/resizing of the window
@@ -22,15 +22,15 @@ $(window).resize(function ()
     var newPx_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;
     if (newPx_ratio != px_ratio) {
         px_ratio = newPx_ratio;
-        console.log("zooming");
+        // zooming
     }
     else {
-        console.log("just resizing");
+        // just resizing
     }
 
 
 
-    UpdateBGTransform(); // Keep BG div's transform updated
+    UpdateBGScale(); // Keep BG div's transform updated
 });
 
 
@@ -44,22 +44,20 @@ function GetScaleValueThatCountersZTransform(inZTransform)  // Only works when o
     return -inZTransform + 1
 }
 
-export function UpdateBGTransform()
+export function UpdateBGScale()
 {
-    var PageHeight = PageContentElement.clientHeight;
+    // We must update our BG's scale to fit perfectly to the page with its scale origin at the bottom of itself
 
-    // Formula is: scale = 1 + (100vh/PageHeight)
-    console.log(`1 + 100vh/PageHeight: 1 + ${vhToPx(100)}/${PageHeight}=${1 + (vhToPx(100) / PageHeight)}`);
+    var ratio = vhToPx(100) / PageContentElement.clientHeight; // ratio of the height of the viewport to the height of the page's content
+    // Now we must ensure we are using the correct kind of pixels (css vs device). We will use what ever pixel unit is currently the larger unit so we don't over count pixels. If there is a lower number of device pixels than there are css pixels, we choose device pixels and vice versa.
+    if (px_ratio < 1) // if page is zoomed out (device pixels are bigger)
+    {
+        ratio *= px_ratio; // convert to device pixels
+    }
 
-    BGElement.style.transform = `translateZ(${-1}px) scale(${1 + (vhToPx(100) / PageHeight)})`;
+    var newScale = 1 + ratio;
+    BGElement.style.transform = `translateZ(${-1}px) scale(${newScale})`;
 
-
-
-// Stuff I was messing arround with when figuring out the ratio that would need to be applied to the scale of 2 
-/*    var PageHeight = PageContentElement.clientHeight;
-
-    var ratio = (3 / 4); // ratio at 200vh
-    BGElement.style.transform = `translateZ(${-1}px) scale(${2 * ratio})`;*/
 }
 
 
