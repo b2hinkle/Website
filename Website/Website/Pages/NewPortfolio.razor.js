@@ -13,7 +13,7 @@ function vhToPx(inVh)
 // JQuery's ready event for when DOM is fully loaded and ready to manipulate
 $(function ()
 {
-    UpdateBGScale();
+    UpdateParallaxElement(BGElement, -100);
 });
 
 // JQuery event detecting zoom/resizing of the window
@@ -30,7 +30,7 @@ $(window).resize(function ()
 
 
 
-    UpdateBGScale(); // Keep BG div's transform updated
+    UpdateParallaxElement(BGElement, -100); // Keep BG div's transform updated
 });
 
 
@@ -39,12 +39,7 @@ export function OnAfterRenderAsync()
 
 }
 
-function GetScaleValueThatCountersZTransform(inZTransform)  // Only works when origin in in center of element
-{
-    return -inZTransform + 1
-}
-
-export function UpdateBGScale()
+export function UpdateParallaxElement(inElement, inZTransform)
 {
     // We must update our BG's scale to fit perfectly to the page with its scale origin at the bottom of itself
 
@@ -55,8 +50,8 @@ export function UpdateBGScale()
         ratio *= px_ratio; // convert to device pixels
     }
 
-    var newScale = 1 + ratio;
-    BGElement.style.transform = `translateZ(${-1}px) scale(${newScale})`;
+    var newScale = 1 + (-inZTransform * ratio);
+    inElement.style.transform = `translateZ(${inZTransform}px) scale(${newScale})`;
 
 }
 
