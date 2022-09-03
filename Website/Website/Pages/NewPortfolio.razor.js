@@ -13,7 +13,7 @@ function vhToPx(inVh)
 // JQuery's ready event for when DOM is fully loaded and ready to manipulate
 $(function ()
 {
-    UpdateParallaxElement(BGElement, -100);
+    UpdateParallaxBGElement();
 });
 
 // JQuery event detecting zoom/resizing of the window
@@ -30,7 +30,7 @@ $(window).resize(function ()
 
 
 
-    UpdateParallaxElement(BGElement, -100); // Keep BG div's transform updated
+    UpdateParallaxBGElement();
 });
 
 
@@ -39,7 +39,13 @@ export function OnAfterRenderAsync()
 
 }
 
-export function UpdateParallaxElement(inElement, inZTransform)
+
+function UpdateParallaxBGElement()
+{
+    UpdateParallaxElement(BGElement, -100);
+}
+
+function UpdateParallaxElement(inElement, inZTransform)
 {
     // We must update our BG's scale to fit perfectly to the page with its scale origin at the bottom of itself
 
