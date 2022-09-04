@@ -30,13 +30,12 @@
  * - The correct scale value is dependent on the page's height (it changes if page's height changes)
  * - The correct scale value for a page height of 200vh is 1.5 (fits perfect)
  */
-.BGTransform {
+#BG {
     /* Transform stuff..... */
     position: absolute;
     z-index: -1;
     width: 100vw;
     height: 100%;
-    
     transform-origin: center bottom;
     /*transform: translateZ(-1px) scale(1.5);*/
 }
