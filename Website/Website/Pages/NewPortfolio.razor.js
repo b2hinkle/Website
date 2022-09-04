@@ -77,8 +77,14 @@ function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = 
 
     if (inPreserveAspectRatio)
     {
-        var scaleValue = Math.max(newWidthScale, newHeightScale); // we will choose the largest scale value, otherwise the other part will not fully cover the page
-        inElement.style.transform = `translateZ(${inZTransform}px) scale(${scaleValue})`;
+        /*
+         * If you are preserving aspect ratio, you either choose the smaller scale or the larger scale value.
+         * Using smaller scale value will ensure that it stays centered with the page's content, but it won't cover whole screen if that's what you want.
+         * Using larger scale value will ensure that the whole screen is covered, but then the element won't be centered with the page's content.
+         * For now I'm only providing the smaller scale approach b/c I'm lazy, but larger scale one can be implemented quickly if needed.
+         */
+        var smallerScaleValue = Math.min(newWidthScale, newHeightScale); // we will choose the smallest scale value, otherwise it won't be centered to the page.
+        inElement.style.transform = `translateZ(${inZTransform}px) scale(${smallerScaleValue})`;
         return;
     }
     inElement.style.transform = `translateZ(${inZTransform}px) scale(${newWidthScale}, ${newHeightScale})`;
