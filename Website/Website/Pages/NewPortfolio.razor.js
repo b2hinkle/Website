@@ -45,7 +45,7 @@ export function OnAfterRenderAsync()
 
 function UpdateParallaxBGElement()
 {
-    UpdateParallaxElement(BGElement, -1, false);
+    UpdateParallaxElement(BGElement, -75, false);
 }
 
 /*
