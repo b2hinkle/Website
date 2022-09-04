@@ -8,6 +8,9 @@ function vhToPx(inVh)
 {
     return (ParallaxWrapperElement.clientHeight / (100 / inVh));
 }
+function vwToPx(inVw) {
+    return (ParallaxWrapperElement.clientWidth / (100 / inVw));
+}
 
 
 // JQuery's ready event for when DOM is fully loaded and ready to manipulate
@@ -42,23 +45,43 @@ export function OnAfterRenderAsync()
 
 function UpdateParallaxBGElement()
 {
-    UpdateParallaxElement(BGElement, -100);
+    UpdateParallaxElement(BGElement, -1, false);
 }
 
-function UpdateParallaxElement(inElement, inZTransform)
+// Recalculates element's scale to perfectly fit the page.
+function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = true)
 {
-    // We must update our BG's scale to fit perfectly to the page with its scale origin at the bottom of itself
 
-    var ratio = vhToPx(100) / PageContentElement.clientHeight; // ratio of the height of the viewport to the height of the page's content
-    // Now we must ensure we are using the correct kind of pixels (css vs device). We will use what ever pixel unit is currently the larger unit so we don't over count pixels. If there is a lower number of device pixels than there are css pixels, we choose device pixels and vice versa.
+    var heightRatio = vhToPx(100) / PageContentElement.clientHeight; // ratio of the height of the viewport to the height of the page's content
+    var widthRatio = vwToPx(100) / PageContentElement.clientWidth;
+    /* 
+     * Now we must ensure we are using the correct kind of pixels (css vs device).
+     * We will use what ever pixel unit is currently the larger unit so we don't over count pixels.
+     * If there is a lower number of device pixels than there are css pixels,
+     * we choose device pixels and vice versa.
+    */
     if (px_ratio < 1) // if page is zoomed out (device pixels are bigger)
     {
-        ratio *= px_ratio; // convert to device pixels
+        // convert to device pixels
+        heightRatio *= px_ratio;
+        widthRatio *= px_ratio;
     }
 
-    var newScale = 1 + (-inZTransform * ratio);
-    inElement.style.transform = `translateZ(${inZTransform}px) scale(${newScale})`;
 
+    /* 
+     * The formula that calculates the scale to counter the depth (with our ratio applied to it).
+     * Also I'm hard-coding this to only work with the css perspective set to 1px, since it's good practice anyways. Otherwise the formula I'm applying my ratio to would be slightly different.
+     */
+    var newHeightScale = 1 + (-inZTransform * heightRatio);
+    var newWidthScale = 1 + (-inZTransform * widthRatio);
+
+    if (inPreserveAspectRatio)
+    {
+        var scaleValue = Math.max(newWidthScale, newHeightScale); // we will choose the largest scale value, otherwise the other part will not fully cover the page
+        inElement.style.transform = `translateZ(${inZTransform}px) scale(${scaleValue})`;
+        return;
+    }
+    inElement.style.transform = `translateZ(${inZTransform}px) scale(${newWidthScale}, ${newHeightScale})`;
 }
 
 
