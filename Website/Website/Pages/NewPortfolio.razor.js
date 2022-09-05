@@ -56,20 +56,19 @@ function UpdateParallaxBGElement()
 function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = true)
 {
 
-    var heightRatio = vhToPx(100) / PageContentElement.clientHeight; // ratio of the height of the viewport to the height of the page's content
-    var widthRatio = vwToPx(100) / PageContentElement.clientWidth;
+    const cssPx_HeightRatio = vhToPx(100) / PageContentElement.clientHeight; // how many "PageContent" heights can we fit into the height of the viewport
+    const devicePx_HeightRatio = cssPx_HeightRatio * px_ratio;
+
+    const cssPx_WidthRatio = vwToPx(100) / PageContentElement.clientWidth;
+    const devicePx_WidthRatio = cssPx_WidthRatio * px_ratio;
+    
     /* 
-     * Now we must ensure we are using the correct kind of pixels (css vs device).
-     * We will use what ever pixel unit is currently the larger unit so we don't over count pixels.
-     * If there is a lower number of device pixels than there are css pixels,
-     * we choose device pixels and vice versa.
+     * Now we must ensure we are using the correct kind of pixels (css unit vs device).
+     * We compare the 2 different pixel amounts and choose the one with less pixels because
+     * less pixels making up the same length means they must be larger.
     */
-    if (px_ratio < 1) // if page is zoomed out (device pixels are bigger)
-    {
-        // convert to device pixels
-        heightRatio *= px_ratio;
-        widthRatio *= px_ratio;
-    }
+    var heightRatio = Math.min(cssPx_HeightRatio, devicePx_HeightRatio);
+    var widthRatio = Math.min(cssPx_WidthRatio, devicePx_WidthRatio);
 
 
     /* 
