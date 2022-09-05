@@ -67,16 +67,16 @@ function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = 
      * We compare the 2 different pixel amounts and choose the one with less pixels because
      * less pixels making up the same length means they must be larger.
     */
-    var heightRatio = Math.max(cssPx_HeightRatio, devicePx_HeightRatio);
-    var widthRatio = Math.max(cssPx_WidthRatio, devicePx_WidthRatio);
+    var heightRatio = Math.min(cssPx_HeightRatio, devicePx_HeightRatio);
+    var widthRatio = Math.min(cssPx_WidthRatio, devicePx_WidthRatio);
 
 
     /* 
      * The formula that calculates the scale to counter the depth (with our ratio applied to it).
      * Also I'm hard-coding this to only work with the css perspective set to 1px, since it's good practice anyways. Otherwise the formula I'm applying my ratio to would be slightly different.
      */
-    var newHeightScale = 1 + (-inZTransform * heightRatio);
-    var newWidthScale = 1 + (-inZTransform * widthRatio);
+    var heightScale = 1 + (-inZTransform * heightRatio);
+    var widthScale = 1 + (-inZTransform * widthRatio);
 
     if (inPreserveAspectRatio)
     {
@@ -86,11 +86,11 @@ function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = 
          * Using larger scale value will ensure that the whole screen is covered, but then the element won't be centered with the page's content.
          * For now I'm only providing the smaller scale approach b/c I'm lazy, but larger scale one can be implemented quickly if needed.
          */
-        var smallerScaleValue = Math.min(newWidthScale, newHeightScale); // we will choose the smallest scale value, otherwise it won't be centered to the page.
+        var smallerScaleValue = Math.min(widthScale, heightScale); // we will choose the smallest scale value, otherwise it won't be centered to the page.
         inElement.style.transform = `translateZ(${inZTransform}px) scale(${smallerScaleValue})`;
         return;
     }
-    inElement.style.transform = `translateZ(${inZTransform}px) scale(${newWidthScale}, ${newHeightScale})`;
+    inElement.style.transform = `translateZ(${inZTransform}px) scale(${widthScale}, ${heightScale})`;
 }
 
 
