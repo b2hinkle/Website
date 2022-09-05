@@ -1,7 +1,7 @@
 var BGElement = document.getElementById("BG");
 var PageContentElement = document.getElementById("PageContent");
 var ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
-var px_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;  // conversion ratio.... (physical pixel/CSS_px)
+var px_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;  // conversion ratio.... (device pixel/css pixel)
 
 
 function vhToPx(inVh)
@@ -67,8 +67,8 @@ function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = 
      * We compare the 2 different pixel amounts and choose the one with less pixels because
      * less pixels making up the same length means they must be larger.
     */
-    var heightRatio = Math.min(cssPx_HeightRatio, devicePx_HeightRatio);
-    var widthRatio = Math.min(cssPx_WidthRatio, devicePx_WidthRatio);
+    var heightRatio = Math.max(cssPx_HeightRatio, devicePx_HeightRatio);
+    var widthRatio = Math.max(cssPx_WidthRatio, devicePx_WidthRatio);
 
 
     /* 
