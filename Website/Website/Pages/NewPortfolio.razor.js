@@ -55,27 +55,30 @@ function UpdateParallaxBGElement()
  */
 function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = true)
 {
+
     const cssPx_HeightRatio = vhToPx(100) / PageContentElement.clientHeight; // how many "PageContent" heights can we fit into the height of the viewport
+    const devicePx_HeightRatio = cssPx_HeightRatio * px_ratio;
+
     const cssPx_WidthRatio = vwToPx(100) / PageContentElement.clientWidth;
-    
+    const devicePx_WidthRatio = cssPx_WidthRatio * px_ratio;
+
     /* 
      * Now we must ensure we are using the correct kind of pixels (css unit vs device).
      * We compare the 2 different pixel amounts and choose the one with less pixels because
      * less pixels making up the same length means they must be larger.
     */
-    const REM_HeightRatio = CSSPixelsToREM(cssPx_HeightRatio);
-    const REM_WidthRatio = CSSPixelsToREM(cssPx_WidthRatio);
+    var heightRatio = Math.min(cssPx_HeightRatio, devicePx_HeightRatio);
+    var widthRatio = Math.min(cssPx_WidthRatio, devicePx_WidthRatio);
 
 
     /* 
      * The formula that calculates the scale to counter the depth (with our ratio applied to it).
      * Also I'm hard-coding this to only work with the css perspective set to 1px, since it's good practice anyways. Otherwise the formula I'm applying my ratio to would be slightly different.
      */
-    var heightScale = 1 + (-inZTransform * -REM_HeightRatio);
-    var widthScale = 1 + (-inZTransform * -REM_WidthRatio);
+    var heightScale = 1 + (-inZTransform * heightRatio);
+    var widthScale = 1 + (-inZTransform * widthRatio);
 
-    if (inPreserveAspectRatio)
-    {
+    if (inPreserveAspectRatio) {
         /*
          * If you are preserving aspect ratio, you either choose the smaller scale or the larger scale value.
          * Using smaller scale value will ensure that it stays centered with the page's content, but it won't cover whole screen if that's what you want.
