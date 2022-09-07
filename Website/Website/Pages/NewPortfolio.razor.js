@@ -67,7 +67,7 @@ function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = 
      * We compare the 2 different pixel amounts and choose the one with less pixels because
      * less pixels making up the same length means they must be larger.
     */
-    var heightRatio = Math.min(cssPx_HeightRatio, devicePx_HeightRatio);
+    var heightRatio = Math.min(cssPx_HeightRatio, devicePx_HeightRatio); // min will choose the largest type of pixel
     var widthRatio = Math.min(cssPx_WidthRatio, devicePx_WidthRatio);
 
 
