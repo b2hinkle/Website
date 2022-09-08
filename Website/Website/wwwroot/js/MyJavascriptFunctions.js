@@ -23,3 +23,13 @@ function CSSPixelsToREM(inPixels) {
     const OneREMInPixels = GetDefaultFontSizeInCSSPixels();
     return inPixels / OneREMInPixels;
 }
+
+function IsNearlyEqual(A, B, noLongerEqualAt)
+{
+    var difference = Math.abs(A - B);
+    if (difference < noLongerEqualAt)
+    {
+        return true;
+    }
+    return false;
+}
