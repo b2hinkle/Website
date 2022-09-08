@@ -33,3 +33,8 @@ function IsNearlyEqual(A, B, noLongerEqualAt)
     }
     return false;
 }
+
+function Lerp(start_value, end_value, pct)
+{
+    return (start_value + (end_value - start_value) * pct);
+}
