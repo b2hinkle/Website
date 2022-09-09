@@ -55,7 +55,7 @@ function UpdateParallaxBGElement()
  */
 function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = true)
 {
-    const WindowPixelConversionRatio = window.outerHeight / window.innerHeight;
+    const WindowPixelConversionRatio = window.outerWidth / window.innerWidth;
     console.log(`${window.outerHeight} / ${window.innerHeight} = ${window.outerHeight / window.innerHeight}`)
 
     const cssPx_HeightRatio = vhToPx(100) / PageContentElement.clientHeight; // how many "PageContent" heights can we fit into the height of the viewport
