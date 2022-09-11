@@ -55,23 +55,8 @@ function UpdateParallaxBGElement()
  */
 function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = true)
 {
-    const WindowPixelConversionRatio = window.outerWidth / window.innerWidth;
-    console.log(`${window.outerWidth} / ${window.innerWidth} = ${window.outerWidth / window.innerWidth}`)
-
-    const cssPx_HeightRatio = vhToPx(100) / PageContentElement.clientHeight; // how many "PageContent" heights can we fit into the height of the viewport
-    const devicePx_HeightRatio = cssPx_HeightRatio * WindowPixelConversionRatio;
-
-    const cssPx_WidthRatio = vwToPx(100) / PageContentElement.clientWidth;
-    const devicePx_WidthRatio = cssPx_WidthRatio * WindowPixelConversionRatio;
-
-    /* 
-     * Now we must ensure we are using the correct kind of pixels (css unit vs device).
-     * We compare the 2 different pixel amounts and choose the one with less pixels because
-     * less pixels making up the same length means they must be larger.
-    */
-    var heightRatio = Math.min(cssPx_HeightRatio, devicePx_HeightRatio); // Math.min will choose the largest type of pixel
-    var widthRatio = Math.min(cssPx_WidthRatio, devicePx_WidthRatio);
-
+    const heightRatio = vhToPx(100) / PageContentElement.clientHeight; // how many "PageContent" heights can we fit into the height of the viewport
+    const widthRatio = vwToPx(100) / PageContentElement.clientWidth;
 
     /* 
      * The formula that calculates the scale to counter the depth (with our ratio applied to it).
