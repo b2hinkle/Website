@@ -64,6 +64,14 @@ function UpdateParallaxElement(inElement, inZTransform, inPerspectiveValue, inPr
     var heightScale = 1 + ((-inZTransform * heightRatio) / inPerspectiveValue);
     var widthScale = 1 + ((-inZTransform * widthRatio) / inPerspectiveValue);
 
+
+
+
+
+    var transformOrigin = "center bottom";
+    inElement.style.WebkitTransformOrigin = transformOrigin;
+    inElement.style.WebkitTransformOrigin = transformOrigin;
+
     if (inPreserveAspectRatio) {
         /*
          * If you are preserving aspect ratio, you either choose the smaller scale or the larger scale value.
@@ -75,7 +83,12 @@ function UpdateParallaxElement(inElement, inZTransform, inPerspectiveValue, inPr
         inElement.style.transform = `translateZ(${inZTransform}px) scale(${smallerScaleValue})`;
         return;
     }
-    inElement.style.transform = `translateZ(${inZTransform}px) scale(${widthScale}, ${heightScale})`;
+
+
+    
+    var transform = `translateZ(${inZTransform}px) scale(${widthScale}, ${heightScale})`;
+    inElement.style.webkitTransform = transform;
+    inElement.style.transform = transform;
 }
 
 
