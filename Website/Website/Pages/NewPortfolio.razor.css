@@ -1,6 +1,7 @@
 ﻿#ParallaxWrapper {
     position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
     width: 100vw;
+    height: 500px; /* fallback for older browsers */
     height: 100vh;
     padding: 0px;
 	margin: 0px;

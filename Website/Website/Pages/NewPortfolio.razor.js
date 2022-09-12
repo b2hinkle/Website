@@ -12,13 +12,6 @@ function vwToPx(inVw) {
     return (ParallaxWrapperElement.clientWidth / (100 / inVw));
 }
 
-
-// JQuery's ready event for when DOM is fully loaded and ready to manipulate
-$(function ()
-{
-    UpdateParallaxBGElement();
-});
-
 // JQuery event detecting zoom/resizing of the window
 $(window).resize(function ()
 {
@@ -48,6 +41,11 @@ export function OnAfterRenderAsync()
     var bodyEl = document.body;
     bodyEl.style.margin = "0";
     bodyEl.style.overflow = "hidden";
+
+    /*
+     * Parallax
+     */
+    UpdateParallaxBGElement();
 }
 
 
