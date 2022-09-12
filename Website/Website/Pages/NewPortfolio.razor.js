@@ -45,7 +45,7 @@ export function OnAfterRenderAsync()
 
 function UpdateParallaxBGElement()
 {
-    UpdateParallaxElement(BGElement, -75, 1, false);
+    UpdateParallaxElement(BGElement, -300, 300, false);
 }
 
 /*
@@ -59,8 +59,7 @@ function UpdateParallaxElement(inElement, inZTransform, inPerspectiveValue, inPr
     const widthRatio = vwToPx(100) / PageContentElement.clientWidth;
 
     /* 
-     * The formula that calculates the scale to counter the depth (with our ratio applied to it).
-     * Also I'm hard-coding this to only work with the css perspective set to 1px, since it's good practice anyways. Otherwise the formula I'm applying my ratio to would be slightly different.
+     * The formula that calculates the scale to counter the depth. "heightRatio" and "widthRatio" are variables added into the formula by me since I have the transform and perspective origin at the bottom.
      */
     var heightScale = 1 + ((-inZTransform * heightRatio) / inPerspectiveValue);
     var widthScale = 1 + ((-inZTransform * widthRatio) / inPerspectiveValue);

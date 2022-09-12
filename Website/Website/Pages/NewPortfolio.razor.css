@@ -11,7 +11,7 @@
 
     /* BEGIN Perspective */ /* We define the perspective here since this is our scrolling div */
     perspective-origin: center bottom; /* vanishing point at 50% 100% */
-    perspective: 1px; /* easy value (translating on z by -1 will make it appear twice as small, so just scale it up by 2) */
+    perspective: 300px; /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
     /* END Perspective */
 }
 /* Pourpose for this 2nd wrapper is so that the content of the page can be parented to a div who'se size isn't hard coded to 100vw 100vh */
