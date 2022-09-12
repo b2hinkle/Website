@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Pages\NewPortfolio.razor.js" />
+    <Content Include="Shared\Components\ParallaxWrapper.razor.js" />
     <Content Include="Pages\Portfolio.razor.js" />
     <Content Include="Pages\PortfolioTemplate.razor.js" />
     <Content Include="Pages\TestPages\OldPortfolio.razor.js" />
