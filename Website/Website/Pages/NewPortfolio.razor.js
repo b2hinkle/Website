@@ -45,7 +45,7 @@ export function OnAfterRenderAsync()
 
 function UpdateParallaxBGElement()
 {
-    UpdateParallaxElement(BGElement, -75, false);
+    UpdateParallaxElement(BGElement, -75, 1, false);
 }
 
 /*
@@ -53,7 +53,7 @@ function UpdateParallaxBGElement()
  * Only limitations you might encounter is when you need to preserve the
  * element's aspect ratio while also having another specific need.
  */
-function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = true)
+function UpdateParallaxElement(inElement, inZTransform, inPerspectiveValue, inPreserveAspectRatio = true)
 {
     const heightRatio = vhToPx(100) / PageContentElement.clientHeight; // how many "PageContent" heights can we fit into the height of the viewport
     const widthRatio = vwToPx(100) / PageContentElement.clientWidth;
@@ -62,8 +62,8 @@ function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = 
      * The formula that calculates the scale to counter the depth (with our ratio applied to it).
      * Also I'm hard-coding this to only work with the css perspective set to 1px, since it's good practice anyways. Otherwise the formula I'm applying my ratio to would be slightly different.
      */
-    var heightScale = 1 + (-inZTransform * heightRatio);
-    var widthScale = 1 + (-inZTransform * widthRatio);
+    var heightScale = 1 + ((-inZTransform * heightRatio) / inPerspectiveValue);
+    var widthScale = 1 + ((-inZTransform * widthRatio) / inPerspectiveValue);
 
     if (inPreserveAspectRatio) {
         /*
