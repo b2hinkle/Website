@@ -3,7 +3,7 @@
 @layout Shared.Layouts.EmptyLayout;
 @inject IJSRuntime jsRuntime;
 
-<ParallaxWrapper>
+<ParallaxWrapper @ref=ParallaxWrapperEl>
         <div id="BG" class="HorizontalDebugBG"/>   @* parallax background the size of the page *@
 
         <div style="opacity:.25;">
@@ -427,6 +427,8 @@
 
 @code 
 {
+    public ParallaxWrapper ParallaxWrapperEl { get; set; }
+
     private IJSObjectReference jsObjRef;    // js interactor
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
