@@ -68,7 +68,7 @@ function UpdateParallaxElement(inElement, inZTransform, inPerspectiveValue, inPr
 
 
 
-    var transformOrigin = "center bottom";
+    var transformOrigin = "center bottom"; // vanishing point at 50% 100%
     inElement.style.WebkitTransformOrigin = transformOrigin;
     inElement.style.WebkitTransformOrigin = transformOrigin;
 
