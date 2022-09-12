@@ -24,8 +24,6 @@
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     /* END 3D rendering context */
-
-    height: 10000px;
 }
 
 #BG {
