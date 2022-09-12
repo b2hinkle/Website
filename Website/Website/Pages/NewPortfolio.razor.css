@@ -18,7 +18,7 @@
     perspective: 300px; /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
     /* END Perspective */
 }
-/* Pourpose for this 2nd wrapper is so that the content of the page can be parented to a div who'se size isn't hard coded to 100vw 100vh */
+/* Pourpose for this 2nd wrapper is so that the content of the page can be parented to a div who'se size is dynamic */
 #PageContent {
     /* BEGIN 3D rendering context */ /* This is where our 3D content starts */
     -webkit-transform-style: preserve-3d;
