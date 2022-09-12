@@ -39,7 +39,15 @@ $(window).resize(function ()
 
 export function OnAfterRenderAsync()
 {
+    /*
+     * HTML and Body elements can cause an extra scrollbar, interfiering with our parallax setup
+     */
+    var htmlEl = document.documentElement;
+    htmlEl.style.overflow = "hidden";
 
+    var bodyEl = document.body;
+    bodyEl.style.margin = "0";
+    bodyEl.style.overflow = "hidden";
 }
 
 
