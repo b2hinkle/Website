@@ -71,13 +71,6 @@ function UpdateParallaxElement(inElement, inZTransform, inPerspectiveValue, inPr
     var widthScale = 1 + ((-inZTransform * widthRatio) / inPerspectiveValue);
 
 
-
-
-
-    var transformOrigin = "center bottom"; // 50% 100%
-    inElement.style.WebkitTransformOrigin = transformOrigin;
-    inElement.style.TransformOrigin = transformOrigin;
-
     if (inPreserveAspectRatio) {
         /*
          * If you are preserving aspect ratio, you either choose the smaller scale or the larger scale value.
@@ -86,15 +79,15 @@ function UpdateParallaxElement(inElement, inZTransform, inPerspectiveValue, inPr
          * For now I'm only providing the smaller scale approach b/c I'm lazy, but larger scale one can be implemented quickly if needed.
          */
         var smallerScaleValue = Math.min(widthScale, heightScale); // we will choose the smallest scale value, otherwise it won't be centered to the page.
-        inElement.style.transform = `translateZ(${inZTransform}px) scale(${smallerScaleValue})`;
+        // Update the css variable
+        inElement.style.setProperty('--widthScale', `${smallerScaleValue}`);
+        inElement.style.setProperty('--heightScale', `${smallerScaleValue}`);
         return;
     }
 
-
-    
-    var transform = `translateZ(${inZTransform}px) scale(${widthScale}, ${heightScale})`;
-    inElement.style.webkitTransform = transform;
-    inElement.style.transform = transform;
+    // Update the css variable
+    inElement.style.setProperty('--widthScale', `${widthScale}`);
+    inElement.style.setProperty('--heightScale', `${heightScale}`);
 }
 
 

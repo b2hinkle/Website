@@ -2,6 +2,7 @@
 /* BEGIN Variables */
     --perspectiveValue: 300px;
     --perspectiveOrigin: center bottom;
+    --bgZTransform: -300px;
 /* END Variables */
 
     position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
@@ -39,5 +40,20 @@
     z-index: -1;
     width: 100vw;
     height: 100%;
+
+
+
+    /* Now lets preform the transform */
+    -webkit-transform-origin: var(--perspectiveOrigin); /* results in 50% 100% to its parent */
+    transform-origin: var(--perspectiveOrigin);
+
+
+    /* BEGIN JS set variables */
+    --widthScale: 1;
+    --heightScale: 1;
+    /* END JS set variables */
+
+    -webkit-transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
+    transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
 }
 
