@@ -1,0 +1,36 @@
+﻿@inject IJSRuntime jsRuntime;
+
+<div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@
+    <div id="PageContent" class="HorizontalDebugBGFaded">  @* 2nd wrapper to allow for dynamic height *@
+        @ChildContent
+    </div>
+</div>
+
+    
+
+
+@code 
+{
+    [Parameter]
+        public RenderFragment ChildContent { get; set; }
+
+    private IJSObjectReference jsObjRef;    // js interactor
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/ParallaxWrapper.razor.js");
+
+            await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
+        }
+    }
+    
+    // BEGIN configurable variables
+    public async Task SetBgZTransform(float inBGZTransform)
+    {
+        if (jsObjRef != null)
+        {
+            await jsObjRef.InvokeVoidAsync("SetBgZTransform", inBGZTransform);
+        }
+    }
+}

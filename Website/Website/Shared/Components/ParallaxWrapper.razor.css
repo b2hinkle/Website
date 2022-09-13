@@ -1,0 +1,60 @@
+﻿#ParallaxWrapper 
+{
+/* BEGIN Variables */
+    --perspectiveOrigin: center bottom;
+/* END Variables */
+/* BEGIN JS set variables */
+    --perspectiveValue: 0px;
+/* END JS set variables */
+
+    position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
+    width: 100vw;
+    height: 500px; /* fallback for older browsers */
+    height: 100vh;
+    padding: 0px;
+	margin: 0px;
+
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    /* BEGIN Perspective */ /* We define the perspective here since this is our scrolling div */
+    -webkit-perspective-origin: var(--perspectiveOrigin);
+    perspective-origin: var(--perspectiveOrigin); /* vanishing point at 50% 100% */
+    -webkit-perspective: var(--perspectiveValue);
+    perspective: var(--perspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
+    /* END Perspective */
+}
+#PageContent /* pourpose for this 2nd wrapper is so that content of the page can be parented to a dynamically sized div */
+{
+    /* BEGIN 3D rendering context */ /* This is where our 3D content starts */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    /* END 3D rendering context */
+}
+
+
+
+::deep #BG /* ::deep means to do it for ChildContent */
+{
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100%;
+
+
+
+    /* Time for parallax.... */
+/* BEGIN JS set variables */
+    --bgZTransform: 0px;
+    --widthScale: 1;
+    --heightScale: 1;
+/* END JS set variables */
+    -webkit-transform-origin: var(--perspectiveOrigin); /* results in 50% 100% to its parent */
+    transform-origin: var(--perspectiveOrigin);
+    -webkit-transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
+    transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
+}
+
