@@ -5,7 +5,7 @@
 /* BEGIN JS set variables */
     /* defaults */
     --perspectiveValue: 300px;
-    --bgZTransform: -300px;
+    --bgZTransform: 0px;
 /* END JS set variables */
 
     position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
@@ -57,7 +57,7 @@
     --heightScale: 1;
 /* END JS set variables */
 
-    /* Whether JS has set our variables or not, perform the transform */
+    /* Whether JS has set our variables or not, perform the transform. If unset, defaults will just be used which is fine since defaulted to no Z transform and no scaling */
     -webkit-transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
     transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
 }
