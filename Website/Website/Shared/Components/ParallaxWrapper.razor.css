@@ -26,3 +26,13 @@
     transform-style: preserve-3d;
     /* END 3D rendering context */
 }
+
+/* ::deep means to do it for ChildContent */
+::deep #BG {
+    /* Transform stuff..... */
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100%;
+}
+
