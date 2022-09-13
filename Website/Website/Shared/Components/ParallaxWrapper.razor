@@ -23,9 +23,14 @@
 
             await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
         }
-
-
-
-
+    }
+    
+    // BEGIN configurable variables
+    public async Task SetBgZTransform(float inBGZTransform)
+    {
+        if (jsObjRef != null)
+        {
+            await jsObjRef.InvokeVoidAsync("SetBgZTransform", inBGZTransform);
+        }
     }
 }

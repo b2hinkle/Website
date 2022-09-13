@@ -2,6 +2,15 @@ var BGElement = document.getElementById("BG");
 var PageContentElement = document.getElementById("PageContent");
 var ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
 var px_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;  // conversion ratio.... (device pixel/css pixel)
+let perspectiveValue = 300;
+
+/* BEGIN configurable variables */
+let bgZTransform = -300;
+export function SetBgZTransform(inBGZTransform)
+{
+    bgZTransform = inBGZTransform;
+}
+/* END configurable variables */
 
 
 function vhToPx(inVh)
@@ -51,7 +60,7 @@ export function OnAfterRenderAsync()
 
 function UpdateParallaxBGElement()
 {
-    UpdateParallaxElement(BGElement, -300, 300, false);
+    UpdateParallaxElement(BGElement, bgZTransform, false);
 }
 
 /*
@@ -59,7 +68,7 @@ function UpdateParallaxBGElement()
  * Only limitations you might encounter is when you need to preserve the
  * element's aspect ratio while also having another specific need.
  */
-function UpdateParallaxElement(inElement, inZTransform, inPerspectiveValue, inPreserveAspectRatio = true)
+function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = true)
 {
     const heightRatio = vhToPx(100) / PageContentElement.clientHeight; // how many "PageContent" heights can we fit into the height of the viewport
     const widthRatio = vwToPx(100) / PageContentElement.clientWidth;
@@ -67,8 +76,8 @@ function UpdateParallaxElement(inElement, inZTransform, inPerspectiveValue, inPr
     /* 
      * The formula that calculates the scale to counter the depth. "heightRatio" and "widthRatio" are variables added into the formula by me since I have the transform and perspective origin at the bottom.
      */
-    var heightScale = 1 + ((-inZTransform * heightRatio) / inPerspectiveValue);
-    var widthScale = 1 + ((-inZTransform * widthRatio) / inPerspectiveValue);
+    var heightScale = 1 + ((-inZTransform * heightRatio) / perspectiveValue);
+    var widthScale = 1 + ((-inZTransform * widthRatio) / perspectiveValue);
 
 
     if (inPreserveAspectRatio) {
