@@ -1,4 +1,5 @@
-﻿#ParallaxWrapper {
+﻿#ParallaxWrapper 
+{
 /* BEGIN Variables */
     --perspectiveOrigin: center bottom;
 /* END Variables */
@@ -26,17 +27,18 @@
     perspective: var(--perspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
     /* END Perspective */
 }
-/* Pourpose for this 2nd wrapper is so that the content of the page can be parented to a div who'se size is dynamic */
-#PageContent {
+#PageContent /* pourpose for this 2nd wrapper is so that content of the page can be parented to a dynamically sized div */
+{
     /* BEGIN 3D rendering context */ /* This is where our 3D content starts */
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     /* END 3D rendering context */
 }
 
-/* ::deep means to do it for ChildContent */
-::deep #BG {
-    /* Transform stuff..... */
+
+
+::deep #BG /* ::deep means to do it for ChildContent */
+{
     position: absolute;
     z-index: -1;
     width: 100vw;
@@ -44,18 +46,14 @@
 
 
 
-    /* Now lets preform the transform */
-    -webkit-transform-origin: var(--perspectiveOrigin); /* results in 50% 100% to its parent */
-    transform-origin: var(--perspectiveOrigin);
-
-
+    /* Time for parallax.... */
 /* BEGIN JS set variables */
     --bgZTransform: 0px;
     --widthScale: 1;
     --heightScale: 1;
 /* END JS set variables */
-
-    /* Whether JS has set our variables or not, perform the transform. If unset, defaults will just be used which is fine since defaulted to no Z transform and no scaling */
+    -webkit-transform-origin: var(--perspectiveOrigin); /* results in 50% 100% to its parent */
+    transform-origin: var(--perspectiveOrigin);
     -webkit-transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
     transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
 }
