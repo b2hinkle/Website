@@ -1,4 +1,9 @@
 ﻿#ParallaxWrapper {
+/* BEGIN Variables */
+    --perspectiveValue: 300px;
+    --perspectiveOrigin: center bottom;
+/* END Variables */
+
     position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
     width: 100vw;
     height: 500px; /* fallback for older browsers */
@@ -13,10 +18,10 @@
     overflow-y: auto;
 
     /* BEGIN Perspective */ /* We define the perspective here since this is our scrolling div */
-    -webkit-perspective-origin: center bottom;
-    perspective-origin: center bottom; /* vanishing point at 50% 100% */
-    -webkit-perspective: 300px;
-    perspective: 300px; /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
+    -webkit-perspective-origin: var(--perspectiveOrigin);
+    perspective-origin: var(--perspectiveOrigin); /* vanishing point at 50% 100% */
+    -webkit-perspective: var(--perspectiveValue);
+    perspective: var(--perspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
     /* END Perspective */
 }
 /* Pourpose for this 2nd wrapper is so that the content of the page can be parented to a div who'se size is dynamic */
