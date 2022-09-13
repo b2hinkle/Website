@@ -76,7 +76,7 @@ function UpdateParallaxElement(inElement, inZTransform, inPerspectiveValue, inPr
 
     var transformOrigin = "center bottom"; // 50% 100%
     inElement.style.WebkitTransformOrigin = transformOrigin;
-    inElement.style.WebkitTransformOrigin = transformOrigin;
+    inElement.style.TransformOrigin = transformOrigin;
 
     if (inPreserveAspectRatio) {
         /*
