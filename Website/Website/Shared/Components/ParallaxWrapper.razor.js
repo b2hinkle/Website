@@ -60,7 +60,7 @@ export function OnAfterRenderAsync()
 
 function UpdateParallaxBGElement()
 {
-    BGElement.style.setProperty('--bgZTransform', `${bgZTransform}`);
+    BGElement.style.setProperty('--bgZTransform', `${bgZTransform}px`);
     UpdateParallaxElement(BGElement, bgZTransform, false);
 }
 

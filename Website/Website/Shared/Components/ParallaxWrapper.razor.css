@@ -5,7 +5,6 @@
 /* BEGIN JS set variables */
     /* defaults */
     --perspectiveValue: 300px;
-    --bgZTransform: 0px;
 /* END JS set variables */
 
     position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
@@ -52,7 +51,7 @@
 
 
 /* BEGIN JS set variables */
-    /* defaults */
+    --bgZTransform: 0px;
     --widthScale: 1;
     --heightScale: 1;
 /* END JS set variables */
