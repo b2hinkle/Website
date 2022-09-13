@@ -64,7 +64,7 @@ function UpdateParallaxBGElement()
 }
 
 /*
- * Counter's an element's depth by scaling up to perfectly fit the page.
+ * Counter's an element's depth by scaling up to perfectly fit PageContentElement. Good for page backgrounds.
  * Only limitations you might encounter is when you need to preserve the
  * element's aspect ratio while also having another specific need.
  */
