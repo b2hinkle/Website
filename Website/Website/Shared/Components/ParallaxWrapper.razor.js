@@ -1,7 +1,7 @@
-var BGElement = document.getElementById("BG");
-var PageContentElement = document.getElementById("PageContent");
+var BGElement = document.getElementById("BG"); /* need to find a way to make this generic, so it can be any element. Maybe a list of elements? */
 var ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
-var px_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;  // conversion ratio.... (device pixel/css pixel)
+var PageContentElement = document.getElementById("PageContent");
+var px_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;  // This is the zoom percentage. Can also use to convert pixel units.... (device pixel/css pixel)
 let perspectiveValue = 300;
 
 /* BEGIN configurable variables */
@@ -60,6 +60,7 @@ export function OnAfterRenderAsync()
 
 function UpdateParallaxBGElement()
 {
+    BGElement.style.setProperty('--bgZTransform', `${bgZTransform}`);
     UpdateParallaxElement(BGElement, bgZTransform, false);
 }
 
