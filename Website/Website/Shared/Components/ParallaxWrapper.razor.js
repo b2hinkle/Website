@@ -77,8 +77,7 @@ function UpdateParallaxBGElement()
 
 /*
  * Counter's an element's depth by scaling up to perfectly fit PageContentElement. Good for page backgrounds.
- * Only limitations you might encounter is when you need to preserve the
- * element's aspect ratio while also having another specific need.
+ * Only limitation you may encounter is if you need to preserve aspect ratio (see comment within the inPreserveAspectRatio conditional block)
  */
 function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = true)
 {
