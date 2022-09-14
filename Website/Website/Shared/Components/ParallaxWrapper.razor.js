@@ -65,6 +65,7 @@ export function OnAfterRenderAsync()
 function StartupCSSParallax()
 {
     ParallaxWrapperElement.style.setProperty("--perspectiveValue", `${perspectiveValue}px`);
+    BGElement.style.setProperty("--bgZTransform", `${bgZTransform}px`);
 
     UpdateParallaxBGElement();
 }
@@ -72,7 +73,6 @@ function StartupCSSParallax()
 
 function UpdateParallaxBGElement()
 {
-    BGElement.style.setProperty("--bgZTransform", `${bgZTransform}px`);
     UpdateParallaxElement(BGElement, bgZTransform, false);
 }
 
