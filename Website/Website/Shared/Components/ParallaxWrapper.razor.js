@@ -8,7 +8,9 @@ let bgZTransform = -300;
 export function SetBgZTransform(inBGZTransform)
 {
     bgZTransform = inBGZTransform;
-    BGElement.style.setProperty("--bgZTransform", `${bgZTransform}`);
+    BGElement.style.setProperty("--bgZTransform", `${bgZTransform}px`);
+
+    UpdateParallaxBGElement();
 }
 /* END variables */
 

@@ -387,10 +387,10 @@
         if (firstRender)
         {
             jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Portfolio.razor.js");
-
             await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
-        }
 
+            await ParallaxWrapperEl.SetBgZTransform(-900);
+        }
 
 
 
