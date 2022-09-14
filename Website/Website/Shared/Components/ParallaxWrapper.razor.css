@@ -33,11 +33,12 @@
 /* Conditionally apply */
 @media screen and (min-width: 40em) /* only non-mobile devices */
 {
-    @supports (((perspective: 300px) or (-moz-perspective: 300px) or (-webkit-perspective: 300px)) and (not (-webkit-overflow-scrolling: touch)))
+    @supports ((--foo: bar) and ((perspective: 300px) or (-moz-perspective: 300px) or (-webkit-perspective: 300px)) and (not (-webkit-overflow-scrolling: touch))) /* only if supports CSS custom properties and perspective property and then some thing at the end that apparently helps */
     {
         #ParallaxWrapper
         {
         /* BEGIN variables */
+            --ParallaxSupported: true; /* read from in JS */
             --perspectiveOrigin: center bottom;
             --perspectiveValue: 0px; /* set by JS */
         /* END variables */

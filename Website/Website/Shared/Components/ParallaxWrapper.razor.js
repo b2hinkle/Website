@@ -1,7 +1,6 @@
 const BGElement = document.getElementById("BG"); /* BGElement element is currently hardcoded. Need to find a way to make this generic. Maybe a list of elements? */
 const ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
 const PageContentElement = document.getElementById("PageContent");
-let px_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;  // This is the zoom percentage. Can also use to convert pixel units.... (device pixel/css pixel)
 
 /* BEGIN variables */
 const perspectiveValue = 300;
@@ -13,7 +12,6 @@ export function SetBgZTransform(inBGZTransform)
 }
 /* END variables */
 
-
 function vhToPx(inVh)
 {
     return (ParallaxWrapperElement.clientHeight / (100 / inVh));
@@ -23,34 +21,22 @@ function vwToPx(inVw)
     return (ParallaxWrapperElement.clientWidth / (100 / inVw));
 }
 
-// JQuery event detecting zoom/resizing of the window
-$(window).resize(function ()
+function IsParallaxSupported()
 {
-    const newPx_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;
-    if (px_ratio != newPx_ratio)
+    if (SupportsCustomCSSProperties() == false) // if browser doesn't support custom CSS properties
     {
-        px_ratio = newPx_ratio;
-        // zooming
-
-    }
-    else
-    {
-        // just resizing
-
+        return false; // parallax effect requires custom CSS properties
     }
 
-
-
-    UpdateParallaxBGElement();
-});
-
-
+    // Find out based on what the CSS media and support queries decided on
+    return getCSSCustomPropertyValue("--ParallaxSupported", ParallaxWrapperElement, "bool");
+}
 export function OnAfterRenderAsync()
 {
     /*
-     * HTML and Body elements can cause an extra scrollbar, interfiering with our parallax setup.
-     * I have noticed that the HTML vertical scrolling is also used for the mobile browser's url/search bar to go away and come back. If you don't allow vertical scrolling, then the bar is always there.
-     */
+    * HTML and Body elements can cause an extra scrollbar, interfiering with our parallax setup.
+    * I have noticed that the HTML vertical scrolling is also used for the mobile browser's url/search bar to go away and come back. If you don't allow vertical scrolling, then the bar is always there.
+    */
     const htmlEl = document.documentElement;
     htmlEl.style.overflowX = "hidden";
 
@@ -59,15 +45,26 @@ export function OnAfterRenderAsync()
     bodyEl.style.overflow = "hidden";
 
 
-    StartupCSSParallax();
-}
-
-function StartupCSSParallax()
-{
+    /*
+     * Set CSS custom properties' defaults.
+     * We do this regardless of support for parallax because it allows for getting the effect later on if the screen size changes or something like that.
+     */
     ParallaxWrapperElement.style.setProperty("--perspectiveValue", `${perspectiveValue}px`);
     BGElement.style.setProperty("--bgZTransform", `${bgZTransform}px`);
 
-    UpdateParallaxBGElement();
+    IsParallaxSupported()
+    {
+        UpdateParallaxBGElement();
+    }
+    // JQuery event detecting zoom/resizing of the window, keeping our BG element's parallax effect consistent accross any zoom/resize
+    $(window).resize(function ()
+    {
+        if (IsParallaxSupported())
+        {
+            UpdateParallaxBGElement();
+        }
+    });
+
 }
 
 
