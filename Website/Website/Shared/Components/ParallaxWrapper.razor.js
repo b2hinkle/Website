@@ -9,6 +9,7 @@ let bgZTransform = -300;
 export function SetBgZTransform(inBGZTransform)
 {
     bgZTransform = inBGZTransform;
+    BGElement.style.setProperty("--bgZTransform", `${bgZTransform}`);
 }
 /* END variables */
 
