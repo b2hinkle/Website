@@ -37,7 +37,7 @@
 
 
 
-::deep #BG /* ::deep means to do it for ChildContent */
+::deep > #BG /* ::deep means for ChildContent */
 {
     position: absolute;
     z-index: -1;
