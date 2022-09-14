@@ -33,7 +33,7 @@
 /* Conditionally apply */
 @media screen and (min-width: 40em) /* only non-mobile devices */
 {
-    @supports ((perspective: 300px) and (not (-webkit-overflow-scrolling: touch))) 
+    @supports (((perspective: 300px) or (-moz-perspective: 300px) or (-webkit-perspective: 300px)) and (not (-webkit-overflow-scrolling: touch)))
     {
         #ParallaxWrapper
         {
