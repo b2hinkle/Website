@@ -3,14 +3,16 @@ const ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
 const PageContentElement = document.getElementById("PageContent");
 
 /* BEGIN variables */
-const perspectiveValue = 300;
-let bgZTransform = -300;
 export function SetBgZTransform(inBGZTransform)
 {
-    bgZTransform = inBGZTransform;
-    BGElement.style.setProperty("--bgZTransform", `${bgZTransform}px`);
-
-    UpdateParallaxBGElement();
+    if (SupportsCustomCSSProperties())
+    {
+        BGElement.style.setProperty("--bgZTransform", `${inBGZTransform}px`);
+    }
+    IsParallaxSupported()
+    {
+        UpdateParallaxBGElement();
+    }
 }
 /* END variables */
 
@@ -47,12 +49,6 @@ export function OnAfterRenderAsync()
     bodyEl.style.overflow = "hidden";
 
 
-    /*
-     * Set CSS custom properties' defaults.
-     * We do this regardless of support for parallax because it allows for getting the effect later on if the screen size changes or something like that.
-     */
-    ParallaxWrapperElement.style.setProperty("--perspectiveValue", `${perspectiveValue}px`);
-    BGElement.style.setProperty("--bgZTransform", `${bgZTransform}px`);
 
     IsParallaxSupported()
     {
@@ -72,7 +68,8 @@ export function OnAfterRenderAsync()
 
 function UpdateParallaxBGElement()
 {
-    UpdateParallaxElement(BGElement, bgZTransform, false);
+    const cssBgZTransform = getCSSCustomPropertyValue("--bgZTransform", BGElement, "float");
+    UpdateParallaxElement(BGElement, cssBgZTransform, false);
 }
 
 /*
@@ -87,8 +84,9 @@ function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = 
     /* 
      * The formula that calculates the scale to counter the depth. "heightRatio" and "widthRatio" are variables added into the formula by me since I have the transform and perspective origin at the bottom.
      */
-    const heightScale = 1 + ((-inZTransform * heightRatio) / perspectiveValue);
-    const widthScale = 1 + ((-inZTransform * widthRatio) / perspectiveValue);
+    const cssPerspectiveValue = getCSSCustomPropertyValue("--perspectiveValue", ParallaxWrapperElement, "float");
+    const heightScale = 1 + ((-inZTransform * heightRatio) / cssPerspectiveValue);
+    const widthScale = 1 + ((-inZTransform * widthRatio) / cssPerspectiveValue);
 
 
     if (inPreserveAspectRatio)

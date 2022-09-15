@@ -39,8 +39,8 @@
         {
         /* BEGIN variables */
             --ParallaxSupported: true; /* read from in JS */
+            --perspectiveValue: 300px; /* read from in JS */
             --perspectiveOrigin: center bottom;
-            --perspectiveValue: 0px; /* set by JS */
         /* END variables */
 
             /* This is our scrolling div so this is where we must define the perspective */
