@@ -2,39 +2,26 @@ const BGElement = document.getElementById("BG"); /* BGElement element is current
 const ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
 const PageContentElement = document.getElementById("PageContent");
 
+function CSSParallaxStylesActive()
+{
+    // Find out based on what the CSS media and support queries decided on
+    return getCSSCustomPropertyValue("--ParallaxSupported", ParallaxWrapperElement, "bool");
+}
+
 /* BEGIN variables */
 export function SetBgZTransform(inBGZTransform)
 {
     if (SupportsCustomCSSProperties())
     {
-        BGElement.style.setProperty("--bgZTransform", `${inBGZTransform}px`);
-    }
-    IsParallaxSupported()
-    {
-        UpdateParallaxBGElement();
+        BGElement.style.setProperty("--bgZTransform", `${inBGZTransform}px`); // we do this regardless of support for parallax since the screen size could technically change later on (zoom/resizing). If support begins later on we will have this value ready
+        CSSParallaxStylesActive()
+        {
+            UpdateBGParallaxElement();
+        }
     }
 }
 /* END variables */
 
-function vhToPx(inVh)
-{
-    return (ParallaxWrapperElement.clientHeight / (100 / inVh));
-}
-function vwToPx(inVw)
-{
-    return (ParallaxWrapperElement.clientWidth / (100 / inVw));
-}
-
-function IsParallaxSupported()
-{
-    if (SupportsCustomCSSProperties() == false) // if browser doesn't support custom CSS properties
-    {
-        return false; // parallax effect requires custom CSS properties
-    }
-
-    // Find out based on what the CSS media and support queries decided on
-    return getCSSCustomPropertyValue("--ParallaxSupported", ParallaxWrapperElement, "bool");
-}
 export function OnAfterRenderAsync()
 {
     /*
@@ -50,26 +37,34 @@ export function OnAfterRenderAsync()
 
 
 
-    IsParallaxSupported()
-    {
-        UpdateParallaxBGElement();
-    }
+    UpdateBGParallaxElement();
     // JQuery event detecting zoom/resizing of the window, keeping our BG element's parallax effect consistent accross any zoom/resize
     $(window).resize(function ()
     {
-        if (IsParallaxSupported())
-        {
-            UpdateParallaxBGElement();
-        }
+        UpdateBGParallaxElement();
     });
 
 }
 
 
-function UpdateParallaxBGElement()
+function UpdateBGParallaxElement()
 {
+    if (!SupportsCustomCSSProperties() || !CSSParallaxStylesActive())   // TODO: Repetitive check (also done in calling funtion). Cleanup 
+    {
+        return;
+    }
+
     const cssBgZTransform = getCSSCustomPropertyValue("--bgZTransform", BGElement, "float");
     UpdateParallaxElement(BGElement, cssBgZTransform, false);
+}
+
+function vhToPx(inVh)
+{
+    return (ParallaxWrapperElement.clientHeight / (100 / inVh));
+}
+function vwToPx(inVw)
+{
+    return (ParallaxWrapperElement.clientWidth / (100 / inVw));
 }
 
 /*
@@ -78,6 +73,11 @@ function UpdateParallaxBGElement()
  */
 function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = true)
 {
+    if (!SupportsCustomCSSProperties() || !CSSParallaxStylesActive())
+    {
+        return; // save processing if we aren't a parallax page right now
+    }
+
     const heightRatio = vhToPx(100) / PageContentElement.clientHeight; // how many "PageContent" heights can we fit into the height of the viewport
     const widthRatio = vwToPx(100) / PageContentElement.clientWidth;
 
