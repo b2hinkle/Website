@@ -2,13 +2,10 @@ const BGElement = document.getElementById("BG"); /* BGElement element is current
 const ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
 const PageContentElement = document.getElementById("PageContent");
 
-function CSSParallaxStylesActive()
-{
-    // Find out based on what the CSS media and support queries decided on
-    return getCSSCustomPropertyValue("--ParallaxSupported", ParallaxWrapperElement, "bool");
-}
+// Do the CSS's media and support queries for parallax pass?
+function CSSParallaxStylesActive() { return getCSSCustomPropertyValue("--ParallaxSupported", ParallaxWrapperElement, "bool"); }
 
-/* BEGIN variables */
+/* BEGIN CSS setters */
 export function SetBgZTransform(inBGZTransform)
 {
     if (SupportsCustomCSSProperties())
@@ -20,36 +17,30 @@ export function SetBgZTransform(inBGZTransform)
         }
     }
 }
-/* END variables */
+/* END CSS setters */
 
 export function OnAfterRenderAsync()
 {
+// BEGIN CSS styling
     /*
     * HTML and Body elements can cause an extra scrollbar, interfiering with our parallax setup.
     * I have noticed that the HTML vertical scrolling is also used for the mobile browser's url/search bar to go away and come back. If you don't allow vertical scrolling, then the bar is always there.
     */
     const htmlEl = document.documentElement;
     htmlEl.style.overflowX = "hidden";
-
     const bodyEl = document.body;
     bodyEl.style.margin = "0";
     bodyEl.style.overflow = "hidden";
-
+// END CSS styling
 
 
     UpdateBGParallaxElement();
-    // JQuery event detecting zoom/resizing of the window, keeping our BG element's parallax effect consistent accross any zoom/resize
-    $(window).resize(function ()
-    {
-        UpdateBGParallaxElement();
-    });
-
+    $(window).resize(UpdateBGParallaxElement()); // also update whenever zoom/resize of window occurs
 }
-
 
 function UpdateBGParallaxElement()
 {
-    if (!SupportsCustomCSSProperties() || !CSSParallaxStylesActive())   // TODO: Repetitive check (also done in calling funtion). Cleanup 
+    if (!SupportsCustomCSSProperties() || !CSSParallaxStylesActive())   // TODO: Repetitive check (already does in UpdateParallaxElement()). Cleanup
     {
         return;
     }
