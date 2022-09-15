@@ -5,20 +5,6 @@ const PageContentElement = document.getElementById("PageContent");
 // Do the CSS's media and support queries for parallax pass?
 function CSSParallaxStylesActive() { return getCSSCustomPropertyValue("--ParallaxSupported", ParallaxWrapperElement, "bool"); }
 
-/* BEGIN CSS setters */
-export function SetBgZTransform(inBGZTransform)
-{
-    if (SupportsCustomCSSProperties())
-    {
-        BGElement.style.setProperty("--bgZTransform", `${inBGZTransform}px`); // we do this regardless of support for parallax since the screen size could technically change later on (zoom/resizing). If support begins later on we will have this value ready
-        CSSParallaxStylesActive()
-        {
-            UpdateBGParallaxElement();
-        }
-    }
-}
-/* END CSS setters */
-
 export function OnAfterRenderAsync()
 {
 // BEGIN CSS styling

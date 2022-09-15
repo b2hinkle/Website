@@ -20,15 +20,6 @@
 }
 
 
-::deep > #BG /* ::deep means for ChildContent */ 
-{
-    position: absolute;
-    z-index: -1;
-    width: 100vw;
-    height: 100%;
-}
-
-
 /* Parallax enhancement for larger screens... */
 /* Conditionally apply */
 @media screen and (min-width: 40em) /* only non-mobile devices */
@@ -56,10 +47,10 @@
         }
 
 
-        ::deep > #BG /* ::deep means for ChildContent */
+        ::deep > #BG /* ::deep means for ChildContent. NOTE: When using ::deep, any styles will override the child component's styles for that selector (I'm guessing because it applies parent's ::deep styles after) */
         {
         /* BEGIN variables */
-            --bgZTransform: 0px;    /* set by JS */
+         /* --bgZTransform   is required to be set by the child component */
             --widthScale: 1;        /* set by JS */
             --heightScale: 1;       /* set by JS */
         /* END variables */
