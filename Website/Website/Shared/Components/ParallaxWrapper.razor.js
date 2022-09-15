@@ -35,7 +35,10 @@ export function OnAfterRenderAsync()
 
 
     UpdateBGParallaxElement();
-    $(window).resize(UpdateBGParallaxElement()); // also update whenever zoom/resize of window occurs
+    $(window).resize(function () // also update whenever zoom/resize of window occurs
+    {
+        UpdateBGParallaxElement();
+    });
 }
 
 function UpdateBGParallaxElement()
