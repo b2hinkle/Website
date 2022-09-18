@@ -7,3 +7,21 @@
 
     --bgZTransform: -9000px; /* custom CSS property ParallaxWrapper component looks for when performing the BG element's transform */
 }
+
+.ParallaxOriginCenter 
+{
+    -webkit-perspective: 300px;
+    perspective: 300px;
+    -webkit-perspective-origin: center top;
+    perspective-origin: center top;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+#Dots
+{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+
+    transform: translateZ(-300px) scale(3);
+}
