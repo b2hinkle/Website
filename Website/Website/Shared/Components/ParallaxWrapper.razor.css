@@ -23,7 +23,7 @@
 {
     position: relative;
 
-/* fallback sizing in scenerio where parallax isn't supported */
+/* fallback sizing in scenerio where parallax isn't supported. (In the future may want to still make this the same size as the page's content since that is still possible) */
     width: 100vw;
     height: 100vh;
 }
