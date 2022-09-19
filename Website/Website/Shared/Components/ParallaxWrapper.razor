@@ -1,15 +1,19 @@
 ﻿@inject IJSRuntime jsRuntime;
 
-<div id="BGParallaxWrapper">  @* Wrapper the size of the viewport *@
-    <div id="BGPageContent">
-        <div id="BG" class="HorizontalDebugBG"/>   @* parallax background the size of the page *@
-    </div>
-</div>
+<div id="SharedVariablesWrapper">
 
-<div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@
-    <div id="PageContent" class="HorizontalDebugBGFaded">  @* 2nd wrapper to allow for dynamic height *@
-        @ChildContent
+    <div id="BGParallaxWrapper">  @* Wrapper the size of the viewport *@
+        <div id="BGPageContent">
+            <div id="BG" class="HorizontalDebugBG"/>   @* parallax background the size of the page *@
+        </div>
     </div>
+
+    <div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@
+        <div id="PageContent" class="HorizontalDebugBGFaded">  @* 2nd wrapper to allow for dynamic height *@
+            @ChildContent
+        </div>
+    </div>
+
 </div>
 
     

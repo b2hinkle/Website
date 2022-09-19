@@ -1,10 +1,11 @@
 const BGElement = document.getElementById("BG"); /* BGElement element is currently hardcoded. Need to find a way to make this generic. Maybe a list of elements? */
+const SharedVariablesWrapperElement = document.getElementById("SharedVariablesWrapper");
 const ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
 const BGParallaxWrapperElement = document.getElementById("BGParallaxWrapper");
 const PageContentElement = document.getElementById("PageContent");
 
 // Do the CSS's media and support queries for parallax pass?
-function CSSParallaxStylesActive() { return getCSSCustomPropertyValue("--ParallaxSupported", ParallaxWrapperElement, "bool"); }
+function CSSParallaxStylesActive() { return getCSSCustomPropertyValue("--ParallaxSupported", SharedVariablesWrapperElement, "bool"); }
 
 export function OnAfterRenderAsync()
 {
@@ -71,7 +72,7 @@ function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = 
     /* 
      * The formula that calculates the scale to counter the depth. "heightRatio" and "widthRatio" are variables added into the formula by me since I have the transform and perspective origin at the bottom.
      */
-    const cssPerspectiveValue = getCSSCustomPropertyValue("--perspectiveValue", ParallaxWrapperElement, "float");
+    const cssPerspectiveValue = getCSSCustomPropertyValue("--PerspectiveValue", SharedVariablesWrapperElement, "float");
     const heightScale = 1 + ((-inZTransform * heightRatio) / cssPerspectiveValue);
     const widthScale = 1 + ((-inZTransform * widthRatio) / cssPerspectiveValue);
     console.log(`1 + ((${-inZTransform} * ${heightRatio}) / ${cssPerspectiveValue}) = ${heightScale}`);

@@ -1,4 +1,10 @@
-﻿#BGParallaxWrapper
+﻿#SharedVariablesWrapper
+{
+
+}
+
+
+#BGParallaxWrapper
 {
     z-index: -1;
     position: absolute; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
@@ -50,18 +56,22 @@
 {
     @supports ((--foo: bar) and ((perspective: 300px) or (-moz-perspective: 300px) or (-webkit-perspective: 300px)) and (not (-webkit-overflow-scrolling: touch))) /* only if supports CSS custom properties and perspective property and then some thing at the end that apparently helps */
     {
-        #ParallaxWrapper
+        #SharedVariablesWrapper
         {
         /* BEGIN variables */
             --ParallaxSupported: true; /* read from in JS */
-            --perspectiveValue: 300px; /* read from in JS */
+            --PerspectiveValue: 300px; /* read from in JS */
         /* END variables */
+        }
 
+
+        #ParallaxWrapper
+        {
             /* This is our scrolling div so this is where we must define the perspective */
             -webkit-perspective-origin: center bottom;
             perspective-origin: center bottom; /* vanishing point at 50% 100%. We do this to prevent Y overflow scrolling since overflow:hidden doesn't work for 3D */
-            -webkit-perspective: var(--perspectiveValue);
-            perspective: var(--perspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
+            -webkit-perspective: var(--PerspectiveValue);
+            perspective: var(--PerspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
         }
         #PageContent /* pourpose for this 2nd wrapper is so that content of the page can be parented to a dynamically sized div (instead of ParallaxWrapper's 100vh) */
         {
@@ -74,8 +84,8 @@
             /* This is our scrolling div so this is where we must define the perspective */
             -webkit-perspective-origin: center bottom;
             perspective-origin: center bottom; /* vanishing point at 50% 100%. We do this to prevent Y overflow scrolling since overflow:hidden doesn't work for 3D */
-            -webkit-perspective: 300px;
-            perspective: 300px; /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
+            -webkit-perspective: var(--PerspectiveValue);
+            perspective: var(--PerspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
         }
         #BGPageContent
         {
