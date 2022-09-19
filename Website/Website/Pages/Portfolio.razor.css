@@ -1,9 +1,1 @@
-﻿#BG
-{
-    position: absolute;
-    z-index: -1;
-    width: 100vw;
-    height: 100%;
-
-    --bgZTransform: -9000px; /* custom CSS property ParallaxWrapper component looks for when performing the BG element's transform */
-}
+﻿

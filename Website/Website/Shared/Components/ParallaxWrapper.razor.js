@@ -1,5 +1,6 @@
 const BGElement = document.getElementById("BG"); /* BGElement element is currently hardcoded. Need to find a way to make this generic. Maybe a list of elements? */
 const ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
+const BGParallaxWrapperElement = document.getElementById("BGParallaxWrapper");
 const PageContentElement = document.getElementById("PageContent");
 
 // Do the CSS's media and support queries for parallax pass?
@@ -25,6 +26,12 @@ export function OnAfterRenderAsync()
     {
         UpdateBGParallaxElement();
     });
+
+    ParallaxWrapperElement.onscroll = function ()
+    {
+        BGParallaxWrapperElement.scrollTop = this.scrollTop;
+        console.log(BGParallaxWrapperElement.scrollTop);
+    }
 }
 
 function UpdateBGParallaxElement()
@@ -67,7 +74,7 @@ function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = 
     const cssPerspectiveValue = getCSSCustomPropertyValue("--perspectiveValue", ParallaxWrapperElement, "float");
     const heightScale = 1 + ((-inZTransform * heightRatio) / cssPerspectiveValue);
     const widthScale = 1 + ((-inZTransform * widthRatio) / cssPerspectiveValue);
-
+    console.log(`1 + ((${-inZTransform} * ${heightRatio}) / ${cssPerspectiveValue}) = ${heightScale}`);
 
     if (inPreserveAspectRatio)
     {
@@ -84,6 +91,8 @@ function UpdateParallaxElement(inElement, inZTransform, inPreserveAspectRatio = 
         return;
     }
 
+    document.getElementById("BGPageContent").style.setProperty("--PageWidth", `${PageContentElement.clientWidth}px`);
+    document.getElementById("BGPageContent").style.setProperty("--PageHeight", `${PageContentElement.clientHeight}px`);
     // Update the css variable
     inElement.style.setProperty("--widthScale", `${widthScale}`);
     inElement.style.setProperty("--heightScale", `${heightScale}`);
