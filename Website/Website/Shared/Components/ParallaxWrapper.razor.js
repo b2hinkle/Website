@@ -23,15 +23,16 @@ export function OnAfterRenderAsync()
 
 
     UpdateBGParallaxElement();
+    UpdateBGParallaxWrapperScroll();
     $(window).resize(function () // also update whenever zoom/resize of window occurs
     {
         UpdateBGParallaxElement();
+        UpdateBGParallaxWrapperScroll();
     });
 
     ParallaxWrapperElement.onscroll = function ()
     {
-        BGParallaxWrapperElement.scrollTop = this.scrollTop;
-        console.log(BGParallaxWrapperElement.scrollTop);
+        UpdateBGParallaxWrapperScroll();
     }
 }
 
@@ -44,6 +45,10 @@ function UpdateBGParallaxElement()
 
     const cssBgZTransform = getCSSCustomPropertyValue("--bgZTransform", BGElement, "float");
     UpdateParallaxElement(BGElement, cssBgZTransform, false);
+}
+function UpdateBGParallaxWrapperScroll()
+{
+    BGParallaxWrapperElement.scrollTop = ParallaxWrapperElement.scrollTop;
 }
 
 function vhToPx(inVh)
