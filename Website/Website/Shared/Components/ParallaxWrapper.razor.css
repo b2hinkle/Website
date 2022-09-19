@@ -22,11 +22,15 @@
 #BGPageContent
 {
     position: relative;
+
+/* fallback sizing in scenerio where parallax isn't supported */
+    width: 100vw;
+    height: 100vh;
 }
 #BG
 {
-    width: 100vw;
-    height: 100%;
+    width: 100vw; /* vw because for some reason using % doesn't fill up whole page width space */
+    height: 100%; 
 }
 #ParallaxWrapper 
 {
