@@ -1,15 +1,16 @@
-﻿#ParallaxWrapper 
+﻿#SharedVariablesWrapper 
 {
-/* BEGIN Variables */
-    --perspectiveOrigin: center bottom;
-/* END Variables */
-/* BEGIN JS set variables */
-    --perspectiveValue: 0px;
-/* END JS set variables */
+/* BEGIN variables */
+    --ParallaxSupported: false; /* read from in JS */
+/* BEGIN variables */
+}
 
-    position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
+
+#BGParallaxWrapper
+{
+    z-index: -1;
+    position: absolute; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
     width: 100vw;
-    height: 500px; /* fallback for older browsers */
     height: 100vh;
     padding: 0px;
 	margin: 0px;
@@ -19,42 +20,101 @@
     
     overflow-x: hidden;
     overflow-y: auto;
+}
+#BGPageContent
+{
+    position: relative;
 
-    /* BEGIN Perspective */ /* We define the perspective here since this is our scrolling div */
-    -webkit-perspective-origin: var(--perspectiveOrigin);
-    perspective-origin: var(--perspectiveOrigin); /* vanishing point at 50% 100% */
-    -webkit-perspective: var(--perspectiveValue);
-    perspective: var(--perspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
-    /* END Perspective */
+/* fallback sizing in scenerio where parallax isn't supported. (In the future may want to still make this the same size as the page's content since that is still possible) */
+    width: 100vw;
+    height: 100vh;
+}
+#ParallaxWrapper 
+{
+    z-index: 0;
+    position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */
+    width: 100vw;
+    height: 100vh;
+    padding: 0px;
+	margin: 0px;
+
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    
+    overflow-x: hidden;
+    overflow-y: auto;
+    
 }
 #PageContent /* pourpose for this 2nd wrapper is so that content of the page can be parented to a dynamically sized div */
 {
-    /* BEGIN 3D rendering context */ /* This is where our 3D content starts */
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    /* END 3D rendering context */
+    position: relative; /* we use relative position here so that #BG will look to this when deciding its height instead of the next available relative positioned element (#ParallaxWrapper) */
 }
 
 
-
-::deep #BG /* ::deep means to do it for ChildContent */
+/* Parallax enhancement for larger screens... */
+/* Conditionally apply */
+@media screen and (min-width: 40em) /* only non-mobile devices */
 {
-    position: absolute;
-    z-index: -1;
-    width: 100vw;
-    height: 100%;
+    @supports ((--foo: bar) and ((perspective: 300px) or (-moz-perspective: 300px) or (-webkit-perspective: 300px)) and (not (-webkit-overflow-scrolling: touch))) /* only if supports CSS custom properties and perspective property and then some thing at the end that apparently helps */
+    {
+        #SharedVariablesWrapper
+        {
+        /* BEGIN variables */
+            --ParallaxSupported: true; /* read from in JS */
+            --PerspectiveValue: 300px; /* read from in JS */
+        /* END variables */
+        }
 
 
+        #ParallaxWrapper
+        {
+            /* This is our scrolling div so this is where we must define the perspective */
+            -webkit-perspective-origin: center bottom;
+            perspective-origin: center bottom; /* vanishing point at 50% 100%. We do this to prevent Y overflow scrolling since overflow:hidden doesn't work for 3D */
+            -webkit-perspective: var(--PerspectiveValue);
+            perspective: var(--PerspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
+        }
+        #PageContent /* pourpose for this 2nd wrapper is so that content of the page can be parented to a dynamically sized div (instead of ParallaxWrapper's 100vh) */
+        {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        
+        #BGParallaxWrapper
+        {
+            /* This is our scrolling div so this is where we must define the perspective */
+            -webkit-perspective-origin: center bottom;
+            perspective-origin: center bottom; /* vanishing point at 50% 100%. We do this to prevent Y overflow scrolling since overflow:hidden doesn't work for 3D */
+            -webkit-perspective: var(--PerspectiveValue);
+            perspective: var(--PerspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
+        }
+        #BGPageContent
+        {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
 
-    /* Time for parallax.... */
-/* BEGIN JS set variables */
-    --bgZTransform: 0px;
-    --widthScale: 1;
-    --heightScale: 1;
-/* END JS set variables */
-    -webkit-transform-origin: var(--perspectiveOrigin); /* results in 50% 100% to its parent */
-    transform-origin: var(--perspectiveOrigin);
-    -webkit-transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
-    transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
+            --PageWidth: 0px;    /* set by JS */
+            --PageHeight: 0px;   /* set by JS */
+            width: var(--PageWidth);
+            height: var(--PageHeight);
+        }
+        ::deep #BG
+        {
+            /* BEGIN variables */
+            /*--bgZTransform: -90px;*/ /* custom CSS property ParallaxWrapper component looks for when performing the BG element's transform */
+            --widthScale: 1;        /* set by JS */
+            --heightScale: 1;       /* set by JS */
+            /* END variables */
+            -webkit-transform-origin: center bottom;
+            transform-origin: center bottom;
+            -webkit-transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
+            transform: translateZ(var(--bgZTransform)) scale(var(--widthScale), var(--heightScale));
+        }
+
+
+    }
 }
+
+
+
 
