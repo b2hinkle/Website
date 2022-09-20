@@ -48,6 +48,7 @@ function UpdateBGParallaxElement()
 }
 function UpdateBGParallaxWrapperScroll()
 {
+    // Scroll BGParallaxWrapper relative to ParallaxWrapper using its normalized scroll value. This could probably even replace 3d rendered parallax since it's relative so it should work with any size, but lets not worry about that rn since this is working well.
     const scrollNormalized = ParallaxWrapperElement.scrollTop / (ParallaxWrapperElement.scrollHeight - ParallaxWrapperElement.clientHeight);
     BGParallaxWrapperElement.scrollTop = scrollNormalized * (BGParallaxWrapperElement.scrollHeight - BGParallaxWrapperElement.clientHeight);
 }
