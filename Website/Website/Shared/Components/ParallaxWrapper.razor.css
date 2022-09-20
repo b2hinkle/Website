@@ -27,11 +27,6 @@
     width: 100vw;
     height: 100vh;
 }
-#BG
-{
-    width: 100vw; /* vw because for some reason using % doesn't fill up whole page width space */
-    height: 100%; 
-}
 #ParallaxWrapper 
 {
     z-index: 0;
@@ -101,10 +96,10 @@
             width: var(--PageWidth);
             height: var(--PageHeight);
         }
-        #BG
+        ::deep #BG
         {
             /* BEGIN variables */
-            --bgZTransform: -90px; /* custom CSS property ParallaxWrapper component looks for when performing the BG element's transform */
+            /*--bgZTransform: -90px;*/ /* custom CSS property ParallaxWrapper component looks for when performing the BG element's transform */
             --widthScale: 1;        /* set by JS */
             --heightScale: 1;       /* set by JS */
             /* END variables */

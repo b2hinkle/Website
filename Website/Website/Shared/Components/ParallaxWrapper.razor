@@ -4,13 +4,13 @@
 
     <div id="BGParallaxWrapper">
         <div id="BGPageContent">
-            <div id="BG" class="HorizontalDebugBG"/>
+            @BackgroundContent
         </div>
     </div>
 
     <div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@
         <div id="PageContent" class="HorizontalDebugBGFaded">  @* 2nd wrapper to allow for dynamic height *@
-            @ChildContent
+            @PageContent
         </div>
     </div>
 
@@ -22,7 +22,9 @@
 @code 
 {
     [Parameter]
-        public RenderFragment ChildContent { get; set; }
+        public RenderFragment BackgroundContent { get; set; }
+    [Parameter]
+        public RenderFragment PageContent { get; set; }
 
     private IJSObjectReference jsObjRef;    // js interactor
     protected override async Task OnAfterRenderAsync(bool firstRender)

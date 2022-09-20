@@ -4,7 +4,11 @@
 @inject IJSRuntime jsRuntime;
 
 <ParallaxWrapper @ref=ParallaxWrapperEl>
+    <BackgroundContent>
+        <div id="BG" class="HorizontalDebugBG Override"/>
+    </BackgroundContent>
 
+    <PageContent>
         <div style="opacity:.25;">
             <div class="container" style="background-color:aqua;">
                 <div class="row align-items-center">
@@ -368,6 +372,7 @@
                 </div>
             </div> 
         </div>
+    </PageContent>
 </ParallaxWrapper>
 
         
