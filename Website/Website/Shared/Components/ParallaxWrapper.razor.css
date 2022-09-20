@@ -1,6 +1,8 @@
-﻿#SharedVariablesWrapper
+﻿#SharedVariablesWrapper 
 {
-
+/* BEGIN variables */
+    --ParallaxSupported: false; /* read from in JS */
+/* BEGIN variables */
 }
 
 
