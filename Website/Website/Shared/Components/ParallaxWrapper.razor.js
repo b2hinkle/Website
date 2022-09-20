@@ -48,7 +48,8 @@ function UpdateBGParallaxElement()
 }
 function UpdateBGParallaxWrapperScroll()
 {
-    BGParallaxWrapperElement.scrollTop = ParallaxWrapperElement.scrollTop;
+    const scrollNormalized = ParallaxWrapperElement.scrollTop / (ParallaxWrapperElement.scrollHeight - ParallaxWrapperElement.clientHeight);
+    BGParallaxWrapperElement.scrollTop = scrollNormalized * (BGParallaxWrapperElement.scrollHeight - BGParallaxWrapperElement.clientHeight);
 }
 
 function vhToPx(inVh)
