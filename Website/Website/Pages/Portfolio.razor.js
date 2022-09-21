@@ -1,5 +1,6 @@
 ﻿export function OnAfterRenderAsync()
 {
-    AOS.init();
-    console.log("sfd");
+    AOS.init({
+        scrollContainer: "#ParallaxWrapper" // Thanks to this fork https://github.com/anthonypaparella/aos
+    });
 }
