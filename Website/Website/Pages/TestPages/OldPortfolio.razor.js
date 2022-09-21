@@ -52,7 +52,9 @@ export function init() {
 
 
 
-    AOS.init();
+    sal({
+        once: false,
+    });
 }
 
 
