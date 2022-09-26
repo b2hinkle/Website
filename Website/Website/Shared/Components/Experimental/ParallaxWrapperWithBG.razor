@@ -1,0 +1,39 @@
+﻿@inject IJSRuntime jsRuntime;
+
+<div id="SharedVariablesWrapper">
+
+    <div id="BGParallaxWrapper">
+        <div id="BGPageContent">
+            @BackgroundContent @* Requiers id of "BG" *@
+        </div>
+    </div>
+
+    <div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@
+        <div id="PageContent">  @* 2nd wrapper to allow for dynamic height *@
+            @PageContent
+        </div>
+    </div>
+
+</div>
+
+    
+
+
+@code 
+{
+    [Parameter]
+        public RenderFragment BackgroundContent { get; set; }
+    [Parameter]
+        public RenderFragment PageContent { get; set; }
+
+    private IJSObjectReference jsObjRef;    // js interactor
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Experimental/ParallaxWrapperWithBG.razor.js");
+
+            await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
+        }
+    }
+}
