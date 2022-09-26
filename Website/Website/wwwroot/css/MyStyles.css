@@ -37,13 +37,16 @@
 
 
 
-
-.NewDottedBG
+.Pattern
 {
-    background-color: rgb(19, 25, 32); /* basic scroll color */
-    background-color: rgb(31, 32, 41); /* codepen thing i found color */
-    background-image: 
-        radial-gradient(farthest-side at 0 0,rgba(255,26,198,.3),rgba(255,26,198,0)),
-        radial-gradient(farthest-side at 100% 0,rgba(60,221,221,.4),rgba(60,221,221,0)),
-        radial-gradient(farthest-side at 50% 0,rgba(255,26,198,.1),rgba(255,26,198,0))
+    --grid-border-colour: rgba(4, 156, 219, 0.125);
+
+    background-image: linear-gradient(var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px);
+    background-size: 96px 96px, 96px 96px, 12px 12px, 12px 12px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+
+.NewDottedBG 
+{
+    
 }
