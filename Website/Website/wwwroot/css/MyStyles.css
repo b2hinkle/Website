@@ -37,6 +37,11 @@
 
 
 
+.NewDottedBG 
+{
+    background-color: rgb(82, 174, 193);
+}
+
 .Pattern
 {
     --grid-border-colour: rgba(4, 156, 219, 0.125);
@@ -46,7 +51,3 @@
     background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
 }
 
-.NewDottedBG 
-{
-    
-}

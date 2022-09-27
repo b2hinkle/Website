@@ -1,7 +1,9 @@
 ﻿#BG
 {
-    width: 100vw; /* vw because for some reason using % doesn't fill up whole page width space */
-    height: 100%; 
+    position: fixed;
+
+    width: 100vw;
+    height: 100vh;
 }
 
 @media screen and (min-width: 40em) /* only non-mobile devices */
