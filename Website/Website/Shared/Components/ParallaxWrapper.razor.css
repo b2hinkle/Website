@@ -1,4 +1,12 @@
-﻿#ParallaxWrapper 
+﻿/*
+    Formula for scaling image to counter depth: https://www.desmos.com/calculator/e3xgfma8nb 
+
+          -ZTransform
+    1 +  --------------
+        PerspectiveValue
+*/
+
+#ParallaxWrapper 
 {
     z-index: 0;
     position: relative; /* make elements in this group relative to the whole pange, because we are going to have to use absolutly positioned elements */

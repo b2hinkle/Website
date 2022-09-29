@@ -9,8 +9,9 @@
 </div>
 
 <ParallaxWrapper>
-    <header class="d-flex flex-column align-items-center justify-content-center" style="width:100vw; height:100vh; overflow:hidden; position:relative;">
-        <video muted autoplay loop style="position: absolute; min-height: 100%; min-width: 100%;">
+    <header class="d-flex flex-column align-items-center justify-content-center" style="width:100vw; height:100vh; position:relative; -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;">
+        <video muted autoplay loop style="position: absolute; min-height: 100%; min-width: 100%; transform:translateZ(-900px) scale(4);">
             <source src="videos/TestVid.mp4" type="video/mp4">
         </video>
             
@@ -25,7 +26,12 @@
         </div>
     </header>
 
+
     <div id="portfolio">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="width:100vw; height:25vh; position:relative; background-color:darkblue;">
+            <h1 style="color:white;">-- Portfolio --</h1>
+        </div>
+
         <div class="page-section">
 
                 <div data-sal="zoom-out" class="container">

@@ -6,37 +6,32 @@
     height: 100vh;
 }
 
-@media screen and (min-width: 40em) /* only non-mobile devices */
-{
-    @supports ((--foo: bar) and ((perspective: 300px) or (-moz-perspective: 300px) or (-webkit-perspective: 300px)) and (not (-webkit-overflow-scrolling: touch))) /* only if supports CSS custom properties and perspective property and then some thing at the end that apparently helps */ 
-    {
-        #BG 
-        {
-            --bgZTransform: -9000px;
-        }
-    }
-}
-
-/* --------------------------------------------------------------------------------------------------------- */
-
-
-
-.page-section 
-{
+.page-section {
     padding: 6rem 0;
 }
 
-.page-section .page-section-heading 
-{
-    font-size: 2.25rem;
-    line-height: 2rem;
-}
+    .page-section .page-section-heading {
+        font-size: 2.25rem;
+        line-height: 2rem;
+    }
 
-@media (min-width: 992px) 
-{
-    .page-section .page-section-heading 
-    {
+@media (min-width: 992px) {
+    .page-section .page-section-heading {
         font-size: 3rem;
         line-height: 2.5rem;
     }
 }
+
+
+
+
+
+
+@media screen and (min-width: 40em) /* only non-mobile devices */
+{
+    @supports ((--foo: bar) and ((perspective: 300px) or (-moz-perspective: 300px) or (-webkit-perspective: 300px)) and (not (-webkit-overflow-scrolling: touch))) /* only if supports CSS custom properties and perspective property and then some thing at the end that apparently helps */ 
+    {
+        
+    }
+}
+

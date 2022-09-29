@@ -54,10 +54,10 @@
   /*background-image: radial-gradient(rgb(42, 48, 56) 11%, rgb(255, 255, 255, 0.00) 11%);
   background-position: 0 0;
   background-size: 22px 22px;*/
-    /*--grid-border-colour: rgba(4, 156, 219, 0.125);
+    --grid-border-colour: rgba(4, 156, 219, 0.125);
 
     background-image: linear-gradient(var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px);
     background-size: 96px 96px, 96px 96px, 12px 12px, 12px 12px;
-    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;*/
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
 }
 
