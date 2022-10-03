@@ -5,47 +5,42 @@
     });
 
 
-
-
-    const observerElements = document.querySelectorAll('.trigger-element');
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px',
-        threshold: 0
-    };
-
-    observerElements.forEach(el => {
-
-        console.log("a");
-        el.tl = gsap.timeline({ paused: true });
-
-        el.tl
-            .to(el, { backgroundColor: '#e6f03a', rotation: 360, ease: 'power2.inOut' })
-            .to(el, { backgroundColor: '#000', rotation: 720, ease: 'power1.inOut' })
-
-        el.observer = new IntersectionObserver(entry => {
-            if (entry[0].intersectionRatio > 0) {
-                gsap.ticker.add(el.progressTween)
-            } else {
-                gsap.ticker.remove(el.progressTween)
-            }
-        }, observerOptions);
-
-        el.progressTween = () => {
-            // Get scroll distance to bottom of viewport.
-            const scrollPosition = (window.scrollY + window.innerHeight);
-            // Get element's position relative to bottom of viewport.
-            const elPosition = (scrollPosition - el.offsetTop);
-            // Set desired duration.
-            const durationDistance = (window.innerHeight + el.offsetHeight);
-            // Calculate tween progresss.
-            const currentProgress = (elPosition / durationDistance);
-            // Set progress of gsap timeline.     
-            el.tl.progress(currentProgress);
+    gsap.registerPlugin(ScrollTrigger);
+    /*
+    // apply parallax effect to any element with a data-speed attribute
+    gsap.to("[data-speed]", {
+        y: (i, el) => (1 - parseFloat(el.getAttribute("data-speed"))) * ScrollTrigger.maxScroll(window),
+        ease: "none",
+        scrollTrigger: {
+            start: 0,
+            end: "max",
+            invalidateOnRefresh: true,
+            scrub: 0
         }
-
-        el.observer.observe(el);
     });
+    */
 
+
+
+    gsap.utils.toArray(".ParallaxElement").forEach((entry, i) => {
+        // the first image (i === 0) should be handled differently because it should start at the very top.
+        // use function-based values in order to keep things responsive
+        gsap.fromTo(entry,
+            { y: () => i ? `${-window.innerHeight * getRatio(entry)}px` : "0px" },
+            { y: () => `${window.innerHeight * (1 - getRatio(entry))}px`, ease: "none",
+                scrollTrigger: {
+                trigger: entry,
+                start: () => i ? "top bottom" : "top top",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true // to make it responsive
+            }
+        });
+
+    });
+}
+
+function getRatio(el)
+{
+    return window.innerHeight / (window.innerHeight + el.offsetHeight);
 }
