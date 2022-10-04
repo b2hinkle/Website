@@ -6,13 +6,13 @@
         ParallaxElements.forEach((ParallaxElement) =>
         {
             const dataParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
-            const ParallaxSpeed = dataParallaxSpeed ? 1 - dataParallaxSpeed : .5; // if not specified, give default value of .5
+            const speedMultiplier = dataParallaxSpeed ? 1 - dataParallaxSpeed : .5; // if not specified, give default value of .5
 
             // use function-based values in order to keep things responsive
             gsap.fromTo(ParallaxElement, {
-                y: () => `${-window.innerHeight * ParallaxSpeed}px`
+                y: () => `${-window.innerHeight * speedMultiplier}px`
             }, {
-                y: () => `${window.innerHeight * ParallaxSpeed}px`,
+                y: () => `${window.innerHeight * speedMultiplier}px`,
                 ease: "none",
                 scrollTrigger: {
                     trigger: ParallaxContainer,
