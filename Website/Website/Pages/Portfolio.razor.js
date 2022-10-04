@@ -6,7 +6,7 @@
 
 
     gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray("section").forEach((section, i) => {
+    gsap.utils.toArray(".ParallaxContainer").forEach((section, i) => {
         const ParallaxElement = section.querySelector(".ParallaxElement");
 
         const ParallaxSpeed = ParallaxElement.dataset.parallaxspeed;

@@ -1,34 +1,4 @@
-﻿section {
-    position: relative;
-    height: 25vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background-color: red;
-}
-
-.ParallaxElement {
-    position: absolute;
-    width: 100%;
-}
-
-h1 {
-    color: white;
-    text-shadow: 1px 1px 3px black;
-    z-index: 1;
-    font-size: 3em;
-    font-weight: 400;
-}
-
-
-
-
-
-
-
-
-#BG
+﻿#BG
 {
     position: fixed;
 
