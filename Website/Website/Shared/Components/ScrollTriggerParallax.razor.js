@@ -15,8 +15,9 @@
         const ParallaxElements = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
         ParallaxElements.forEach((ParallaxElement) =>
         {
-            const dataParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
-            const speedMultiplier = dataParallaxSpeed ? 1 - dataParallaxSpeed : .5; // if not specified, give default value of .5
+            let dataParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
+            dataParallaxSpeed = dataParallaxSpeed ? dataParallaxSpeed : .5; // if not specified, give default value of .5
+            const speedMultiplier = 1 - dataParallaxSpeed;
 
             // use function-based values in order to keep things responsive
             gsap.fromTo(ParallaxElement, {
