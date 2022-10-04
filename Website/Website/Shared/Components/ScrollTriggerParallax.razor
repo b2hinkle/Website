@@ -1,5 +1,14 @@
-﻿@inject IJSRuntime jsRuntime;
-
+﻿@*
+    This component provides the ability to parallax by providing .ParallaxContainer and .ParallaxElement classes and data-parallaxspeed data attribute.
+    Workflow:
+    - .ParallaxElement: Actual element that will parallax
+        - must be an immediate child of .ParallaxContainer
+    - data-parallaxspeed: Scroll speed multiplier
+        - 1 is normal scroll speed
+        - 0 is no scrolling
+    - .ParallaxContainer: Determines the parallax positioning of any parallax elements. Any parallax element should be at its original position when the container reaches the middle of the viewport.
+*@
+@inject IJSRuntime jsRuntime;
 @code 
 {
     private IJSObjectReference jsObjRef;    // js interactor
