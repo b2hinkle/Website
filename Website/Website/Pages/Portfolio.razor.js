@@ -2,19 +2,17 @@
 {
     gsap.registerPlugin(ScrollTrigger);
 
-    let getRatio = el => window.innerHeight / (window.innerHeight + el.offsetHeight);
-
-
 
     gsap.utils.toArray("section").forEach((section, i) => {
-        section.ParallaxElement = section.querySelector(".ParallaxElement");
+        const ParallaxElement = section.querySelector(".ParallaxElement");
 
-
+        const ParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
+        console.log(ParallaxSpeed);
         // use function-based values in order to keep things responsive
-        gsap.fromTo(section.ParallaxElement, {
-            y: () => `${-window.innerHeight * getRatio(section)}px`
+        gsap.fromTo(ParallaxElement, {
+            y: () => `${-window.innerHeight * ParallaxSpeed}px`
         }, {
-            y: () => `${window.innerHeight * (1 - getRatio(section))}px`,
+            y: () => `${window.innerHeight * ParallaxSpeed}px`,
             ease: "none",
             scrollTrigger: {
                 trigger: section,
