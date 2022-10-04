@@ -22,8 +22,7 @@
                     trigger: ParallaxContainer,
                     start: () => "top bottom",
                     end: "bottom top",
-                    scrub: true,
-                    invalidateOnRefresh: true // to make it responsive
+                    scrub: true
                 }
             });
         });
