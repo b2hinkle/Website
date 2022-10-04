@@ -1,8 +1,11 @@
 ﻿export function OnAfterRenderAsync()
 {
+    sal({
+        once: false,
+    });
+
+
     gsap.registerPlugin(ScrollTrigger);
-
-
     gsap.utils.toArray("section").forEach((section, i) => {
         const ParallaxElement = section.querySelector(".ParallaxElement");
 

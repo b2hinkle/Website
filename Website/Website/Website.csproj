@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="Classes\" />
-    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\GSAP\" />
   </ItemGroup>
 

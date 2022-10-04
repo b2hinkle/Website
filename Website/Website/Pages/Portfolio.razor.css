@@ -5,15 +5,12 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-
     background-color: red;
 }
 
 .ParallaxElement {
     position: absolute;
     width: 100%;
-    height: 100%;
-    
 }
 
 h1 {
@@ -23,3 +20,32 @@ h1 {
     font-size: 3em;
     font-weight: 400;
 }
+
+
+
+
+
+
+
+
+#BG
+{
+    position: fixed;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.page-section {
+    padding: 6rem 0;
+}
+
+.page-section .page-section-heading {
+    font-size: 2.25rem;
+    line-height: 2rem;
+}
+
+
+
+
+
