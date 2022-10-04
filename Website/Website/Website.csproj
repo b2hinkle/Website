@@ -18,6 +18,7 @@
     <None Remove="Pages\TestPages\Index.razor.js" />
     <None Remove="Pages\TestPages\ParallaxWindowTest.razor.js" />
     <None Remove="Shared\Components\ParallaxWrapper - Copy.razor.js" />
+    <None Remove="Shared\Components\ScrollTriggerParallax.razor.js" />
     <None Remove="Shared\Layouts\MainLayout.razor.js" />
   </ItemGroup>
 
@@ -27,6 +28,7 @@
     <Content Include="Pages\Portfolio.razor.js" />
     <Content Include="Pages\PortfolioTemplate.razor.js" />
     <Content Include="Pages\TestPages\OldPortfolio.razor.js" />
+    <Content Include="Shared\Components\ScrollTriggerParallax.razor.js" />
   </ItemGroup>
 
   <ItemGroup>
