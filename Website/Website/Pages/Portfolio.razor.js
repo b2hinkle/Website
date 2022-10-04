@@ -9,8 +9,7 @@
     gsap.utils.toArray(".ParallaxContainer").forEach((section, i) => {
         const ParallaxElement = section.querySelector(".ParallaxElement");
 
-        const ParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
-        console.log(ParallaxSpeed);
+        const ParallaxSpeed = 1 - ParallaxElement.dataset.parallaxspeed;
         // use function-based values in order to keep things responsive
         gsap.fromTo(ParallaxElement, {
             y: () => `${-window.innerHeight * ParallaxSpeed}px`

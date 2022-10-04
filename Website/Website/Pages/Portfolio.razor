@@ -8,8 +8,8 @@
     <div class="Pattern" style="position:absolute; width:100%; height:100%;"/>
 </div>*@
 
-<header class="d-flex flex-column align-items-center justify-content-center" style="width:100vw; height:100vh; position:relative; overflow:hidden;">
-    <video muted autoplay loop style="position: absolute; min-height: 100%; min-width: 100%;">
+<header class="ParallaxContainer d-flex flex-column align-items-center justify-content-center" style="width:100vw; height:100vh; position:relative; overflow:hidden;">
+    <video muted autoplay loop class="ParallaxElement" data-parallaxspeed=".75" style="position: absolute; min-height: 100%; min-width: 100%;">
         <source src="videos/TestVid.mp4" type="video/mp4">
     </video>
             
@@ -27,10 +27,6 @@
 
 <div id="portfolio">
     
-    <section class="ParallaxContainer" style="position:relative; height:25vh; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-      <img class="ParallaxElement" data-parallaxspeed=".1" src="images/DebugTexture.png" style="position: absolute; width: 100%; z-index:-1;">
-      <h1 style="color:white;">They just keep coming</h1>
-    </section>
     <div class="page-section">
 
             <div data-sal="zoom-out" class="container">
@@ -54,6 +50,10 @@
             </div>
 
     </div>
+    <section class="ParallaxContainer" style="position:relative; height:25vh; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+      <img class="ParallaxElement" data-parallaxspeed=".9" src="images/DebugTexture.png" style="position: absolute; width: 100%; z-index:-1;">
+      <h1 style="color:white;">They just keep coming</h1>
+    </section>
     <div class="page-section">
 
             <div data-sal="zoom-out" class="container">
