@@ -25,7 +25,7 @@
 
             let animation = anime({
                 targets: ParallaxElement,
-                translateY: [() => -window.innerHeight * speedMultiplier, () => window.innerHeight * speedMultiplier],
+                translateY: [-window.innerHeight * speedMultiplier, window.innerHeight * speedMultiplier],
                 easing: "linear",
                 autoplay: false,
                 loop: false
