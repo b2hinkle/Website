@@ -27,13 +27,22 @@
             dataParallaxSpeed = dataParallaxSpeed ? dataParallaxSpeed : .5; // if not specified, give default value of .5
             const speedMultiplier = 1 - dataParallaxSpeed;
 
-            const animation = anime({
-                targets: ParallaxElement,
-                translateY: [-window.innerHeight * speedMultiplier, window.innerHeight * speedMultiplier],
+            const animationOptions = {
+                duration: 1,
+                iterations: Infinity,
+                direction: "normal",
+                fill: "both",
                 easing: "linear",
-                autoplay: false,
-                loop: false
-            })
+            };
+            const animation = new Animation(
+                new KeyframeEffect(
+                    ParallaxElement,
+                    {
+                        transform: [`translateY(${-window.innerHeight * speedMultiplier}px)`, `translateY(${window.innerHeight * speedMultiplier}px)`]
+                    },
+                    animationOptions
+                )
+            );
             ParallaxAnimations.push(animation);
         });
 
@@ -66,10 +75,11 @@
 
                 ParallaxContainerEl.OwnedParallaxAnimations.forEach(ParallaxAnimation =>
                 {
-                    ParallaxAnimation.seek(currentProgress * ParallaxAnimation.duration);
+                    ParallaxAnimation.currentTime = currentProgress * 1;
+                    //ParallaxAnimation.seek(currentProgress * ParallaxAnimation.duration);
                 });
 
-                console.log(ParallaxContainerEl.tagName);
+                //console.log(ParallaxContainerEl.tagName);
                 ParallaxContainerEl.ParallaxTickerID = requestAnimationFrame(Tick);
             });
         }),
