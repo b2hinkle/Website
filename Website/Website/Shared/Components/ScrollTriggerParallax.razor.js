@@ -8,8 +8,12 @@ export function OnAfterRenderAsync()
     */
     const htmlEl = document.documentElement;
     htmlEl.style.overflowX = "hidden";
+    htmlEl.style.padding = "0px";
+    htmlEl.style.margin = "0px";
     const bodyEl = document.body;
     bodyEl.style.overflow = "hidden";
+    bodyEl.style.padding = "0px";
+    bodyEl.style.margin = "0px";
 // END CSS styling
 
 
@@ -24,7 +28,7 @@ export function OnAfterRenderAsync()
             dataParallaxSpeed = dataParallaxSpeed ? dataParallaxSpeed : .5; // if not specified, give default value of .5
             const speedMultiplier = 1 - dataParallaxSpeed;
 
-            let animation = anime({
+            const animation = anime({
                 targets: ParallaxElement,
                 translateY: [-window.innerHeight * speedMultiplier, window.innerHeight * speedMultiplier],
                 easing: "linear",
@@ -42,7 +46,7 @@ export function OnAfterRenderAsync()
         rootMargin: '0px 0px',
         threshold: 0
     };
-    let ParallaxContainerObserver = new IntersectionObserver(entries =>
+    const ParallaxContainerObserver = new IntersectionObserver(entries =>
     {
         entries.forEach((entry) =>
         {
