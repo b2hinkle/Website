@@ -53,6 +53,7 @@ export function OnAfterRenderAsync()
             if (entry.isIntersecting == false)
             {
                 window.cancelAnimationFrame(entry.target.ParallaxTickerID);
+                entry.target.ParallaxTickerID = undefined; // to indicate it no longer has a ticker
                 return;
             }
 
