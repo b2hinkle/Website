@@ -38,7 +38,7 @@
                 new KeyframeEffect(
                     ParallaxElement,
                     {
-                        transform: [`translateY(${-window.innerHeight * speedMultiplier}px)`, `translateY(${window.innerHeight * speedMultiplier}px)`]
+                        transform: [`translate3d(0, ${-window.innerHeight * speedMultiplier}px, 0)`, `translate3d(0, ${window.innerHeight * speedMultiplier}px, 0)`]
                     },
                     animationOptions
                 )
