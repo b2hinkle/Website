@@ -1,4 +1,6 @@
-﻿export function OnAfterRenderAsync()
+﻿const AnimationMap = new Map();
+
+export function OnAfterRenderAsync()
 {
 // BEGIN CSS styling
     /*
@@ -13,7 +15,6 @@
 
 
     // Build our map to track all our animations
-    const AnimationMap = new Map();
     document.querySelectorAll(".ParallaxContainer").forEach(ParallaxContainer => {
         const ParallaxElements = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
         let ParallaxAnimations = new Array();
@@ -45,32 +46,27 @@
     {
         entries.forEach((entry) =>
         {
-            if (entry.intersectionRatio > 0) // is intersecting
+            if (entry.isIntersecting == false)
             {
-                window.requestAnimationFrame(function Tick(timestamp)
-                {
-                    if (entry.intersectionRatio <= 0) // not intersecting
-                    {
-                        return;
-                    }
-
-                    // Get scroll distance to bottom of viewport.
-                    const scrollPosition = (window.scrollY + window.innerHeight);
-                    // Get element's position relative to bottom of viewport.
-                    const elPosition = (scrollPosition - entry.target.offsetTop);
-                    // Set desired duration.
-                    const durationDistance = (window.innerHeight + entry.target.offsetHeight);
-                    // Calculate tween progresss.
-                    const currentProgress = (elPosition / durationDistance);
-                    let Animations = AnimationMap.get(entry.target);
-                    Animations.forEach(ParallaxAnimation =>
-                    {
-                        ParallaxAnimation.seek(currentProgress * ParallaxAnimation.duration);
-                    });
-                    console.log(currentProgress);
-                    requestAnimationFrame(Tick);
-                });
+                window.cancelAnimationFrame(entry.target.ParallaxTickerID);
+                return;
             }
+
+            entry.target.ParallaxTickerID = window.requestAnimationFrame(function Tick(timestamp)
+            {
+                const scrollPosition = (window.scrollY + window.innerHeight);               // get scroll distance to bottom of viewport.
+                const elPosition = (scrollPosition - entry.target.offsetTop);               // get element's position relative to bottom of viewport.
+                const durationDistance = (window.innerHeight + entry.target.offsetHeight);  // set desired duration.
+                const currentProgress = (elPosition / durationDistance);                    // calculate tween progresss.
+                const Animations = AnimationMap.get(entry.target);
+                Animations.forEach(ParallaxAnimation =>
+                {
+                    ParallaxAnimation.seek(currentProgress * ParallaxAnimation.duration);
+                });
+
+                console.log(entry.target.tagName);
+                entry.target.ParallaxTickerID = requestAnimationFrame(Tick);
+            });
         }),
         observerOptions
     });
