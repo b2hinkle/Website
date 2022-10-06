@@ -1,6 +1,4 @@
-﻿const AnimationMap = new Map();
-
-export function OnAfterRenderAsync()
+﻿export function OnAfterRenderAsync()
 {
 // BEGIN CSS styling
     /*
@@ -17,9 +15,10 @@ export function OnAfterRenderAsync()
 // END CSS styling
 
 
+    const ParallaxContainerElements = document.querySelectorAll(".ParallaxContainer");
 
-    // Build our map to track all our animations
-    document.querySelectorAll(".ParallaxContainer").forEach(ParallaxContainer => {
+    // Make our parallax containers responsible for their parallax animations
+    ParallaxContainerElements.forEach(ParallaxContainer => {
         const ParallaxElements = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
         let ParallaxAnimations = new Array();
         ParallaxElements.forEach((ParallaxElement) => {
@@ -38,7 +37,7 @@ export function OnAfterRenderAsync()
             ParallaxAnimations.push(animation);
         });
 
-        AnimationMap.set(ParallaxContainer, ParallaxAnimations);
+        ParallaxContainer.OwnedParallaxAnimations = ParallaxAnimations;
     });
 
     const observerOptions = {
@@ -50,34 +49,35 @@ export function OnAfterRenderAsync()
     {
         entries.forEach((entry) =>
         {
+            const ParallaxContainerEl = entry.target;
             if (entry.isIntersecting == false)
             {
-                window.cancelAnimationFrame(entry.target.ParallaxTickerID);
-                entry.target.ParallaxTickerID = undefined; // to indicate it no longer has a ticker
+                window.cancelAnimationFrame(ParallaxContainerEl.ParallaxTickerID);
+                ParallaxContainerEl.ParallaxTickerID = undefined;
                 return;
             }
 
-            entry.target.ParallaxTickerID = window.requestAnimationFrame(function Tick(timestamp)
+            ParallaxContainerEl.ParallaxTickerID = window.requestAnimationFrame(function Tick(timestamp)
             {
                 const scrollPosition = (window.scrollY + window.innerHeight);               // get scroll distance to bottom of viewport.
-                const elPosition = (scrollPosition - entry.target.offsetTop);               // get element's position relative to bottom of viewport.
-                const durationDistance = (window.innerHeight + entry.target.offsetHeight);  // set desired duration.
+                const elPosition = (scrollPosition - ParallaxContainerEl.offsetTop);               // get element's position relative to bottom of viewport.
+                const durationDistance = (window.innerHeight + ParallaxContainerEl.offsetHeight);  // set desired duration.
                 const currentProgress = (elPosition / durationDistance);                    // calculate tween progresss.
-                const Animations = AnimationMap.get(entry.target);
-                Animations.forEach(ParallaxAnimation =>
+
+                ParallaxContainerEl.OwnedParallaxAnimations.forEach(ParallaxAnimation =>
                 {
                     ParallaxAnimation.seek(currentProgress * ParallaxAnimation.duration);
                 });
 
-                console.log(entry.target.tagName);
-                entry.target.ParallaxTickerID = requestAnimationFrame(Tick);
+                console.log(ParallaxContainerEl.tagName);
+                ParallaxContainerEl.ParallaxTickerID = requestAnimationFrame(Tick);
             });
         }),
         observerOptions
     });
 
     // Start observing the parallax containers
-    AnimationMap.forEach((Animations, ParallaxContainer) =>
+    ParallaxContainerElements.forEach((ParallaxContainer) =>
     {
         ParallaxContainerObserver.observe(ParallaxContainer);
     })
