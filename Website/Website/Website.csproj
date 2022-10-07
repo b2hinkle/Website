@@ -28,7 +28,7 @@
     <Content Include="Pages\Portfolio.razor.js" />
     <Content Include="Pages\PortfolioTemplate.razor.js" />
     <Content Include="Pages\TestPages\OldPortfolio.razor.js" />
-    <Content Include="Shared\Components\ScrollTriggerParallax.razor.js" />
+    <Content Include="Shared\Components\WAAPIParallax.razor.js" />
   </ItemGroup>
 
   <ItemGroup>

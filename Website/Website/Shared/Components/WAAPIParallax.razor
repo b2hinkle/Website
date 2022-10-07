@@ -18,7 +18,7 @@
     {
         if (firstRender)
         {
-            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/ScrollTriggerParallax.razor.js");
+            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/WAAPIParallax.razor.js");
             await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
         }
     }
