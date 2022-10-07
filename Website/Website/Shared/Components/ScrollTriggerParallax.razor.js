@@ -6,8 +6,12 @@
     */
     const htmlEl = document.documentElement;
     htmlEl.style.overflowX = "hidden";
+    htmlEl.style.padding = "0px";
+    htmlEl.style.margin = "0px";
     const bodyEl = document.body;
     bodyEl.style.overflow = "hidden";
+    bodyEl.style.padding = "0px";
+    bodyEl.style.margin = "0px";
 // END CSS styling
 
     /*gsap.registerPlugin(ScrollTrigger); // still works without (maybe they made it not necissary anymore?) */ // commented out since it makes life easier not worying about who's going to register (no one will lol)
