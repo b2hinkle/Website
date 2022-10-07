@@ -1,5 +1,10 @@
 ﻿@*
     Dependencies: GSAP, ScrollTrigger
+    Known issues: 
+        - The jitter issue (becomes more noticable the slower you set the speed of parallax). This happens accross all animation libraries through it seems, and GSAP actually handles it decently since it kind of fixes itself (for the most part) after you scroll down initially.
+        - Encouter unexpected behavior when zooming - changes the speed of the parallax elements
+        - Edge on initial load of the page, the header of the page will be offset sometimes and it doensn't update until you scroll
+        - IE of course doesn't work (but it's actually pretty bad since it basically makes the page unreadible)
 
     This component provides the ability to parallax by providing .ParallaxContainer and .ParallaxElement classes and data-parallaxspeed data attribute.
     Workflow:
