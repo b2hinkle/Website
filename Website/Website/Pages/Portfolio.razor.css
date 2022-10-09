@@ -1,4 +1,8 @@
-﻿#BG
+﻿* {
+    box-sizing: border-box;
+}
+
+#BG
 {
     position: fixed;
     z-index: -1;
