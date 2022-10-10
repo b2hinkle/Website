@@ -53,6 +53,16 @@
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
         }
+
+        ::deep .ParallaxContainer
+        {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        ::deep .ParallaxElement
+        {
+            clip-path: polygon(var(--ClipLeft) var(--ClipTop), var(--ClipRight) var(--ClipTop), var(--ClipRight) var(--ClipBottom), var(--ClipLeft) var(--ClipBottom));
+        }
     }
 }
 

@@ -1,5 +1,21 @@
-const TestParallaxContainerEl = document.getElementById("TestParallaxContainer");
-const TestParallaxElement = document.getElementById("TestParallaxElement");
+function UpdateClipPathForOverflow(inParallaxContainer, inParallaxElement)
+{
+    let OverflowBottom = (inParallaxElement.getBoundingClientRect().bottom - inParallaxContainer.getBoundingClientRect().bottom);
+    let ClipBottom = inParallaxElement.getBoundingClientRect().height - OverflowBottom;
+    inParallaxElement.style.setProperty("--ClipBottom", `${ClipBottom}px`);
+
+    let OverflowTop = (inParallaxContainer.getBoundingClientRect().top - inParallaxElement.getBoundingClientRect().top);
+    let ClipTop = OverflowTop;
+    inParallaxElement.style.setProperty("--ClipTop", `${ClipTop}px`);
+
+    let OverflowLeft = (inParallaxContainer.getBoundingClientRect().left - inParallaxElement.getBoundingClientRect().left);
+    let ClipLeft = OverflowLeft;
+    inParallaxElement.style.setProperty("--ClipLeft", `${ClipLeft}px`);
+
+    let OverflowRight = (inParallaxElement.getBoundingClientRect().right - inParallaxContainer.getBoundingClientRect().right);
+    let ClipRight = inParallaxElement.getBoundingClientRect().width - OverflowRight;
+    inParallaxElement.style.setProperty("--ClipRight", `${ClipRight}px`);
+}
 
 export function OnAfterRenderAsync()
 {
@@ -20,31 +36,60 @@ export function OnAfterRenderAsync()
 
 
 
+    const ParallaxContainerements = document.querySelectorAll(".ParallaxContainer");
 
-    let ID = window.requestAnimationFrame(function Tick(timestamp)
+    // Make our parallax containers aware of their parallax elements
+    ParallaxContainerements.forEach(ParallaxContainer =>
     {
-        let OverflowBottom = (TestParallaxElement.getBoundingClientRect().bottom - TestParallaxContainerEl.getBoundingClientRect().bottom);
-        let ClipBottom = TestParallaxElement.getBoundingClientRect().height - OverflowBottom;
-        TestParallaxElement.style.setProperty("--ClipBottom", `${ClipBottom}px`);
-
-        let OverflowTop = (TestParallaxContainerEl.getBoundingClientRect().top - TestParallaxElement.getBoundingClientRect().top);
-        let ClipTop = OverflowTop;
-        TestParallaxElement.style.setProperty("--ClipTop", `${ClipTop}px`);
-
-        let OverflowLeft = (TestParallaxContainerEl.getBoundingClientRect().left - TestParallaxElement.getBoundingClientRect().left);
-        let ClipLeft = OverflowLeft;
-        TestParallaxElement.style.setProperty("--ClipLeft", `${ClipLeft}px`);
-
-        let OverflowRight = (TestParallaxElement.getBoundingClientRect().right - TestParallaxContainerEl.getBoundingClientRect().right);
-        let ClipRight = TestParallaxElement.getBoundingClientRect().width - OverflowRight;
-        TestParallaxElement.style.setProperty("--ClipRight", `${ClipRight}px`);
-
-
-
-
-
-        ID = requestAnimationFrame(Tick);
+        const ImmediateParallaxElementChildren = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
+        ImmediateParallaxElementChildren.forEach(ParallaxElement =>
+        {
+            UpdateClipPathForOverflow(ParallaxContainer, ParallaxElement);
+        })
+        ParallaxContainer.OwnedParallaxElements = ImmediateParallaxElementChildren;
     });
+
+
+
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px',
+        threshold: 0
+    };
+    const ParallaxContainerObserver = new IntersectionObserver(entries =>
+    {
+        entries.forEach((entry) =>
+        {
+            const ParallaxContainer = entry.target;
+            if (entry.isIntersecting == false)
+            {
+                window.cancelAnimationFrame(ParallaxContainer.ClippingTickerID);
+                ParallaxContainer.ClippingTickerID = undefined;
+                return;
+            }
+
+            ParallaxContainer.ClippingTickerID = window.requestAnimationFrame(function Tick(timestamp)
+            {
+                const OwnedParallaxElements = ParallaxContainer.OwnedParallaxElements;
+                OwnedParallaxElements.forEach(ParallaxElement =>
+                {
+                    UpdateClipPathForOverflow(ParallaxContainer, ParallaxElement);
+                });
+                
+
+
+                //console.log(ParallaxContainer.tagName);
+                ParallaxContainer.ClippingTickerID = requestAnimationFrame(Tick);
+            });
+        }),
+            observerOptions
+    });
+
+    // Start observing the parallax containers
+    ParallaxContainerements.forEach((ParallaxContainer) => {
+        ParallaxContainerObserver.observe(ParallaxContainer);
+    })
 }
 
 
