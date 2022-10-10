@@ -23,7 +23,25 @@ function HideParallaxElementOverflow(inContainer, inEl)
     inEl.style.clipPath = `polygon(${ClipLeft}px ${ClipTop}px, ${ClipRight}px ${ClipTop}px, ${ClipRight}px ${ClipBottom}px, ${ClipLeft}px ${ClipBottom}px)`;
 }
 
-const cssPerspectiveValue = getCSSCustomPropertyValue("--PerspectiveValue", document.getElementById("ParallaxWrapper"), "float");
+const ParallaxWrapperEl = document.getElementById("ParallaxWrapper");
+
+function CSS3DPropertiesSupported()
+{
+    return getCSSCustomPropertyValue("--CSSParallaxStylesActive", ParallaxWrapperEl, "bool")
+}
+function JSScriptSupported() // ensures all features we used are supported
+{
+    return document.getElementById 
+        && Element.prototype.getBoundingClientRect 
+        && document.querySelectorAll
+        && Element.prototype.matches
+        && IntersectionObserver
+        && window.cancelAnimationFrame
+        && window.requestAnimationFrame
+        && getComputedStyle;
+}
+
+const perspectiveValue = getCSSCustomPropertyValue("--PerspectiveValue", ParallaxWrapperEl, "float");
 function CalculateScaleThatCountersDepth(inPerspective, inZTransform) { return 1 + (-inZTransform / inPerspective); }
 
 export function OnAfterRenderAsync()
@@ -43,11 +61,17 @@ export function OnAfterRenderAsync()
     bodyEl.style.margin = "0px";
 // END CSS styling
 
-    const ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
-    if (getCSSCustomPropertyValue("--CSSParallaxStylesActive", ParallaxWrapperElement, "bool") == false)
+
+    // Don't proceed if anything isn't supported
+    if (CSS3DPropertiesSupported() == false)
     {
         return; // don't do parallax logic if CSS parallax styles aren't applied/supported
     }
+    if (JSScriptSupported() == false)
+    {
+        return; // don't do parallax logic if our script isn't supported
+    }
+
 
 
     const ParallaxContainerements = document.querySelectorAll(".ParallaxContainer");
@@ -65,7 +89,7 @@ export function OnAfterRenderAsync()
             let Scale = 1;
             if ("scaleToOriginalAppearance" in ParallaxElement.dataset)
             {
-                Scale = CalculateScaleThatCountersDepth(cssPerspectiveValue, dataDepth);
+                Scale = CalculateScaleThatCountersDepth(perspectiveValue, dataDepth);
             }
             ParallaxElement.style.transform = `translateZ(${dataDepth}px) scale(${Scale})`;
 
