@@ -4,23 +4,23 @@
  *   - It seems the document's scrolling goes really far if you move the element on the depth too far
 */
 
-function HideParallaxElementOverflow(inParallaxContainer, inParallaxElement)
+function HideParallaxElementOverflow(inContainer, inEl)
 {
-    const ParallaxContainerBoundingClientRect = inParallaxContainer.getBoundingClientRect();
+    const ContainerBoundingClientRect = inContainer.getBoundingClientRect();
 
-    const OverflowBottom = inParallaxElement.getBoundingClientRect().bottom - ParallaxContainerBoundingClientRect.bottom;
-    const ClipBottom = inParallaxElement.getBoundingClientRect().height - OverflowBottom;
+    const OverflowBottom = inEl.getBoundingClientRect().bottom - ContainerBoundingClientRect.bottom;
+    const ClipBottom = inEl.getBoundingClientRect().height - OverflowBottom;
 
-    const OverflowTop = ParallaxContainerBoundingClientRect.top - inParallaxElement.getBoundingClientRect().top;
+    const OverflowTop = ContainerBoundingClientRect.top - inEl.getBoundingClientRect().top;
     const ClipTop = OverflowTop;
 
-    const OverflowLeft = ParallaxContainerBoundingClientRect.left - inParallaxElement.getBoundingClientRect().left;
+    const OverflowLeft = ContainerBoundingClientRect.left - inEl.getBoundingClientRect().left;
     const ClipLeft = OverflowLeft;
 
-    const OverflowRight = inParallaxElement.getBoundingClientRect().right - ParallaxContainerBoundingClientRect.right;
-    const ClipRight = inParallaxElement.getBoundingClientRect().width - OverflowRight;
+    const OverflowRight = inEl.getBoundingClientRect().right - ContainerBoundingClientRect.right;
+    const ClipRight = inEl.getBoundingClientRect().width - OverflowRight;
 
-    inParallaxElement.style.clipPath = `polygon(${ClipLeft}px ${ClipTop}px, ${ClipRight}px ${ClipTop}px, ${ClipRight}px ${ClipBottom}px, ${ClipLeft}px ${ClipBottom}px)`;
+    inEl.style.clipPath = `polygon(${ClipLeft}px ${ClipTop}px, ${ClipRight}px ${ClipTop}px, ${ClipRight}px ${ClipBottom}px, ${ClipLeft}px ${ClipBottom}px)`;
 }
 
 const cssPerspectiveValue = getCSSCustomPropertyValue("--PerspectiveValue", document.getElementById("ParallaxWrapper"), "float");
