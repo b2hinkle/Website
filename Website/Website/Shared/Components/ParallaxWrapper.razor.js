@@ -3,6 +3,8 @@
  *   - HideParallaxElementOverflow calculation only works for parallax elements that use data-scale-to-original-appearance (calculation wasn't created with that in mind)
  *   - It seems the document's scrolling goes really far if you move the element on the depth too far
 */
+const ParallaxWrapperEl = document.getElementById("ParallaxWrapper");
+const ParallaxContainers = document.querySelectorAll(".ParallaxContainer");
 
 function HideParallaxElementOverflow(inContainer, inEl)
 {
@@ -22,9 +24,6 @@ function HideParallaxElementOverflow(inContainer, inEl)
 
     inEl.style.clipPath = `polygon(${ClipLeft}px ${ClipTop}px, ${ClipRight}px ${ClipTop}px, ${ClipRight}px ${ClipBottom}px, ${ClipLeft}px ${ClipBottom}px)`;
 }
-
-const ParallaxWrapperEl = document.getElementById("ParallaxWrapper");
-const ParallaxContainers = document.querySelectorAll(".ParallaxContainer");
 
 function HideAllParallaxElementOverflows() // used when forcing an update
 {
@@ -86,11 +85,8 @@ export function OnAfterRenderAsync()
     }
 
 
-
-    const ParallaxContainerements = document.querySelectorAll(".ParallaxContainer");
-
     // Make our parallax containers aware of their parallax elements
-    ParallaxContainerements.forEach(ParallaxContainer =>
+    ParallaxContainers.forEach(ParallaxContainer =>
     {
         const ImmediateParallaxElementChildren = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
         ImmediateParallaxElementChildren.forEach(ParallaxElement =>
