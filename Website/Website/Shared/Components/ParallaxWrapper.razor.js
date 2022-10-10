@@ -1,25 +1,24 @@
 function HideParallaxElementOverflow(inParallaxContainer, inParallaxElement)
 {
-    let OverflowBottom = (inParallaxElement.getBoundingClientRect().bottom - inParallaxContainer.getBoundingClientRect().bottom);
-    let ClipBottom = inParallaxElement.getBoundingClientRect().height - OverflowBottom;
+    const ParallaxContainerBoundingClientRect = inParallaxContainer.getBoundingClientRect();
 
-    let OverflowTop = (inParallaxContainer.getBoundingClientRect().top - inParallaxElement.getBoundingClientRect().top);
-    let ClipTop = OverflowTop;
+    const OverflowBottom = inParallaxElement.getBoundingClientRect().bottom - ParallaxContainerBoundingClientRect.bottom;
+    const ClipBottom = inParallaxElement.getBoundingClientRect().height - OverflowBottom;
 
-    let OverflowLeft = (inParallaxContainer.getBoundingClientRect().left - inParallaxElement.getBoundingClientRect().left);
-    let ClipLeft = OverflowLeft;
+    const OverflowTop = ParallaxContainerBoundingClientRect.top - inParallaxElement.getBoundingClientRect().top;
+    const ClipTop = OverflowTop;
 
-    let OverflowRight = (inParallaxElement.getBoundingClientRect().right - inParallaxContainer.getBoundingClientRect().right);
-    let ClipRight = inParallaxElement.getBoundingClientRect().width - OverflowRight;
+    const OverflowLeft = ParallaxContainerBoundingClientRect.left - inParallaxElement.getBoundingClientRect().left;
+    const ClipLeft = OverflowLeft;
+
+    const OverflowRight = inParallaxElement.getBoundingClientRect().right - ParallaxContainerBoundingClientRect.right;
+    const ClipRight = inParallaxElement.getBoundingClientRect().width - OverflowRight;
 
     inParallaxElement.style.clipPath = `polygon(${ClipLeft}px ${ClipTop}px, ${ClipRight}px ${ClipTop}px, ${ClipRight}px ${ClipBottom}px, ${ClipLeft}px ${ClipBottom}px)`;
 }
 
 const cssPerspectiveValue = getCSSCustomPropertyValue("--PerspectiveValue", document.getElementById("ParallaxWrapper"), "float");
-function CalculateScaleThatCountersDepth(inPerspective, inZTransform)
-{
-    return 1 + (-inZTransform / inPerspective);
-}
+function CalculateScaleThatCountersDepth(inPerspective, inZTransform) { return 1 + (-inZTransform / inPerspective); }
 
 export function OnAfterRenderAsync()
 {
@@ -64,11 +63,6 @@ export function OnAfterRenderAsync()
 
 
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px',
-        threshold: 0
-    };
     const ParallaxContainerObserver = new IntersectionObserver(entries =>
     {
         entries.forEach((entry) =>
@@ -86,23 +80,19 @@ export function OnAfterRenderAsync()
                 const OwnedParallaxElements = ParallaxContainer.OwnedParallaxElements;
                 OwnedParallaxElements.forEach(ParallaxElement =>
                 {
-                    // Hide any unwanted overflow
-                    HideParallaxElementOverflow(ParallaxContainer, ParallaxElement);
+                    HideParallaxElementOverflow(ParallaxContainer, ParallaxElement);    // hide any unwanted overflow
                 });
                 
 
 
-                console.log(ParallaxContainer.tagName);
+                //console.log(ParallaxContainer.tagName);
                 ParallaxContainer.ClippingTickerID = requestAnimationFrame(Tick);
             });
         }),
-            observerOptions
+        { root: null, rootMargin: '0px 0px', threshold: 0 } // observer options
     });
 
-    // Start observing the parallax containers
-    ParallaxContainerements.forEach((ParallaxContainer) => {
-        ParallaxContainerObserver.observe(ParallaxContainer);
-    })
+    ParallaxContainerements.forEach((ParallaxContainer) => { ParallaxContainerObserver.observe(ParallaxContainer); })   // start observing the parallax containers
 }
 
 
