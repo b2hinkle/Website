@@ -50,7 +50,8 @@ export function OnAfterRenderAsync()
         {
             // Perform the 3D transform
             let dataDepth = ParallaxElement.dataset.depth;
-            dataDepth = dataDepth ? dataDepth : 0; // if not specified, give default value of 0
+            dataDepth = dataDepth ? dataDepth : 0;  // if not specified, give default value of 0
+            dataDepth = -dataDepth;                 // make positive entered values move element in our fwd facing direction (more user friendly)
             const Scale = CalculateScaleThatCountersDepth(cssPerspectiveValue, dataDepth);
             ParallaxElement.style.transform = `translateZ(${dataDepth}px) scale(${Scale})`;
 
