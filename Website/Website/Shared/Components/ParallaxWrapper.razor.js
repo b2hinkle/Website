@@ -41,7 +41,7 @@ function HideAllParallaxElementOverflows() // used when forcing an update
 
 function CSS3DPropertiesSupported()
 {
-    return getCSSCustomPropertyValue("--CSSParallaxStylesActive", ParallaxWrapperEl, "bool")
+    return getCSSCustomPropertyValue("--CSSParallaxStylesActive", ParallaxWrapperEl, "bool");
 }
 function JSScriptSupported() // ensures all features we used are supported
 {
