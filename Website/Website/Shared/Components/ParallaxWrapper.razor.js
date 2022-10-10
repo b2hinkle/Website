@@ -2,19 +2,23 @@ function HideParallaxElementOverflow(inParallaxContainer, inParallaxElement)
 {
     let OverflowBottom = (inParallaxElement.getBoundingClientRect().bottom - inParallaxContainer.getBoundingClientRect().bottom);
     let ClipBottom = inParallaxElement.getBoundingClientRect().height - OverflowBottom;
-    inParallaxElement.style.setProperty("--ClipBottom", `${ClipBottom}px`);
 
     let OverflowTop = (inParallaxContainer.getBoundingClientRect().top - inParallaxElement.getBoundingClientRect().top);
     let ClipTop = OverflowTop;
-    inParallaxElement.style.setProperty("--ClipTop", `${ClipTop}px`);
 
     let OverflowLeft = (inParallaxContainer.getBoundingClientRect().left - inParallaxElement.getBoundingClientRect().left);
     let ClipLeft = OverflowLeft;
-    inParallaxElement.style.setProperty("--ClipLeft", `${ClipLeft}px`);
 
     let OverflowRight = (inParallaxElement.getBoundingClientRect().right - inParallaxContainer.getBoundingClientRect().right);
     let ClipRight = inParallaxElement.getBoundingClientRect().width - OverflowRight;
-    inParallaxElement.style.setProperty("--ClipRight", `${ClipRight}px`);
+
+    inParallaxElement.style.clipPath = `polygon(${ClipLeft}px ${ClipTop}px, ${ClipRight}px ${ClipTop}px, ${ClipRight}px ${ClipBottom}px, ${ClipLeft}px ${ClipBottom}px)`;
+}
+
+const cssPerspectiveValue = getCSSCustomPropertyValue("--PerspectiveValue", document.getElementById("ParallaxWrapper"), "float");
+function CalculateScaleThatCountersDepth(inPerspective, inZTransform)
+{
+    return 1 + (-inZTransform / inPerspective);
 }
 
 export function OnAfterRenderAsync()
@@ -44,6 +48,13 @@ export function OnAfterRenderAsync()
         const ImmediateParallaxElementChildren = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
         ImmediateParallaxElementChildren.forEach(ParallaxElement =>
         {
+            // Perform the 3D transform
+            let dataDepth = ParallaxElement.dataset.depth;
+            dataDepth = dataDepth ? dataDepth : 0; // if not specified, give default value of 0
+            const Scale = CalculateScaleThatCountersDepth(cssPerspectiveValue, dataDepth);
+            ParallaxElement.style.transform = `translateZ(${dataDepth}px) scale(${Scale})`;
+
+            // Hide any unwanted overflow
             HideParallaxElementOverflow(ParallaxContainer, ParallaxElement);
         })
         ParallaxContainer.OwnedParallaxElements = ImmediateParallaxElementChildren;
@@ -74,12 +85,13 @@ export function OnAfterRenderAsync()
                 const OwnedParallaxElements = ParallaxContainer.OwnedParallaxElements;
                 OwnedParallaxElements.forEach(ParallaxElement =>
                 {
+                    // Hide any unwanted overflow
                     HideParallaxElementOverflow(ParallaxContainer, ParallaxElement);
                 });
                 
 
 
-                //console.log(ParallaxContainer.tagName);
+                console.log(ParallaxContainer.tagName);
                 ParallaxContainer.ClippingTickerID = requestAnimationFrame(Tick);
             });
         }),

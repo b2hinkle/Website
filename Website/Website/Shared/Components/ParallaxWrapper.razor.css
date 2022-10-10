@@ -61,7 +61,7 @@
         }
         ::deep .ParallaxElement
         {
-            clip-path: polygon(var(--ClipLeft) var(--ClipTop), var(--ClipRight) var(--ClipTop), var(--ClipRight) var(--ClipBottom), var(--ClipLeft) var(--ClipBottom));
+
         }
     }
 }
