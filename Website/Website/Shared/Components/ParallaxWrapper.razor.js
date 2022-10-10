@@ -1,4 +1,4 @@
-function UpdateClipPathForOverflow(inParallaxContainer, inParallaxElement)
+function HideParallaxElementOverflow(inParallaxContainer, inParallaxElement)
 {
     let OverflowBottom = (inParallaxElement.getBoundingClientRect().bottom - inParallaxContainer.getBoundingClientRect().bottom);
     let ClipBottom = inParallaxElement.getBoundingClientRect().height - OverflowBottom;
@@ -44,7 +44,7 @@ export function OnAfterRenderAsync()
         const ImmediateParallaxElementChildren = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
         ImmediateParallaxElementChildren.forEach(ParallaxElement =>
         {
-            UpdateClipPathForOverflow(ParallaxContainer, ParallaxElement);
+            HideParallaxElementOverflow(ParallaxContainer, ParallaxElement);
         })
         ParallaxContainer.OwnedParallaxElements = ImmediateParallaxElementChildren;
     });
@@ -74,7 +74,7 @@ export function OnAfterRenderAsync()
                 const OwnedParallaxElements = ParallaxContainer.OwnedParallaxElements;
                 OwnedParallaxElements.forEach(ParallaxElement =>
                 {
-                    UpdateClipPathForOverflow(ParallaxContainer, ParallaxElement);
+                    HideParallaxElementOverflow(ParallaxContainer, ParallaxElement);
                 });
                 
 
