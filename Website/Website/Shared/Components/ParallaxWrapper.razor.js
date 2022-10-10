@@ -9,18 +9,20 @@ const ParallaxContainers = document.querySelectorAll(".ParallaxContainer");
 function HideParallaxElementOverflow(inContainer, inEl)
 {
     const ContainerBoundingClientRect = inContainer.getBoundingClientRect();
+    const ElBoundingClientRect = inEl.getBoundingClientRect();
 
-    const OverflowBottom = inEl.getBoundingClientRect().bottom - ContainerBoundingClientRect.bottom;
-    const ClipBottom = inEl.getBoundingClientRect().height - OverflowBottom;
 
-    const OverflowTop = ContainerBoundingClientRect.top - inEl.getBoundingClientRect().top;
+    const OverflowBottom = ElBoundingClientRect.bottom - ContainerBoundingClientRect.bottom;
+    const ClipBottom = ElBoundingClientRect.height - OverflowBottom;
+
+    const OverflowTop = ContainerBoundingClientRect.top - ElBoundingClientRect.top;
     const ClipTop = OverflowTop;
 
-    const OverflowLeft = ContainerBoundingClientRect.left - inEl.getBoundingClientRect().left;
+    const OverflowLeft = ContainerBoundingClientRect.left - ElBoundingClientRect.left;
     const ClipLeft = OverflowLeft;
 
-    const OverflowRight = inEl.getBoundingClientRect().right - ContainerBoundingClientRect.right;
-    const ClipRight = inEl.getBoundingClientRect().width - OverflowRight;
+    const OverflowRight = ElBoundingClientRect.right - ContainerBoundingClientRect.right;
+    const ClipRight = ElBoundingClientRect.width - OverflowRight;
 
     inEl.style.clipPath = `polygon(${ClipLeft}px ${ClipTop}px, ${ClipRight}px ${ClipTop}px, ${ClipRight}px ${ClipBottom}px, ${ClipLeft}px ${ClipBottom}px)`;
 }
@@ -143,7 +145,7 @@ export function OnAfterRenderAsync()
         { root: null, rootMargin: '0px 0px', threshold: 0 } // observer options
     });
 
-    ParallaxContainerements.forEach((ParallaxContainer) => { ParallaxContainerObserver.observe(ParallaxContainer); })   // start observing the parallax containers
+    ParallaxContainers.forEach((ParallaxContainer) => { ParallaxContainerObserver.observe(ParallaxContainer); })   // start observing the parallax containers
 }
 
 
