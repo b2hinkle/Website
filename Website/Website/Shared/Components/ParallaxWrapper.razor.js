@@ -24,6 +24,19 @@ function HideParallaxElementOverflow(inContainer, inEl)
 }
 
 const ParallaxWrapperEl = document.getElementById("ParallaxWrapper");
+const ParallaxContainers = document.querySelectorAll(".ParallaxContainer");
+
+function HideAllParallaxElementOverflows() // used when forcing an update
+{
+    ParallaxContainers.forEach(ParallaxContainer =>
+    {
+        const OwnedParallaxElements = ParallaxContainer.OwnedParallaxElements;
+        OwnedParallaxElements.forEach(ParallaxElement =>
+        {
+            HideParallaxElementOverflow(ParallaxContainer, ParallaxElement);
+        });
+    });
+}
 
 function CSS3DPropertiesSupported()
 {
@@ -99,7 +112,10 @@ export function OnAfterRenderAsync()
         ParallaxContainer.OwnedParallaxElements = ImmediateParallaxElementChildren;
     });
 
-
+    $(window).resize(function ()
+    {
+        HideAllParallaxElementOverflows();
+    });
 
 
     const ParallaxContainerObserver = new IntersectionObserver(entries =>
