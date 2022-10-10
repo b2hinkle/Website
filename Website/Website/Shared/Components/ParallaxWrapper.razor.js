@@ -43,6 +43,11 @@ export function OnAfterRenderAsync()
     bodyEl.style.margin = "0px";
 // END CSS styling
 
+    const ParallaxWrapperElement = document.getElementById("ParallaxWrapper");
+    if (getCSSCustomPropertyValue("--CSSParallaxStylesActive", ParallaxWrapperElement, "bool") == false)
+    {
+        return; // don't do parallax logic if CSS parallax styles aren't applied/supported
+    }
 
 
     const ParallaxContainerements = document.querySelectorAll(".ParallaxContainer");

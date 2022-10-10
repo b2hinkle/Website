@@ -37,6 +37,7 @@
         #ParallaxWrapper
         {
             /* BEGIN variables */
+            --CSSParallaxStylesActive: true; /* read from in JS */
             --PerspectiveValue: 300px; /* read from in JS */
             --PerspectiveOrigin: center;
             /* END variables */
