@@ -1,3 +1,9 @@
+/*
+*   Issues: 
+ *   - HideParallaxElementOverflow calculation only works for parallax elements that use data-scale-to-original-appearance (calculation wasn't created with that in mind)
+ *   - It seems the document's scrolling goes really far if you move the element on the depth too far
+*/
+
 function HideParallaxElementOverflow(inParallaxContainer, inParallaxElement)
 {
     const ParallaxContainerBoundingClientRect = inParallaxContainer.getBoundingClientRect();
@@ -51,7 +57,11 @@ export function OnAfterRenderAsync()
             let dataDepth = ParallaxElement.dataset.depth;
             dataDepth = dataDepth ? dataDepth : 0;  // if not specified, give default value of 0
             dataDepth = -dataDepth;                 // make positive entered values move element in our fwd facing direction (more user friendly)
-            const Scale = CalculateScaleThatCountersDepth(cssPerspectiveValue, dataDepth);
+            let Scale = 1;
+            if ("scaleToOriginalAppearance" in ParallaxElement.dataset)
+            {
+                Scale = CalculateScaleThatCountersDepth(cssPerspectiveValue, dataDepth);
+            }
             ParallaxElement.style.transform = `translateZ(${dataDepth}px) scale(${Scale})`;
 
             // Hide any unwanted overflow
