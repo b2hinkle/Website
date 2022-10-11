@@ -3,8 +3,6 @@
  *   - HideParallaxElementOverflow calculation only works for parallax elements that use data-scale-to-original-appearance (calculation wasn't created with that in mind)
  *   - It seems the document's scrolling goes really far if you move the element on the depth too far
 */
-const ParallaxWrapperEl = document.getElementById("ParallaxWrapper");
-const ParallaxContainers = document.querySelectorAll(".ParallaxContainer");
 
 function HideParallaxElementOverflow(inContainer, inEl)
 {
@@ -39,9 +37,9 @@ function HideAllParallaxElementOverflows() // used when forcing an update
     });
 }
 
-function CSS3DPropertiesSupported()
+function CSS3DPropertiesSupported(inParallaxWrapperEl)
 {
-    return getCSSCustomPropertyValue("--CSSParallaxStylesActive", ParallaxWrapperEl, "bool");
+    return getCSSCustomPropertyValue("--CSSParallaxStylesActive", inParallaxWrapperEl, "bool");
 }
 function JSScriptSupported() // ensures all features we used are supported
 {
@@ -55,7 +53,6 @@ function JSScriptSupported() // ensures all features we used are supported
         && getComputedStyle;
 }
 
-const perspectiveValue = getCSSCustomPropertyValue("--PerspectiveValue", ParallaxWrapperEl, "float");
 function CalculateScaleThatCountersDepth(inPerspective, inZTransform) { return 1 + (-inZTransform / inPerspective); }
 
 export function OnAfterRenderAsync()
@@ -75,9 +72,11 @@ export function OnAfterRenderAsync()
     bodyEl.style.margin = "0px";
 // END CSS styling
 
+    const ParallaxContainers = document.querySelectorAll(".ParallaxContainer");
+    const perspectiveValue = getCSSCustomPropertyValue("--PerspectiveValue", document.getElementById("ParallaxWrapper"), "float");
 
     // Don't proceed if anything isn't supported
-    if (CSS3DPropertiesSupported() == false)
+    if (CSS3DPropertiesSupported(document.getElementById("ParallaxWrapper")) == false)
     {
         return; // don't do parallax logic if CSS parallax styles aren't applied/supported
     }
