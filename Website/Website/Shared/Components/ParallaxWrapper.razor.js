@@ -29,9 +29,9 @@ function HideParallaxElementOverflow(inContainer, inEl)
     inEl.style.clipPath = `polygon(${ClipLeft}px ${ClipTop}px, ${ClipRight}px ${ClipTop}px, ${ClipRight}px ${ClipBottom}px, ${ClipLeft}px ${ClipBottom}px)`;
 }
 
-function HideAllParallaxElementOverflows() // used when forcing an update
+function HideAllParallaxElementOverflows(inParallaxContainers) // used when forcing an update
 {
-    ParallaxContainers.forEach(ParallaxContainer =>
+    inParallaxContainers.forEach(ParallaxContainer =>
     {
         const OwnedParallaxElements = ParallaxContainer.OwnedParallaxElements;
         OwnedParallaxElements.forEach(ParallaxElement =>
@@ -115,7 +115,7 @@ export function OnAfterRenderAsync()
 
     $(window).resize(function ()
     {
-        HideAllParallaxElementOverflows();
+        HideAllParallaxElementOverflows(ParallaxContainers);
     });
 
 
