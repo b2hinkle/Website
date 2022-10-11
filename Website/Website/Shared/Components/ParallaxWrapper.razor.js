@@ -145,7 +145,7 @@ export function OnAfterRenderAsync()
         { root: null, rootMargin: '0px 0px', threshold: 0 } // observer options
     });
 
-    ParallaxContainers.forEach((ParallaxContainer) => { ParallaxContainerObserver.observe(ParallaxContainer); })   // start observing the parallax containers
+    ParallaxContainers.forEach((ParallaxContainer) => { ParallaxContainerObserver.observe(ParallaxContainer); });   // start observing the parallax containers
 }
 
 
