@@ -8,35 +8,30 @@
  *   - It seems the document's scrolling goes really far if you move the element on the depth too far
 */
 
-function HideParallaxElementOverflow(inContainer, inEl)
+function HideParallaxElementOverflow(inContainer, inEl, inPerspectiveValue, inParallaxWrapper)
 {
-    const ContainerBoundingClientRect = inContainer.getBoundingClientRect();
-    const ElBoundingClientRect = inEl.getBoundingClientRect();
+    // Calculate speed at which the clipPath should scroll
+    const ZTransform = parseFloat(inEl.dataset.depth);
+    const depthRatio = ZTransform / (inPerspectiveValue + ZTransform);
+    const slowerScrollTop = inParallaxWrapper.scrollTop * depthRatio;
+    const slowerScrollLeft = inParallaxWrapper.scrollLeft * depthRatio;
 
-
-    const OverflowBottom = ElBoundingClientRect.bottom - ContainerBoundingClientRect.bottom;
-    const ClipBottom = ElBoundingClientRect.height - OverflowBottom;
-
-    const OverflowTop = ContainerBoundingClientRect.top - ElBoundingClientRect.top;
-    const ClipTop = OverflowTop;
-
-    const OverflowLeft = ContainerBoundingClientRect.left - ElBoundingClientRect.left;
-    const ClipLeft = OverflowLeft;
-
-    const OverflowRight = ElBoundingClientRect.right - ContainerBoundingClientRect.right;
-    const ClipRight = ElBoundingClientRect.width - OverflowRight;
+    const ClipBottom = inEl.WorldBottom - slowerScrollTop;
+    const ClipTop = inEl.WorldTop - slowerScrollTop;
+    const ClipLeft = inEl.WorldLeft - slowerScrollLeft;
+    const ClipRight = inEl.WorldRight - slowerScrollLeft;
 
     inEl.style.clipPath = `polygon(${ClipLeft}px ${ClipTop}px, ${ClipRight}px ${ClipTop}px, ${ClipRight}px ${ClipBottom}px, ${ClipLeft}px ${ClipBottom}px)`;
 }
 
-function HideAllParallaxElementOverflows(inParallaxContainers) // used when forcing an update
+function HideAllParallaxElementOverflows(inParallaxContainers, inPerspectiveValue, inParallaxWrapper) // used when forcing an update
 {
     inParallaxContainers.forEach(ParallaxContainer =>
     {
         const OwnedParallaxElements = ParallaxContainer.OwnedParallaxElements;
         OwnedParallaxElements.forEach(ParallaxElement =>
         {
-            HideParallaxElementOverflow(ParallaxContainer, ParallaxElement);
+            HideParallaxElementOverflow(ParallaxContainer, ParallaxElement, inPerspectiveValue, inParallaxWrapper);
         });
     });
 }
@@ -76,6 +71,7 @@ export function OnAfterRenderAsync()
     bodyEl.style.margin = "0px";
 // END CSS styling
 
+    const ParallaxWrapper = document.getElementById("ParallaxWrapper");
     const ParallaxContainers = document.querySelectorAll(".ParallaxContainer");
     const perspectiveValue = getCSSCustomPropertyValue("--PerspectiveValue", document.getElementById("ParallaxWrapper"), "float");
 
@@ -99,23 +95,40 @@ export function OnAfterRenderAsync()
             // Perform the 3D transform
             let dataDepth = ParallaxElement.dataset.depth;
             dataDepth = dataDepth ? dataDepth : 0;  // if not specified, give default value of 0
-            dataDepth = -dataDepth;                 // make positive entered values move element in our fwd facing direction (more user friendly)
+            const ZTransform = -dataDepth;                 // make positive entered values move element in our fwd facing direction (more user friendly)
             let Scale = 1;
             if ("scaleToOriginalAppearance" in ParallaxElement.dataset)
             {
-                Scale = CalculateScaleThatCountersDepth(perspectiveValue, dataDepth);
+                Scale = CalculateScaleThatCountersDepth(perspectiveValue, ZTransform);
             }
-            ParallaxElement.style.transform = `translateZ(${dataDepth}px) scale(${Scale})`;
+            ParallaxElement.style.transform = `translateZ(${ZTransform}px) scale(${Scale})`;
+
+            // Calculate world positions for the elements
+            const ContainerBoundingClientRect = ParallaxContainer.getBoundingClientRect();
+            const ElBoundingClientRect = ParallaxElement.getBoundingClientRect();
+
+            const OverflowBottom = ElBoundingClientRect.bottom - ContainerBoundingClientRect.bottom;
+            ParallaxElement.WorldBottom = ElBoundingClientRect.height - OverflowBottom;
+
+            const OverflowTop = ContainerBoundingClientRect.top - ElBoundingClientRect.top;
+            ParallaxElement.WorldTop = OverflowTop;
+
+            const OverflowLeft = ContainerBoundingClientRect.left - ElBoundingClientRect.left;
+            ParallaxElement.WorldLeft = OverflowLeft;
+
+            const OverflowRight = ElBoundingClientRect.right - ContainerBoundingClientRect.right;
+            ParallaxElement.WorldRight = ElBoundingClientRect.width - OverflowRight;
+
 
             // Hide any unwanted overflow
-            HideParallaxElementOverflow(ParallaxContainer, ParallaxElement);
+            HideParallaxElementOverflow(ParallaxContainer, ParallaxElement, perspectiveValue, ParallaxWrapper);
         })
         ParallaxContainer.OwnedParallaxElements = ImmediateParallaxElementChildren;
     });
 
     $(window).resize(function ()
     {
-        HideAllParallaxElementOverflows(ParallaxContainers);
+        HideAllParallaxElementOverflows(ParallaxContainers, perspectiveValue, ParallaxWrapper);
     });
 
 
@@ -131,12 +144,13 @@ export function OnAfterRenderAsync()
                 return;
             }
 
+
             ParallaxContainer.ClippingTickerID = window.requestAnimationFrame(function Tick(timestamp)
             {
                 const OwnedParallaxElements = ParallaxContainer.OwnedParallaxElements;
                 OwnedParallaxElements.forEach(ParallaxElement =>
                 {
-                    HideParallaxElementOverflow(ParallaxContainer, ParallaxElement);    // hide any unwanted overflow
+                    HideParallaxElementOverflow(ParallaxContainer, ParallaxElement, perspectiveValue, ParallaxWrapper);    // hide any unwanted overflow
                 });
                 
 
