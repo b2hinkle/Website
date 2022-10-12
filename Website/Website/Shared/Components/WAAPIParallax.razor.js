@@ -17,37 +17,23 @@
 
     const ParallaxContainerElements = document.querySelectorAll(".ParallaxContainer");
 
-    // Make our parallax containers responsible for their parallax animations
+    // Make our parallax containers responsible for their parallax elements
     ParallaxContainerElements.forEach(ParallaxContainer => {
         const ParallaxElements = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
-        let ParallaxAnimations = new Array();
-        ParallaxElements.forEach((ParallaxElement) => {
-
+        ParallaxElements.forEach((ParallaxElement) =>
+        {
             let dataParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
             dataParallaxSpeed = dataParallaxSpeed ? dataParallaxSpeed : .5; // if not specified, give default value of .5
             const speedMultiplier = 1 - dataParallaxSpeed;
+            ParallaxElement.speedMultiplier = speedMultiplier;
 
-            const animationOptions = {
-                duration: 1,
-                iterations: Infinity,
-                direction: "normal",
-                fill: "both",
-                easing: "linear",
-            };
-            const animation = new Animation(
-                new KeyframeEffect(
-                    ParallaxElement,
-                    {
-                        transform: [`translate3d(0, ${-window.innerHeight * speedMultiplier}px, 0)`, `translate3d(0, ${window.innerHeight * speedMultiplier}px, 0)`]
-                    },
-                    animationOptions
-                )
-            );
-            ParallaxAnimations.push(animation);
+            ParallaxElements.push(ParallaxElement);
         });
 
-        ParallaxContainer.OwnedParallaxAnimations = ParallaxAnimations;
+        ParallaxContainer.OwnedParallaxElements = ParallaxElements;
     });
+
+
 
     const observerOptions = {
         root: null,
@@ -73,10 +59,12 @@
                 const durationDistance = (window.innerHeight + ParallaxContainerEl.offsetHeight);  // set desired duration.
                 const currentProgress = (elPosition / durationDistance);                    // calculate tween progresss.
 
-                ParallaxContainerEl.OwnedParallaxAnimations.forEach(ParallaxAnimation =>
+                ParallaxContainerEl.OwnedParallaxElements.forEach(ParallaxElement =>
                 {
-                    ParallaxAnimation.currentTime = currentProgress * 1;
-                    //ParallaxAnimation.seek(currentProgress * ParallaxAnimation.duration);
+                    const A = -window.innerHeight * ParallaxElement.speedMultiplier;
+                    const B = window.innerHeight * ParallaxElement.speedMultiplier;
+                    const amt = Lerp(A, B, currentProgress);
+                    ParallaxElement.style.transform = `translate3d(0, ${amt}px, 0)`;
                 });
 
                 //console.log(ParallaxContainerEl.tagName);
@@ -91,10 +79,4 @@
     {
         ParallaxContainerObserver.observe(ParallaxContainer);
     })
-
-
-
-
-
-    //const ParallaxElements = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
 }
