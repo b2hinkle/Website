@@ -54,6 +54,7 @@ function JSScriptSupported() // ensures all features we used are supported
 
 function CalculateScaleThatCountersDepth(inPerspective, inZTransform) { return 1 + (-inZTransform / inPerspective); }
 
+
 export function OnAfterRenderAsync()
 {
 // BEGIN CSS styling
@@ -132,6 +133,11 @@ export function OnAfterRenderAsync()
     });
 
 
+    let RAF = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+    let CAF = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
     const ParallaxContainerObserver = new IntersectionObserver(entries =>
     {
         entries.forEach((entry) =>
@@ -139,13 +145,13 @@ export function OnAfterRenderAsync()
             const ParallaxContainer = entry.target;
             if (entry.isIntersecting == false)
             {
-                window.cancelAnimationFrame(ParallaxContainer.ClippingTickerID);
+                CAF(ParallaxContainer.ClippingTickerID);
                 ParallaxContainer.ClippingTickerID = undefined;
                 return;
             }
 
 
-            ParallaxContainer.ClippingTickerID = window.requestAnimationFrame(function Tick(timestamp)
+            ParallaxContainer.ClippingTickerID = RAF(function Tick(timestamp)
             {
                 const OwnedParallaxElements = ParallaxContainer.OwnedParallaxElements;
                 OwnedParallaxElements.forEach(ParallaxElement =>
@@ -156,7 +162,7 @@ export function OnAfterRenderAsync()
 
 
                 //console.log(ParallaxContainer.tagName);
-                ParallaxContainer.ClippingTickerID = requestAnimationFrame(Tick);
+                ParallaxContainer.ClippingTickerID = RAF(Tick);
             });
         }),
         { root: null, rootMargin: '0px 0px', threshold: 0 } // observer options
