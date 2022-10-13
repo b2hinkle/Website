@@ -16,7 +16,7 @@
     Init()
     {
         this.Wrapper = document.getElementById(this.WrapperID);
-        this.ParallaxContainerElements = document.querySelectorAll(this.ParallaxContainerClass);
+        this.ParallaxContainers = document.querySelectorAll(this.ParallaxContainerClass);
         this.TargetElements = document.querySelectorAll(this.TargetClass);
         this.WindowHeight = window.clientHeight; // ?
         this.WapperOffset = 0; // how offset it is from the top
@@ -39,7 +39,7 @@
         this.Wrapper.style.position = 'fixed';
 
         // Build our Targets array which stores the targets along with their attributes set in HTML
-        this.Targets = [];
+/*        this.Targets = [];
         const TargetElementsLength = this.TargetElements.length;
         for (let i = 0; i < TargetElementsLength; i++) {
             const TargetEl = this.TargetElements[i];
@@ -61,6 +61,22 @@
                     percentage: percentage ? percentage : 0
                 });
 
+        }*/
+
+        for (let i = 0; i < this.ParallaxContainers.length; i++)
+        {
+            const ParallaxContainer = this.ParallaxContainers[i];
+
+            const OwnedParallaxElements = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
+            OwnedParallaxElements.forEach((ParallaxElement) =>
+            {
+                let dataParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
+                dataParallaxSpeed = dataParallaxSpeed ? dataParallaxSpeed : .5; // if not specified, give default value of .5
+                const speedMultiplier = 1 - dataParallaxSpeed;
+                ParallaxElement.speedMultiplier = speedMultiplier;
+            });
+
+            ParallaxContainer.OwnedParallaxElements = OwnedParallaxElements;
         }
         // ---------- END Init things ----------
 
@@ -78,9 +94,22 @@
         this.Wrapper.style.transform = `translate3d(0, ${Math.round(-this.WapperOffset * 100) / 100}px, 0)`;
 
         // Parallax targets
-        for (let i = 0; i < this.ParallaxContainerElements.length; i++)
+        for (let i = 0; i < this.ParallaxContainers.length; i++)
         {
-            
+            const ParallaxContainer = this.ParallaxContainers[i];
+
+            const scrollPosition = (this.Window.scrollY + this.Window.innerHeight);               // get scroll distance to bottom of viewport.
+            const elPosition = (scrollPosition - ParallaxContainer.offsetTop);               // get element's position relative to bottom of viewport.
+            const durationDistance = (this.Window.innerHeight + ParallaxContainer.offsetHeight);  // set desired duration.
+            const currentProgress = (elPosition / durationDistance);                    // calculate tween progresss.
+
+            ParallaxContainer.OwnedParallaxElements.forEach(ParallaxElement =>
+            {
+                const A = -this.Window.innerHeight * ParallaxElement.speedMultiplier;
+                const B = this.Window.innerHeight * ParallaxElement.speedMultiplier;
+                const amt = Lerp(A, B, currentProgress);
+                ParallaxElement.style.transform = `translate3d(0, ${amt}px, 0)`;
+            });
         }
 
         this.RAF.call(this.Window, this.Tick.bind(this));

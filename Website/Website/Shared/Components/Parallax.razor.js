@@ -26,8 +26,6 @@
             dataParallaxSpeed = dataParallaxSpeed ? dataParallaxSpeed : .5; // if not specified, give default value of .5
             const speedMultiplier = 1 - dataParallaxSpeed;
             ParallaxElement.speedMultiplier = speedMultiplier;
-
-            ParallaxElements.push(ParallaxElement);
         });
 
         ParallaxContainer.OwnedParallaxElements = ParallaxElements;
@@ -54,10 +52,10 @@
 
             ParallaxContainerEl.ParallaxTickerID = window.requestAnimationFrame(function Tick(timestamp)
             {
-                const scrollPosition = (window.scrollY + window.innerHeight);               // get scroll distance to bottom of viewport.
-                const elPosition = (scrollPosition - ParallaxContainerEl.offsetTop);               // get element's position relative to bottom of viewport.
-                const durationDistance = (window.innerHeight + ParallaxContainerEl.offsetHeight);  // set desired duration.
-                const currentProgress = (elPosition / durationDistance);                    // calculate tween progresss.
+                const scrollPosition = (window.scrollY + window.innerHeight);                       // get scroll distance to bottom of viewport.
+                const elPosition = (scrollPosition - ParallaxContainerEl.offsetTop);                // get element's position relative to bottom of viewport.
+                const durationDistance = (window.innerHeight + ParallaxContainerEl.offsetHeight);   // set desired duration.
+                const currentProgress = (elPosition / durationDistance);                            // calculate tween progresss.
 
                 ParallaxContainerEl.OwnedParallaxElements.forEach(ParallaxElement =>
                 {
