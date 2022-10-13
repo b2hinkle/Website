@@ -1,9 +1,10 @@
 ﻿class Parallaxer
 {
-    constructor(inWrapperID = "ParallaxWrapper", inTargetClass = ".ParallaxElement", inWrapperSpeed = .08, inTargetSpeed = .02, inTargetPercentage = 0.1)
+    constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inTargetClass = ".ParallaxElement", inWrapperSpeed = .08, inTargetSpeed = .02, inTargetPercentage = 0.1)
     {
         // Defaults (maybe make way to override defaults in future)
         this.WrapperID = inWrapperID;
+        this.ParallaxContainerClass = inParallaxContainerClass;
         this.TargetClass = inTargetClass;
 		this.WrapperSpeed = inWrapperSpeed;
         this.TargetSpeed = inTargetSpeed;
@@ -15,16 +16,17 @@
     Init()
     {
         this.Wrapper = document.getElementById(this.WrapperID);
+        this.ParallaxContainerElements = document.querySelectorAll(this.ParallaxContainerClass);
         this.TargetElements = document.querySelectorAll(this.TargetClass);
         this.WindowHeight = window.clientHeight; // ?
-        this.WapperOffset = 0;
+        this.WapperOffset = 0; // how offset it is from the top
 
         this.RAF = window.requestAnimationFrame
             || window.mozRequestAnimationFrame
             || window.oRequestAnimationFrame
             || window.webkitRequestAnimationFrame
             || window.msRequestAnimationFrame;
-        //window.requestAnimationFrame = requestAnimationFrame; // ?
+        window.requestAnimationFrame = requestAnimationFrame; // ?
         this.CAF = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 
 
@@ -76,10 +78,10 @@
         this.Wrapper.style.transform = `translate3d(0, ${Math.round(-this.WapperOffset * 100) / 100}px, 0)`;
 
         // Parallax targets
-        /*for (var i = 0; i < this.Targets.length; i++)
+        for (let i = 0; i < this.ParallaxContainerElements.length; i++)
         {
-            this.targetsUpdate(this.Targets[i]);
-        }*/
+            
+        }
 
         this.RAF.call(this.Window, this.Tick.bind(this));
     }
@@ -88,5 +90,5 @@
 
 export function OnAfterRenderAsync()
 {
-    const p = new Parallaxer("ParallaxWrapper", ".ParallaxElement", 1);
+    const p = new Parallaxer("ParallaxWrapper", ".ParallaxContainer", ".ParallaxElement", 1);
 }
