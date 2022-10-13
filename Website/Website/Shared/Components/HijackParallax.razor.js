@@ -13,11 +13,16 @@
             || window.mozRequestAnimationFrame
             || window.webkitRequestAnimationFrame
             || window.msRequestAnimationFrame;
-        //window.requestAnimationFrame = requestAnimationFrame; // not sure reasoning behind LuxyJS doing this
+        //window.requestAnimationFrame = requestAnimationFrame; // ?
         this.CAF = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 
 
+        // Gather what we know about our page
         this.Wrapper = document.getElementById(this.WrapperID);
+        this.Targets = document.querySelectorAll(TargetClass);
+
+        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
+        
 
     }
 
