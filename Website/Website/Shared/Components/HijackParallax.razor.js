@@ -9,6 +9,11 @@
 		this.TargetSpeed = 0.02;
         this.TargetPercentage = 0.1;
 
+        this.Wrapper = document.getElementById(this.WrapperID);
+        this.TargetElements = document.querySelectorAll(this.TargetClass);
+        this.WindowHeight = window.clientHeight; // ?
+        this.WapperOffset = 0;
+
         this.RAF = window.requestAnimationFrame
             || window.mozRequestAnimationFrame
             || window.oRequestAnimationFrame
@@ -18,12 +23,8 @@
         this.CAF = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 
 
-        // Gather what we know about our page
-        this.Wrapper = document.getElementById(this.WrapperID);
-        this.TargetElements = document.querySelectorAll(this.TargetClass);
 
         document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
-        this.WindowHeight = window.clientHeight; // ?
         //this.attachEvent(); // something about resizing
 
         // ---------- BEGIN Init things ----------
@@ -58,7 +59,7 @@
         // ---------- END Init things ----------
 
         // Now lets animate
-        this.Window = window; // store our window so we can use it when calling raf
+        this.Window = window; // store our window so we can make call to raf
         this.RAF.call(this.Window, this.Tick.bind(this));
 
 
@@ -68,7 +69,18 @@
 
     Tick(timestamp)
     {
-        //wrapperupdate()
+        const documentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+        // Scroll wrapper
+        this.WapperOffset += (documentScrollTop - this.WapperOffset) * this.WrapperSpeed;
+        this.Wrapper.style.transform = `translate3d(0, ${Math.round(-this.WapperOffset * 100) / 100}px, 0)`;
+        //this.Wrapper.style.transform = `translate3d(' + 0 + ',' + Math.round(-this.WapperOffset * 100) / 100 + 'px ,' + 0 + ')`;
+
+        // Parallax targets
+        /*for (var i = 0; i < this.Targets.length; i++)
+        {
+            this.targetsUpdate(this.Targets[i]);
+        }*/
 
         this.RAF.call(this.Window, this.Tick.bind(this));
     }
