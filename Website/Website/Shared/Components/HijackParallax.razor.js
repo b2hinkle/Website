@@ -37,6 +37,7 @@
         window.requestAnimationFrame = requestAnimationFrame; // ?
         this.CAF = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 
+        this.prevTimestamp = -1; // -1 will indicate the first paint
 
 
         document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
@@ -70,11 +71,16 @@
 
     Tick(timestamp)
     {
+        /*let DeltaTime = 0;
+        if (this.prevTimestamp != -1)
+        {
+            DeltaTime = Math.min(1, (timestamp - this.prevTimestamp) / 1000);
+        }*/
         const documentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
         // Scroll the wrapper (whole page)
         this.WapperOffset += (documentScrollTop - this.WapperOffset) * this.WrapperSpeed;
-        const ScrollAmt = Math.round(this.WapperOffset * 100) / 100;
+        const ScrollAmt = (Math.round(this.WapperOffset * 100) / 100);
         this.Wrapper.style.transform = `translate3d(0, ${-ScrollAmt}px, 0)`;
 
         // Offset the parallax elements
@@ -100,6 +106,7 @@
             }
         }
 
+        this.prevTimestamp = timestamp;
         this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
