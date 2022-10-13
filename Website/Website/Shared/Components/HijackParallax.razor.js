@@ -1,13 +1,11 @@
 ﻿class Parallaxer
 {
-    constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inTargetClass = ".ParallaxElement", inWrapperSpeed = .08, inTargetSpeed = .02, inTargetPercentage = 0.1)
+    constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inTargetClass = ".ParallaxElement", inWrapperSpeed = 1)
     {
         this.WrapperID = inWrapperID;
         this.ParallaxContainerClass = inParallaxContainerClass;
         this.TargetClass = inTargetClass;
 		this.WrapperSpeed = inWrapperSpeed;
-        this.TargetSpeed = inTargetSpeed;
-        this.TargetPercentage = inTargetPercentage;
 
         this.Init();
     }
@@ -29,7 +27,6 @@
         this.Wrapper = document.getElementById(this.WrapperID);
         this.ParallaxContainers = document.querySelectorAll(this.ParallaxContainerClass);
         this.TargetElements = document.querySelectorAll(this.TargetClass);
-        this.WindowHeight = window.clientHeight; // ?
         this.WapperOffset = 0; // how offset it is from the top
 
         this.RAF = window.requestAnimationFrame
@@ -108,5 +105,5 @@
 
 export function OnAfterRenderAsync()
 {
-    const p = new Parallaxer("ParallaxWrapper", ".ParallaxContainer", ".ParallaxElement", .08);
+    const p = new Parallaxer("ParallaxWrapper", ".ParallaxContainer", ".ParallaxElement");
 }
