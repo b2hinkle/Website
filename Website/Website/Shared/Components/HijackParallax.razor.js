@@ -91,25 +91,28 @@
 
         // Scroll the wrapper (whole page)
         this.WapperOffset += (documentScrollTop - this.WapperOffset) * this.WrapperSpeed;
-        this.Wrapper.style.transform = `translate3d(0, ${Math.round(-this.WapperOffset * 100) / 100}px, 0)`;
+        const ScrollAmt = Math.round(this.WapperOffset * 100) / 100;
+        this.Wrapper.style.transform = `translate3d(0, ${-ScrollAmt}px, 0)`;
 
-        // Parallax targets
+        // Offset the parallax elements
         for (let i = 0; i < this.ParallaxContainers.length; i++)
         {
             const ParallaxContainer = this.ParallaxContainers[i];
 
-            const scrollPosition = (this.Window.scrollY + this.Window.innerHeight);               // get scroll distance to bottom of viewport.
-            const elPosition = (scrollPosition - ParallaxContainer.offsetTop);               // get element's position relative to bottom of viewport.
-            const durationDistance = (this.Window.innerHeight + ParallaxContainer.offsetHeight);  // set desired duration.
-            const currentProgress = (elPosition / durationDistance);                    // calculate tween progresss.
+            const ScrollAmtToBotomOfViewport = (ScrollAmt + this.Window.innerHeight);                                   // get scroll distance to bottom of viewport.
+            const elPositionRelativeToBottomOfViewport = (ScrollAmtToBotomOfViewport - ParallaxContainer.offsetTop);    // get element's position relative to bottom of viewport.
+            const elTravelDistance = (this.Window.innerHeight + ParallaxContainer.offsetHeight);
+            const currentProgress = (elPositionRelativeToBottomOfViewport / elTravelDistance);                          // calculate tween progresss.
 
-            ParallaxContainer.OwnedParallaxElements.forEach(ParallaxElement =>
+            for (let j = 0; j < ParallaxContainer.OwnedParallaxElements.length; j++)
             {
+                const ParallaxElement = ParallaxContainer.OwnedParallaxElements[j];
+
                 const A = -this.Window.innerHeight * ParallaxElement.speedMultiplier;
                 const B = this.Window.innerHeight * ParallaxElement.speedMultiplier;
                 const amt = Lerp(A, B, currentProgress);
                 ParallaxElement.style.transform = `translate3d(0, ${amt}px, 0)`;
-            });
+            }
         }
 
         this.RAF.call(this.Window, this.Tick.bind(this));
@@ -119,5 +122,5 @@
 
 export function OnAfterRenderAsync()
 {
-    const p = new Parallaxer("ParallaxWrapper", ".ParallaxContainer", ".ParallaxElement", 1);
+    const p = new Parallaxer("ParallaxWrapper", ".ParallaxContainer", ".ParallaxElement", .08);
 }
