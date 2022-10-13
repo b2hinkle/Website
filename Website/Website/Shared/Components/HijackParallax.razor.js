@@ -78,7 +78,8 @@
         this.Wrapper.style.transform = `translate3d(0, ${-ScrollAmt}px, 0)`;
 
         // Offset the parallax elements
-        for (let i = 0; i < this.ParallaxContainers.length; i++)
+        const ParallaxContainersLength = this.ParallaxContainers.length;
+        for (let i = 0; i < ParallaxContainersLength; i++)
         {
             const ParallaxContainer = this.ParallaxContainers[i];
 
@@ -87,7 +88,8 @@
             const elTravelDistance = (this.Window.innerHeight + ParallaxContainer.offsetHeight);
             const currentProgress = (elPositionRelativeToBottomOfViewport / elTravelDistance);                          // calculate tween progresss.
 
-            for (let j = 0; j < ParallaxContainer.OwnedParallaxElements.length; j++)
+            const OwnedParallaxElementsLength = ParallaxContainer.OwnedParallaxElements.length;
+            for (let j = 0; j < OwnedParallaxElementsLength; j++)
             {
                 const ParallaxElement = ParallaxContainer.OwnedParallaxElements[j];
 
