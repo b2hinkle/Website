@@ -19,22 +19,22 @@
 
         // Gather what we know about our page
         this.Wrapper = document.getElementById(this.WrapperID);
-        this.TargetElements = document.querySelectorAll(TargetClass);
+        this.TargetElements = document.querySelectorAll(this.TargetClass);
 
         document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
         this.WindowHeight = window.clientHeight; // ?
         //this.attachEvent(); // something about resizing
 
         // Give wrapper CSS styles
-        this.wrapper.style.width = '100%';
-        this.wrapper.style.position = 'fixed';
+        this.Wrapper.style.width = '100%';
+        this.Wrapper.style.position = 'fixed';
 
         // Build our Targets array which stores the targets along with their attributes set in HTML
         this.Targets = [];
-        this.TargetElementsLength = TargetElements.length;
-        for (let i = 0; i < this.TargetElementsLength; i++)
+        const TargetElementsLength = this.TargetElements.length;
+        for (let i = 0; i < TargetElementsLength; i++)
         {
-            TargetEl = TargetElements[i];
+            const TargetEl = this.TargetElements[i];
             const offset = TargetEl.getAttribute('data-offset');
             const speedX = TargetEl.getAttribute('data-speed-x');
             const speedY = TargetEl.getAttribute('data-speed-Y');
@@ -52,15 +52,15 @@
                 speedY: speedY ? speedY : 1,
                 percentage: percentage ? percentage : 0
             });
+
+            // Now lets animate the targets
+            //this.RAF();
         }
 
-    }
 
 
-    calcArea()
-    {
-        
     }
+
 }
 
 export function OnAfterRenderAsync()
