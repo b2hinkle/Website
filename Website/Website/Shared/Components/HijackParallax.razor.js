@@ -2,7 +2,6 @@
 {
     constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inTargetClass = ".ParallaxElement", inWrapperSpeed = .08, inTargetSpeed = .02, inTargetPercentage = 0.1)
     {
-        // Defaults (maybe make way to override defaults in future)
         this.WrapperID = inWrapperID;
         this.ParallaxContainerClass = inParallaxContainerClass;
         this.TargetClass = inTargetClass;
@@ -15,6 +14,18 @@
 
     Init()
     {
+        // BEGIN CSS styling
+            // Get rid of annoying stuff
+            const htmlEl = document.documentElement;
+            htmlEl.style.overflowX = "hidden";
+            htmlEl.style.padding = "0px";
+            htmlEl.style.margin = "0px";
+            const bodyEl = document.body;
+            bodyEl.style.overflowX = "hidden";
+            bodyEl.style.padding = "0px";
+            bodyEl.style.margin = "0px";
+        // END CSS styling
+
         this.Wrapper = document.getElementById(this.WrapperID);
         this.ParallaxContainers = document.querySelectorAll(this.ParallaxContainerClass);
         this.TargetElements = document.querySelectorAll(this.TargetClass);
@@ -37,31 +48,6 @@
         // ---------- BEGIN Init things ----------
         this.Wrapper.style.width = '100%';
         this.Wrapper.style.position = 'fixed';
-
-        // Build our Targets array which stores the targets along with their attributes set in HTML
-/*        this.Targets = [];
-        const TargetElementsLength = this.TargetElements.length;
-        for (let i = 0; i < TargetElementsLength; i++) {
-            const TargetEl = this.TargetElements[i];
-            const offset = TargetEl.getAttribute('data-offset');
-            const speedX = TargetEl.getAttribute('data-speed-x');
-            const speedY = TargetEl.getAttribute('data-speed-Y');
-            const percentage = TargetEl.getAttribute('data-percentage');
-            const horizontal = TargetEl.getAttribute('data-horizontal');
-
-            this.Targets.push(
-                {
-                    elm: TargetEl,
-                    offset: offset ? offset : 0,
-                    horizontal: horizontal ? horizontal : 0,
-                    top: 0,
-                    left: 0,
-                    speedX: speedX ? speedX : 1,
-                    speedY: speedY ? speedY : 1,
-                    percentage: percentage ? percentage : 0
-                });
-
-        }*/
 
         for (let i = 0; i < this.ParallaxContainers.length; i++)
         {
