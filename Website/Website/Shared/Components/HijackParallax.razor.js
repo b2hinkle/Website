@@ -71,10 +71,9 @@
     {
         const documentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-        // Scroll wrapper
+        // Scroll the wrapper (whole page)
         this.WapperOffset += (documentScrollTop - this.WapperOffset) * this.WrapperSpeed;
         this.Wrapper.style.transform = `translate3d(0, ${Math.round(-this.WapperOffset * 100) / 100}px, 0)`;
-        //this.Wrapper.style.transform = `translate3d(' + 0 + ',' + Math.round(-this.WapperOffset * 100) / 100 + 'px ,' + 0 + ')`;
 
         // Parallax targets
         /*for (var i = 0; i < this.Targets.length; i++)
@@ -89,5 +88,5 @@
 
 export function OnAfterRenderAsync()
 {
-    const p = new Parallaxer();
+    const p = new Parallaxer("ParallaxWrapper", ".ParallaxElement", 1);
 }
