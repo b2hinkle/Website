@@ -11,6 +11,7 @@
 
         this.RAF = window.requestAnimationFrame
             || window.mozRequestAnimationFrame
+            || window.oRequestAnimationFrame
             || window.webkitRequestAnimationFrame
             || window.msRequestAnimationFrame;
         //window.requestAnimationFrame = requestAnimationFrame; // ?
@@ -25,7 +26,7 @@
         this.WindowHeight = window.clientHeight; // ?
         //this.attachEvent(); // something about resizing
 
-        // Give wrapper CSS styles
+        // ---------- BEGIN Init things ----------
         this.Wrapper.style.width = '100%';
         this.Wrapper.style.position = 'fixed';
 
@@ -53,12 +54,23 @@
                 percentage: percentage ? percentage : 0
             });
 
-            // Now lets animate the targets
-            //this.RAF();
         }
+        // ---------- END Init things ----------
+
+        // Now lets animate
+        this.Window = window; // store our window so we can use it when calling raf
+        this.RAF.call(this.Window, this.Tick.bind(this));
 
 
 
+
+    }
+
+    Tick(timestamp)
+    {
+        //wrapperupdate()
+
+        this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
 }
