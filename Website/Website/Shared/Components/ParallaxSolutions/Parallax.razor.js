@@ -18,7 +18,7 @@
     IsSupported() // ensures all features we use are supported
     {
         this.Window = window; // store our window so we can make call to raf
-        this.RAF = Window.requestAnimationFrame
+        this.RAF = this.Window.requestAnimationFrame
             || this.Window.mozRequestAnimationFrame
             || this.Window.oRequestAnimationFrame
             || this.Window.webkitRequestAnimationFrame
