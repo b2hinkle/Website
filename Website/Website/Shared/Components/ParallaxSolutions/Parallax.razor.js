@@ -51,18 +51,6 @@
 
     Init()
     {
-        // BEGIN CSS styling
-            // Get rid of annoying stuff
-            const htmlEl = document.documentElement;
-            htmlEl.style.overflowX = "hidden";
-            htmlEl.style.padding = "0px";
-            htmlEl.style.margin = "0px";
-            const bodyEl = document.body;
-            bodyEl.style.overflowX = "hidden";
-            bodyEl.style.padding = "0px";
-            bodyEl.style.margin = "0px";
-        // END CSS styling
-
         this.Wrapper = document.getElementById(this.WrapperID);
         this.ParallaxContainers = document.querySelectorAll(this.ParallaxContainerClass);
         this.TargetElements = document.querySelectorAll(this.TargetClass);
@@ -70,11 +58,8 @@
         this.WrapperScrollTop = 0; // Our version of scroll top. This tells us how far we have scrolled through our page (or at least how far the content inside the wrapper was scrolled)
         /*this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on*/
         
-
-
-        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
-
         // ---------- BEGIN Init things ----------
+        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
         this.Wrapper.style.width = '100%';
         this.Wrapper.style.position = 'fixed';
 
@@ -180,5 +165,16 @@
 
 export function OnAfterRenderAsync()
 {
+    // BEGIN CSS styling
+        // Get rid of annoying stuff
+        const htmlEl = document.documentElement;
+        htmlEl.style.overflowX = "hidden";
+        htmlEl.style.padding = "0px";
+        htmlEl.style.margin = "0px";
+        const bodyEl = document.body;
+        bodyEl.style.overflowX = "hidden";
+        bodyEl.style.padding = "0px";
+        bodyEl.style.margin = "0px";
+    // END CSS styling
     const p = new Parallaxer("ParallaxWrapper", ".ParallaxContainer", ".ParallaxElement");
 }
