@@ -7,8 +7,6 @@
         this.TargetClass = inTargetClass;
 		this.WrapperSpeed = inWrapperSpeed;
 
-
-
         if (this.IsSupported())
         {
             this.Init();
@@ -26,8 +24,9 @@
         this.Window.requestAnimationFrame = requestAnimationFrame; // ?
         this.CAF = this.Window.cancelAnimationFrame || this.Window.mozCancelAnimationFrame;
 
-        const dummyAnimation = new Animation();
         const scrollingEl = (document.documentElement || document.body);
+        const dummyAnimation = new Animation();
+        const dummyKeyframeEffect = new KeyframeEffect(null, { }, { });
 
         return this.Window !== undefined
             && this.Window.innerHeight !== undefined
@@ -46,7 +45,8 @@
             && Animation !== undefined
             && dummyAnimation !== undefined
             && dummyAnimation.effect !== undefined
-            && dummyAnimation.currentTime !== undefined;;
+            && dummyAnimation.currentTime !== undefined
+            && dummyKeyframeEffect.setKeyframes !== undefined;
     }
 
     Init()
