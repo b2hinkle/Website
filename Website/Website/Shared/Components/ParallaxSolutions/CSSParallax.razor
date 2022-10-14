@@ -1,5 +1,22 @@
-﻿@inject IJSRuntime jsRuntime;
+﻿@*
+    Known issues: 
+     - Clipping lags behind when middle click scrolling (on slow computers)
+     - Teleport scrolling (dragging bar and then moving mouse far away from the bar to make it teleport) can cause the clip path to not update
+     - Long load times for the page exposes the "meant to be clipped" parts of the parallax elements
+     
+     - HideParallaxElementOverflow calculation only works for parallax elements that use data-scale-to-original-appearance (calculation wasn't created with that in mind)
+     - It seems the document's scrolling goes really far if you move the element on the depth too far
 
+    This component provides the ability to parallax by providing .ParallaxContainer and .ParallaxElement classes and data-parallaxspeed data attribute.
+    Workflow:
+     - .ParallaxElement: Actual element that will parallax
+         - must be an immediate child of .ParallaxContainer
+     - data-parallaxspeed: Data attribute placed on ParallaxElement to modify its scroll speed (it's a multiplier)
+         - 1 is normal scroll speed
+         - 0 is no scrolling
+     - .ParallaxContainer: Determines the parallax positioning of its parallax elements. Any parallax element should be at its original position when the container reaches the middle of the viewport.
+*@
+@inject IJSRuntime jsRuntime;
 <div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@
     <div id="PageContent">  @* 2nd wrapper to allow for dynamic height *@
         @ChildContent
