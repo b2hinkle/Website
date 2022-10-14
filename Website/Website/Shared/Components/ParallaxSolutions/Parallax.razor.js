@@ -66,21 +66,29 @@
         this.Wrapper.style.width = '100%';
         this.Wrapper.style.position = 'fixed';
 
+        this.CreateNewParallaxAnimations();
+        addEventListener("resize", this.CreateNewParallaxAnimations.bind(this)); // Also need to do this on zoom/resize since keyframes will be outdated
+        // ---------- END Init things ----------
+
+        // Now lets animate
+        this.RAF.call(this.Window, this.Tick.bind(this));
+    }
+
+    CreateNewParallaxAnimations()
+    {
         const ParallaxContainersLength = this.ParallaxContainers.length;
-        for (let i = 0; i < ParallaxContainersLength; i++)
-        {
+        for (let i = 0; i < ParallaxContainersLength; i++) {
             const ParallaxContainer = this.ParallaxContainers[i];
 
             let OwnedParallaxAnimations = new Array();
             const OwnedParallaxElements = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
-            OwnedParallaxElements.forEach((ParallaxElement) =>
-            {
+            OwnedParallaxElements.forEach((ParallaxElement) => {
                 let dataParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
                 dataParallaxSpeed = dataParallaxSpeed ? dataParallaxSpeed : .5; // if not specified, give default value of .5
                 const speedMultiplier = 1 - dataParallaxSpeed;
 
                 const animationOptions = {
-                    duration: 1,
+                    duration: 1, // 1 allows us to easily scrub through the animation as if it was a percentage
                     iterations: Infinity,
                     direction: "normal",
                     fill: "both",
@@ -100,10 +108,6 @@
 
             ParallaxContainer.OwnedParallaxAnimations = OwnedParallaxAnimations;
         }
-        // ---------- END Init things ----------
-
-        // Now lets animate
-        this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
     Tick(timestamp)
