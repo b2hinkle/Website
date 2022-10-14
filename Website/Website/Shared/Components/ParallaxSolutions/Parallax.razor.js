@@ -76,6 +76,7 @@
 
     CreateNewParallaxAnimations()
     {
+        // Maybe see if theres a way to just update the keyframes instead of creating whole new animations. Maybe we can do this via KeyframeEffect()
         const ParallaxContainersLength = this.ParallaxContainers.length;
         for (let i = 0; i < ParallaxContainersLength; i++) {
             const ParallaxContainer = this.ParallaxContainers[i];
