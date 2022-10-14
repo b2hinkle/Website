@@ -76,12 +76,12 @@
         {
             DeltaTime = Math.min(1, (timestamp - this.prevTimestamp) / 1000);
         }*/
-        const documentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
         // Scroll the wrapper (whole page)
+        const documentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         this.WapperOffset += (documentScrollTop - this.WapperOffset) * this.WrapperSpeed;
-        const ScrollAmt = (Math.round(this.WapperOffset * 100) / 100);
-        this.Wrapper.style.transform = `translate3d(0, ${-ScrollAmt}px, 0)`;
+        const WrapperScrollTop = (Math.round(this.WapperOffset * 100) / 100);
+        this.Wrapper.style.transform = `translate3d(0, ${-WrapperScrollTop}px, 0)`;
 
         // Offset the parallax elements
         const ParallaxContainersLength = this.ParallaxContainers.length;
@@ -89,8 +89,8 @@
         {
             const ParallaxContainer = this.ParallaxContainers[i];
 
-            const ScrollAmtToBotomOfViewport = (ScrollAmt + this.Window.innerHeight);                                   // get scroll distance to bottom of viewport.
-            const elPositionRelativeToBottomOfViewport = (ScrollAmtToBotomOfViewport - ParallaxContainer.offsetTop);    // get element's position relative to bottom of viewport.
+            const WrapperScrollTopToBotomOfViewport = (WrapperScrollTop + this.Window.innerHeight);                                   // get scroll distance to bottom of viewport.
+            const elPositionRelativeToBottomOfViewport = (WrapperScrollTopToBotomOfViewport - ParallaxContainer.offsetTop);    // get element's position relative to bottom of viewport.
             const elTravelDistance = (this.Window.innerHeight + ParallaxContainer.offsetHeight);
             const currentProgress = (elPositionRelativeToBottomOfViewport / elTravelDistance);                          // calculate tween progresss.
 
@@ -106,7 +106,7 @@
             }
         }
 
-        this.prevTimestamp = timestamp;
+        /*this.prevTimestamp = timestamp;*/
         this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
