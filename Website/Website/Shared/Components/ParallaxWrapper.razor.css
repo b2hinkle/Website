@@ -37,17 +37,32 @@
         #ParallaxWrapper
         {
             /* BEGIN variables */
+            --CSSParallaxStylesActive: true; /* read from in JS */
             --PerspectiveValue: 300px; /* read from in JS */
+            --PerspectiveOrigin: center;
             /* END variables */
 
             /* This is our scrolling div so this is where we must define the perspective */
             -webkit-perspective: var(--PerspectiveValue);
             perspective: var(--PerspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
+            -webkit-perspective-origin: var(--PerspectiveOrigin);
+            perspective-origin: var(--PerspectiveOrigin); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
+         
         }
         #PageContent /* pourpose for this 2nd wrapper is so that content of the page can be parented to a dynamically sized div (instead of ParallaxWrapper's 100vh) */
         {
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
+        }
+
+        ::deep .ParallaxContainer
+        {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        ::deep .ParallaxElement
+        {
+
         }
     }
 }
