@@ -24,7 +24,7 @@
         this.Window.requestAnimationFrame = requestAnimationFrame; // ?
         this.CAF = this.Window.cancelAnimationFrame || this.Window.mozCancelAnimationFrame;
 
-        const scrollingEl = (document.documentElement || document.body);
+        const scrollingEl = document.documentElement || document.body;
         const dummyAnimation = new Animation();
         const dummyKeyframeEffect = new KeyframeEffect(null, { }, { });
 
@@ -68,7 +68,7 @@
         this.TargetElements = document.querySelectorAll(this.TargetClass);
         this.WapperOffset = 0; // how offset it is from the top
         this.WrapperScrollTop = 0; // Our version of scroll top. This tells us how far we have scrolled through our page (or at least how far the content inside the wrapper was scrolled)
-        this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on
+        /*this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on*/
         
 
 
