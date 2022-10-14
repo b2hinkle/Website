@@ -1,5 +1,5 @@
 /*
-*   Issues: 
+ *   Current issues: 
  *   - Clipping lags behind when middle click scrolling (on slow computers)
  *   - Teleport scrolling (dragging bar and then moving mouse far away from the bar to make it teleport) can cause the clip path to not update
  *   - Long load times for the page exposes the "meant to be clipped" parts of the parallax elements

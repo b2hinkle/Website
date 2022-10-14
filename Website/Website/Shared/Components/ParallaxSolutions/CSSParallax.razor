@@ -1,11 +1,7 @@
 ﻿@*
-    Known issues: 
-     - Clipping lags behind when middle click scrolling (on slow computers)
-     - Teleport scrolling (dragging bar and then moving mouse far away from the bar to make it teleport) can cause the clip path to not update
-     - Long load times for the page exposes the "meant to be clipped" parts of the parallax elements
-     
-     - HideParallaxElementOverflow calculation only works for parallax elements that use data-scale-to-original-appearance (calculation wasn't created with that in mind)
-     - It seems the document's scrolling goes really far if you move the element on the depth too far
+    Issues with this solution: 
+     - Clipping lags behind when middle click scrolling (on slow computers) and is basically unavoidable since raf logic isn't done at same time as browsers' scroll logic
+     - The most ugly solution
 
     This component provides the ability to parallax by providing .ParallaxContainer and .ParallaxElement classes and data-parallaxspeed data attribute.
     Workflow:
