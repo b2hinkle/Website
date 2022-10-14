@@ -9,7 +9,7 @@
     </div>
 
     <div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@
-        <div id="PageContent" class="HorizontalDebugBGFaded">  @* 2nd wrapper to allow for dynamic height *@
+        <div id="PageContent">  @* 2nd wrapper to allow for dynamic height *@
             @PageContent
         </div>
     </div>
@@ -31,7 +31,7 @@
     {
         if (firstRender)
         {
-            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/ParallaxWrapper.razor.js");
+            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Experimental/ParallaxWrapperWithBG.razor.js");
 
             await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
         }

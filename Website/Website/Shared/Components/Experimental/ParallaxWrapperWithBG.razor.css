@@ -69,8 +69,6 @@
         #ParallaxWrapper
         {
             /* This is our scrolling div so this is where we must define the perspective */
-            -webkit-perspective-origin: center bottom;
-            perspective-origin: center bottom; /* vanishing point at 50% 100%. We do this to prevent Y overflow scrolling since overflow:hidden doesn't work for 3D */
             -webkit-perspective: var(--PerspectiveValue);
             perspective: var(--PerspectiveValue); /* avoid a -1 perspective value since it has shown unpredictable results accross browsers when zooming out. I've seen 300px used in a few places so I'll go with that. */
         }

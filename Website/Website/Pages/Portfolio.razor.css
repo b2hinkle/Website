@@ -1,16 +1,26 @@
-﻿#BG
-{
-    width: 100vw; /* vw because for some reason using % doesn't fill up whole page width space */
-    height: 100%; 
+﻿* {
+    box-sizing: border-box;
 }
 
-@media screen and (min-width: 40em) /* only non-mobile devices */
+#BG
 {
-    @supports ((--foo: bar) and ((perspective: 300px) or (-moz-perspective: 300px) or (-webkit-perspective: 300px)) and (not (-webkit-overflow-scrolling: touch))) /* only if supports CSS custom properties and perspective property and then some thing at the end that apparently helps */ 
-    {
-        #BG 
-        {
-            --bgZTransform: -9000px;
-        }
-    }
+    position: fixed;
+    z-index: -1;
+
+    width: 100vw;
+    height: 100vh;
 }
+
+.page-section {
+    padding: 6rem 0;
+}
+
+.page-section .page-section-heading {
+    font-size: 2.25rem;
+    line-height: 2rem;
+}
+
+
+
+
+
