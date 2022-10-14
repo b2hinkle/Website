@@ -26,12 +26,26 @@
         this.Window.requestAnimationFrame = requestAnimationFrame; // ?
         this.CAF = this.Window.cancelAnimationFrame || this.Window.mozCancelAnimationFrame;
 
+        const dummyAnimation = new Animation();
+        const scrollingEl = (document.documentElement || document.body);
 
-        return this.Window
-            && document.getElementById
-            && document.querySelectorAll
-            && this.RAF
-            && this.CAF;
+        return this.Window !== undefined
+            && this.Window.innerHeight !== undefined
+            && document.getElementById !== undefined
+            && document.querySelectorAll !== undefined
+            && scrollingEl !== undefined
+            && scrollingEl.scrollTop !== undefined
+            && scrollingEl.offsetHeight !== undefined
+            && scrollingEl.offsetTop !== undefined
+            && addEventListener !== undefined
+            && this.RAF !== undefined
+            && this.RAF.call !== undefined
+            && this.Tick.bind !== undefined
+            && this.CAF !== undefined
+            && Animation !== undefined
+            && dummyAnimation !== undefined
+            && dummyAnimation.effect !== undefined
+            && dummyAnimation.currentTime !== undefined;;
     }
 
     Init()
