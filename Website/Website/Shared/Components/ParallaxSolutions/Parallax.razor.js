@@ -71,16 +71,34 @@
         {
             const ParallaxContainer = this.ParallaxContainers[i];
 
+            let OwnedParallaxAnimations = new Array();
             const OwnedParallaxElements = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
             OwnedParallaxElements.forEach((ParallaxElement) =>
             {
                 let dataParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
                 dataParallaxSpeed = dataParallaxSpeed ? dataParallaxSpeed : .5; // if not specified, give default value of .5
                 const speedMultiplier = 1 - dataParallaxSpeed;
-                ParallaxElement.speedMultiplier = speedMultiplier;
+
+                const animationOptions = {
+                    duration: 1,
+                    iterations: Infinity,
+                    direction: "normal",
+                    fill: "both",
+                    easing: "linear",
+                };
+                const animation = new Animation(
+                    new KeyframeEffect(
+                        ParallaxElement,
+                        {
+                            transform: [`translate3d(0, ${-window.innerHeight * speedMultiplier}px, 0)`, `translate3d(0, ${window.innerHeight * speedMultiplier}px, 0)`]
+                        },
+                        animationOptions
+                    )
+                );
+                OwnedParallaxAnimations.push(animation);
             });
 
-            ParallaxContainer.OwnedParallaxElements = OwnedParallaxElements;
+            ParallaxContainer.OwnedParallaxAnimations = OwnedParallaxAnimations;
         }
         // ---------- END Init things ----------
 
@@ -113,15 +131,12 @@
             const elTravelDistance = (this.Window.innerHeight + ParallaxContainer.offsetHeight);
             const currentProgress = (elPositionRelativeToBottomOfViewport / elTravelDistance);                          // calculate tween progresss.
 
-            const OwnedParallaxElementsLength = ParallaxContainer.OwnedParallaxElements.length;
-            for (let j = 0; j < OwnedParallaxElementsLength; j++)
+            const OwnedParallaxAnimationsLength = ParallaxContainer.OwnedParallaxAnimations.length;
+            for (let j = 0; j < OwnedParallaxAnimationsLength; j++)
             {
-                const ParallaxElement = ParallaxContainer.OwnedParallaxElements[j];
+                const ParallaxAnimation = ParallaxContainer.OwnedParallaxAnimations[j];
 
-                const A = -this.Window.innerHeight * ParallaxElement.speedMultiplier;
-                const B = this.Window.innerHeight * ParallaxElement.speedMultiplier;
-                const amt = Lerp(A, B, currentProgress);
-                ParallaxElement.style.transform = `translate3d(0, ${amt}px, 0)`;
+                ParallaxAnimation.currentTime = currentProgress * 1;
             }
         }
 
