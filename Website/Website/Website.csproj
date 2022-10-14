@@ -25,11 +25,11 @@
 
   <ItemGroup>
     <Content Include="Shared\Components\Experimental\ParallaxWrapperWithBG.razor.js" />
-    <Content Include="Shared\Components\ParallaxSolutions\HijackParallax.razor.js" />
+    <Content Include="Shared\Components\ParallaxSolutions\Parallax.razor.js" />
     <Content Include="Pages\Portfolio.razor.js" />
     <Content Include="Pages\PortfolioTemplate.razor.js" />
     <Content Include="Pages\TestPages\OldPortfolio.razor.js" />
-    <Content Include="Shared\Components\ParallaxSolutions\Parallax.razor.js" />
+    <Content Include="Shared\Components\ParallaxSolutions\OldParallax.razor.js" />
   </ItemGroup>
 
   <ItemGroup>
