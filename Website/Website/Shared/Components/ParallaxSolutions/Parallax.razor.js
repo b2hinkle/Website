@@ -37,6 +37,7 @@
             && scrollingEl.scrollTop !== undefined
             && scrollingEl.offsetHeight !== undefined
             && scrollingEl.offsetTop !== undefined
+            && scrollingEl.dataset !== undefined
             && addEventListener !== undefined
             && this.RAF !== undefined
             && this.RAF.call !== undefined
