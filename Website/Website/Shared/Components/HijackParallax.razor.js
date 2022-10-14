@@ -7,7 +7,33 @@
         this.TargetClass = inTargetClass;
 		this.WrapperSpeed = inWrapperSpeed;
 
-        this.Init();
+
+
+        if (this.IsSupported())
+        {
+            this.Init();
+        }
+    }
+
+    IsSupported() // ensures all features we use are supported
+    {
+        this.RAF = window.requestAnimationFrame
+            || window.mozRequestAnimationFrame
+            || window.oRequestAnimationFrame
+            || window.webkitRequestAnimationFrame
+            || window.msRequestAnimationFrame;
+        window.requestAnimationFrame = requestAnimationFrame; // ?
+        this.CAF = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+        this.Window = window; // store our window so we can make call to raf
+
+
+        return document.getElementById
+            && document.querySelectorAll
+            && window.cancelAnimationFrame
+            && window.requestAnimationFrame
+            && this.RAF
+            && this.CAF
+            && this.Window;
     }
 
     Init()
@@ -29,16 +55,8 @@
         this.TargetElements = document.querySelectorAll(this.TargetClass);
         this.WapperOffset = 0; // how offset it is from the top
         this.WrapperScrollTop = 0; // Our version of scroll top. This tells us how far we have scrolled through our page (or at least how far the content inside the wrapper was scrolled)
+        this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on
 
-        this.RAF = window.requestAnimationFrame
-            || window.mozRequestAnimationFrame
-            || window.oRequestAnimationFrame
-            || window.webkitRequestAnimationFrame
-            || window.msRequestAnimationFrame;
-        window.requestAnimationFrame = requestAnimationFrame; // ?
-        this.CAF = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
-
-        this.prevTimestamp = -1; // -1 will indicate the first paint
 
 
         document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
@@ -48,7 +66,8 @@
         this.Wrapper.style.width = '100%';
         this.Wrapper.style.position = 'fixed';
 
-        for (let i = 0; i < this.ParallaxContainers.length; i++)
+        const ParallaxContainersLength = this.ParallaxContainers.length;
+        for (let i = 0; i < ParallaxContainersLength; i++)
         {
             const ParallaxContainer = this.ParallaxContainers[i];
 
@@ -66,7 +85,6 @@
         // ---------- END Init things ----------
 
         // Now lets animate
-        this.Window = window; // store our window so we can make call to raf
         this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
