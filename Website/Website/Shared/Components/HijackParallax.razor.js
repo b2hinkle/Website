@@ -28,6 +28,7 @@
         this.ParallaxContainers = document.querySelectorAll(this.ParallaxContainerClass);
         this.TargetElements = document.querySelectorAll(this.TargetClass);
         this.WapperOffset = 0; // how offset it is from the top
+        this.WrapperScrollTop = 0; // Our version of scroll top. This tells us how far we have scrolled through our page (or at least how far the content inside the wrapper was scrolled)
 
         this.RAF = window.requestAnimationFrame
             || window.mozRequestAnimationFrame
@@ -80,8 +81,8 @@
         // Scroll the wrapper (whole page)
         const documentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         this.WapperOffset += (documentScrollTop - this.WapperOffset) * this.WrapperSpeed;
-        const WrapperScrollTop = (Math.round(this.WapperOffset * 100) / 100);
-        this.Wrapper.style.transform = `translate3d(0, ${-WrapperScrollTop}px, 0)`;
+        this.WrapperScrollTop = (Math.round(this.WapperOffset * 100) / 100);
+        this.Wrapper.style.transform = `translate3d(0, ${-this.WrapperScrollTop}px, 0)`;
 
         // Offset the parallax elements
         const ParallaxContainersLength = this.ParallaxContainers.length;
@@ -89,7 +90,7 @@
         {
             const ParallaxContainer = this.ParallaxContainers[i];
 
-            const WrapperScrollTopToBotomOfViewport = (WrapperScrollTop + this.Window.innerHeight);                                   // get scroll distance to bottom of viewport.
+            const WrapperScrollTopToBotomOfViewport = (this.WrapperScrollTop + this.Window.innerHeight);                                   // get scroll distance to bottom of viewport.
             const elPositionRelativeToBottomOfViewport = (WrapperScrollTopToBotomOfViewport - ParallaxContainer.offsetTop);    // get element's position relative to bottom of viewport.
             const elTravelDistance = (this.Window.innerHeight + ParallaxContainer.offsetHeight);
             const currentProgress = (elPositionRelativeToBottomOfViewport / elTravelDistance);                          // calculate tween progresss.
