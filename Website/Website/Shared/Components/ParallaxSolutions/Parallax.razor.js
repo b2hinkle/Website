@@ -17,23 +17,21 @@
 
     IsSupported() // ensures all features we use are supported
     {
-        this.RAF = window.requestAnimationFrame
-            || window.mozRequestAnimationFrame
-            || window.oRequestAnimationFrame
-            || window.webkitRequestAnimationFrame
-            || window.msRequestAnimationFrame;
-        window.requestAnimationFrame = requestAnimationFrame; // ?
-        this.CAF = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
         this.Window = window; // store our window so we can make call to raf
+        this.RAF = Window.requestAnimationFrame
+            || this.Window.mozRequestAnimationFrame
+            || this.Window.oRequestAnimationFrame
+            || this.Window.webkitRequestAnimationFrame
+            || this.Window.msRequestAnimationFrame;
+        this.Window.requestAnimationFrame = requestAnimationFrame; // ?
+        this.CAF = this.Window.cancelAnimationFrame || this.Window.mozCancelAnimationFrame;
 
 
-        return document.getElementById
+        return this.Window
+            && document.getElementById
             && document.querySelectorAll
-            && window.cancelAnimationFrame
-            && window.requestAnimationFrame
             && this.RAF
-            && this.CAF
-            && this.Window;
+            && this.CAF;
     }
 
     Init()
@@ -56,58 +54,67 @@
         this.WapperOffset = 0; // how offset it is from the top
         this.WrapperScrollTop = 0; // Our version of scroll top. This tells us how far we have scrolled through our page (or at least how far the content inside the wrapper was scrolled)
         this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on
-
+        
 
 
         document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
-        //this.attachEvent(); // something about resizing
 
         // ---------- BEGIN Init things ----------
         this.Wrapper.style.width = '100%';
         this.Wrapper.style.position = 'fixed';
 
-        this.CreateNewParallaxAnimations();
-        addEventListener("resize", this.CreateNewParallaxAnimations.bind(this)); // Also need to do this on zoom/resize since keyframes will be outdated
+        // Create the animations for parallax
+        for (let i = 0; i < this.ParallaxContainers.length; i++)
+        {
+            const ParallaxContainer = this.ParallaxContainers[i];
+
+            let OwnedParallaxAnimations = new Array();
+            const OwnedParallaxElements = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
+            OwnedParallaxElements.forEach((ParallaxElement) =>
+            {
+                const animation = new Animation();
+                // Get data attributes and attatch them to our animation
+                let dataParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
+                dataParallaxSpeed = dataParallaxSpeed ? dataParallaxSpeed : .5; // if not specified, give default value of .5
+                animation.speedMultiplier = 1 - dataParallaxSpeed
+
+                
+                animation.effect = new KeyframeEffect(
+                    ParallaxElement,    // target
+                    this.GetKeyframesForParallaxAnimation(animation),
+                    {
+                        duration: 1, // 1 allows us to easily scrub through the animation as if it was a percentage
+                        iterations: Infinity,
+                        direction: "normal",
+                        fill: "both",
+                        easing: "linear",
+                    }
+                );
+                OwnedParallaxAnimations.push(animation);
+            });
+
+            ParallaxContainer.OwnedParallaxAnimations = OwnedParallaxAnimations;
+        }
+        addEventListener("resize", this.RefreshAnimationKeys.bind(this)); // Also need to do this on zoom/resize since keyframes will be outdated
         // ---------- END Init things ----------
 
         // Now lets animate
         this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
-    CreateNewParallaxAnimations()
+    // Important since WAAPI keys can't be dynamic
+    RefreshAnimationKeys()
     {
-        // Maybe see if theres a way to just update the keyframes instead of creating whole new animations. Maybe we can do this via KeyframeEffect()
         const ParallaxContainersLength = this.ParallaxContainers.length;
-        for (let i = 0; i < ParallaxContainersLength; i++) {
+        for (let i = 0; i < ParallaxContainersLength; i++)
+        {
             const ParallaxContainer = this.ParallaxContainers[i];
-
-            let OwnedParallaxAnimations = new Array();
-            const OwnedParallaxElements = ImmediateChildrenQuerySelectAll(ParallaxContainer, function (elem) { return elem.matches(".ParallaxElement"); }); // get all ParallaxElements that are immediate decendents of this ParallaxContainter
-            OwnedParallaxElements.forEach((ParallaxElement) => {
-                let dataParallaxSpeed = ParallaxElement.dataset.parallaxspeed;
-                dataParallaxSpeed = dataParallaxSpeed ? dataParallaxSpeed : .5; // if not specified, give default value of .5
-                const speedMultiplier = 1 - dataParallaxSpeed;
-
-                const animationOptions = {
-                    duration: 1, // 1 allows us to easily scrub through the animation as if it was a percentage
-                    iterations: Infinity,
-                    direction: "normal",
-                    fill: "both",
-                    easing: "linear",
-                };
-                const animation = new Animation(
-                    new KeyframeEffect(
-                        ParallaxElement,
-                        {
-                            transform: [`translate3d(0, ${-window.innerHeight * speedMultiplier}px, 0)`, `translate3d(0, ${window.innerHeight * speedMultiplier}px, 0)`]
-                        },
-                        animationOptions
-                    )
-                );
-                OwnedParallaxAnimations.push(animation);
-            });
-
-            ParallaxContainer.OwnedParallaxAnimations = OwnedParallaxAnimations;
+            const OwnedParallaxAnimationsLength = ParallaxContainer.OwnedParallaxAnimations.length;
+            for (let j = 0; j < OwnedParallaxAnimationsLength; j++)
+            {
+                const ParallaxAnimation = ParallaxContainer.OwnedParallaxAnimations[j];
+                ParallaxAnimation.effect.setKeyframes(this.GetKeyframesForParallaxAnimation(ParallaxAnimation));
+            }
         }
     }
 
@@ -139,9 +146,7 @@
             const OwnedParallaxAnimationsLength = ParallaxContainer.OwnedParallaxAnimations.length;
             for (let j = 0; j < OwnedParallaxAnimationsLength; j++)
             {
-                const ParallaxAnimation = ParallaxContainer.OwnedParallaxAnimations[j];
-
-                ParallaxAnimation.currentTime = currentProgress * 1;
+                ParallaxContainer.OwnedParallaxAnimations[j].currentTime = currentProgress;
             }
         }
 
@@ -149,6 +154,13 @@
         this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
+    // Way to define the parallax animation in one spot for all parallax animations regardless of their speed multipliers
+    GetKeyframesForParallaxAnimation(animation)
+    {
+        const windowInnerHeight = this.Window.innerHeight;
+        const viewportDistanceToTravelMultiplier = animation.speedMultiplier;
+        return { transform: [`translate3d(0, ${-windowInnerHeight * viewportDistanceToTravelMultiplier}px, 0)`, `translate3d(0, ${windowInnerHeight * viewportDistanceToTravelMultiplier}px, 0)`] };
+    }
 }
 
 export function OnAfterRenderAsync()
