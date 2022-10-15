@@ -11,11 +11,18 @@
     height: 100vh;
 }
 
-.page-section {
+.portfolio-item-section
+{
+    background-color: rgb(19, 25, 32);
+}
+
+.page-section 
+{
     padding: 6rem 0;
 }
 
-.page-section .page-section-heading {
+.page-section .page-section-heading 
+{
     font-size: 2.25rem;
     line-height: 2rem;
 }
