@@ -11,9 +11,11 @@
     height: 100vh;
 }
 
-.portfolio-item-section
+#ParallaxWrapper
 {
-    background-color: rgb(19, 25, 32);
+    --color-simple-parallax: rgb(19, 25, 32);
+    --color-codepen: rgb(31, 32, 41);
+    --color-something: rgb(53, 53, 53);
 }
 
 .page-section 
@@ -23,11 +25,34 @@
 
 .page-section .page-section-heading 
 {
+    color: white;
     font-size: 2.25rem;
     line-height: 2rem;
 }
 
+.portfolio-section
+{
+    background-color: var(--color-codepen);
+}
+
+.portfolio-section .portfolio-item 
+{
+    padding: 6rem 0;
+}
 
 
 
+.pattern-diagonal-stripes-sm 
+{
+    --stripe-col: grey;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, var(--stripe-col) 10px, var(--stripe-col) calc(2 * 10px));
+}
+
+.dots-pattern 
+{
+    height: 75px;
+    --dot-size: 26px;
+    background: url(images/dot.svg);
+    background-size: var(--dot-size) var(--dot-size);
+}
 
