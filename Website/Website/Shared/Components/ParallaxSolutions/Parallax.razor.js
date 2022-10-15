@@ -50,7 +50,8 @@
             && dummyAnimation !== undefined
             && dummyAnimation.effect !== undefined
             && dummyAnimation.currentTime !== undefined
-            && dummyKeyframeEffect.setKeyframes !== undefined;
+            && dummyKeyframeEffect.setKeyframes !== undefined
+            && this.Window.matchMedia !== undefined;
     }
 
     Init()
