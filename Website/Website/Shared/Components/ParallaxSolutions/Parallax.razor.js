@@ -9,7 +9,12 @@
 
         if (this.IsSupported())
         {
-            this.Init();
+            const DeviceMediaQuery = this.Window.matchMedia("screen and (min-width: 40em)");
+            const notOnMobile = DeviceMediaQuery.matches;
+            if (notOnMobile)
+            {
+                this.Init();
+            }
         }
     }
 
@@ -99,7 +104,7 @@
         // ---------- END Init things ----------
 
         // Now lets animate
-        this.RAF.call(this.Window, this.Tick.bind(this));
+        this.tickID = this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
     // Important since WAAPI keys can't be dynamic
@@ -151,7 +156,7 @@
         }
 
         /*this.prevTimestamp = timestamp;*/
-        this.RAF.call(this.Window, this.Tick.bind(this));
+        this.tickID = this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
     // Way to define the parallax animation in one spot for all parallax animations regardless of their speed multipliers
