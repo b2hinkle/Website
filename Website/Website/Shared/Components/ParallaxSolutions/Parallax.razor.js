@@ -64,7 +64,7 @@
         /*this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on*/
         
         // ---------- BEGIN Init things ----------
-        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
+        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page. This means adding dynamic content to the page after load is not supported currently.
         this.Wrapper.style.width = '100%';
         this.Wrapper.style.position = 'fixed';
 
