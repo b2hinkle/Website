@@ -1,6 +1,6 @@
 ﻿class Parallaxer
 {
-    constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inTargetClass = ".ParallaxElement", inWrapperSpeed = 1)
+    constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inTargetClass = ".ParallaxElement", inWrapperSpeed = 1, allowOnMobile = false)
     {
         this.WrapperID = inWrapperID;
         this.ParallaxContainerClass = inParallaxContainerClass;
@@ -9,9 +9,8 @@
 
         if (this.IsSupported())
         {
-            const DeviceMediaQuery = this.Window.matchMedia("screen and (min-width: 40em)");
-            const notOnMobile = DeviceMediaQuery.matches;
-            if (notOnMobile)
+            const notOnMobile = this.Window.matchMedia("screen and (min-width: 40em)").matches; // using this query as a way to see if we are on mobile
+            if (notOnMobile || allowOnMobile)
             {
                 this.Init();
             }
