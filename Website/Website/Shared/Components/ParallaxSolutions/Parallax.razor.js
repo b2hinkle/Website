@@ -25,7 +25,7 @@
             || this.Window.oRequestAnimationFrame
             || this.Window.webkitRequestAnimationFrame
             || this.Window.msRequestAnimationFrame;
-        this.Window.requestAnimationFrame = requestAnimationFrame; // ?
+        this.Window.requestAnimationFrame = this.RAF;
         this.CAF = this.Window.cancelAnimationFrame || this.Window.mozCancelAnimationFrame;
 
         const scrollingEl = document.documentElement || document.body;
@@ -135,7 +135,7 @@
         const documentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         this.WapperOffset += (documentScrollTop - this.WapperOffset) * this.WrapperSpeed;
         this.WrapperScrollTop = (Math.round(this.WapperOffset * 100) / 100);
-        this.Wrapper.style.transform = `translate3d(0, ${-this.WrapperScrollTop}px, 0)`;
+        this.TranslateElement(this.Wrapper, 0, -this.WrapperScrollTop, 0);
 
         // Offset the parallax elements
         const ParallaxContainersLength = this.ParallaxContainers.length;
@@ -157,6 +157,17 @@
 
         /*this.prevTimestamp = timestamp;*/
         this.tickID = this.RAF.call(this.Window, this.Tick.bind(this));
+    }
+
+    TranslateElement(inEl, inX, inY, inZ)
+    {
+        const styleString = `translate3d(${inX}px, ${inY}px, ${inZ}px)`;
+
+        inEl.style.msTransform = styleString;       // IE
+        inEl.style.webkitTransform = styleString;   // Chrome and Safari
+        inEl.style.MozTransform = styleString;      // Firefox
+        inEl.style.OTransform = styleString;        // Opera
+        inEl.style.transform = styleString;         // Someday this may get adopted and become a standard
     }
 
     // Way to define the parallax animation in one spot for all parallax animations regardless of their speed multipliers
