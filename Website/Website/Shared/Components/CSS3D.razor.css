@@ -54,16 +54,6 @@
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
         }
-
-        ::deep .ParallaxContainer
-        {
-            -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-        }
-        ::deep .ParallaxElement
-        {
-
-        }
     }
 }
 
