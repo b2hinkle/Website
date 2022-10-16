@@ -58,3 +58,11 @@
     background-size: var(--dot-size) var(--dot-size);
 }
 
+
+.abs-pos-center /* requires position:relative parent */
+{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+}
