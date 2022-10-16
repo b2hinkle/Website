@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Shared\Components\Animation\AnimateOnIntersection.razor.js" />
     <Content Include="Shared\Components\Experimental\ParallaxWrapperWithBG.razor.js" />
     <Content Include="Shared\Components\Animation\Parallax.razor.js" />
     <Content Include="Pages\Portfolio.razor.js" />
