@@ -58,7 +58,6 @@
     {
         this.Wrapper = document.getElementById(this.WrapperID);
         this.ParallaxContainers = document.querySelectorAll(this.ParallaxContainerClass);
-        this.TargetElements = document.querySelectorAll(this.TargetClass);
         this.WapperOffset = 0; // how offset it is from the top
         this.WrapperScrollTop = 0; // Our version of scroll top. This tells us how far we have scrolled through our page (or at least how far the content inside the wrapper was scrolled)
         /*this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on*/
