@@ -1,0 +1,17 @@
+﻿@*
+    Pure CSS 3D. These wrapper divs allow for CSS 3D styling for ChildContent. Also it only applies the 3D if you aren't mobile device
+*@
+<div id="ParallaxWrapper">  @* Wrapper the size of the viewport *@
+    <div id="PageContent">  @* 2nd wrapper to allow for dynamic height *@
+        @ChildContent
+    </div>
+</div>
+
+    
+
+
+@code 
+{
+    [Parameter]
+        public RenderFragment ChildContent { get; set; }
+}

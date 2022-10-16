@@ -25,7 +25,7 @@
             || this.Window.oRequestAnimationFrame
             || this.Window.webkitRequestAnimationFrame
             || this.Window.msRequestAnimationFrame;
-        this.Window.requestAnimationFrame = requestAnimationFrame; // ?
+        this.Window.requestAnimationFrame = this.RAF;
         this.CAF = this.Window.cancelAnimationFrame || this.Window.mozCancelAnimationFrame;
 
         const scrollingEl = document.documentElement || document.body;
@@ -58,7 +58,6 @@
     {
         this.Wrapper = document.getElementById(this.WrapperID);
         this.ParallaxContainers = document.querySelectorAll(this.ParallaxContainerClass);
-        this.TargetElements = document.querySelectorAll(this.TargetClass);
         this.WapperOffset = 0; // how offset it is from the top
         this.WrapperScrollTop = 0; // Our version of scroll top. This tells us how far we have scrolled through our page (or at least how far the content inside the wrapper was scrolled)
         /*this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on*/
@@ -135,7 +134,7 @@
         const documentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         this.WapperOffset += (documentScrollTop - this.WapperOffset) * this.WrapperSpeed;
         this.WrapperScrollTop = (Math.round(this.WapperOffset * 100) / 100);
-        this.Wrapper.style.transform = `translate3d(0, ${-this.WrapperScrollTop}px, 0)`;
+        this.TranslateElement(this.Wrapper, 0, -this.WrapperScrollTop, 0);
 
         // Offset the parallax elements
         const ParallaxContainersLength = this.ParallaxContainers.length;
@@ -159,6 +158,17 @@
         this.tickID = this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
+    TranslateElement(inEl, inX, inY, inZ)
+    {
+        const styleString = `translate3d(${inX}px, ${inY}px, ${inZ}px)`;
+
+        inEl.style.msTransform = styleString;       // IE
+        inEl.style.webkitTransform = styleString;   // Chrome and Safari
+        inEl.style.MozTransform = styleString;      // Firefox
+        inEl.style.OTransform = styleString;        // Opera
+        inEl.style.transform = styleString;         // Someday this may get adopted and become a standard
+    }
+
     // Way to define the parallax animation in one spot for all parallax animations regardless of their speed multipliers
     GetKeyframesForParallaxAnimation(animation)
     {
@@ -170,16 +180,5 @@
 
 export function OnAfterRenderAsync()
 {
-    // BEGIN CSS styling
-        // Get rid of annoying stuff
-        const htmlEl = document.documentElement;
-        htmlEl.style.overflowX = "hidden";
-        htmlEl.style.padding = "0px";
-        htmlEl.style.margin = "0px";
-        const bodyEl = document.body;
-        bodyEl.style.overflowX = "hidden";
-        bodyEl.style.padding = "0px";
-        bodyEl.style.margin = "0px";
-    // END CSS styling
     const p = new Parallaxer("ParallaxWrapper", ".ParallaxContainer", ".ParallaxElement");
 }
