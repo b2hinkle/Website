@@ -1,8 +1,5 @@
 ﻿@*
-    Known issues: 
-        - Really slow on my laptop when i'm doing something intensive like screen sharing (not sure what is causing the slowness rn)
-
-    This component provides the ability to parallax by providing .ParallaxContainer and .ParallaxElement classes and data-parallaxspeed data attribute.
+    This component provides the ability to parallax by providing .ParallaxContainer and .ParallaxElement classes and data-parallaxspeed data attribute. Parallax transformations done on GPU
     Workflow:
     - .ParallaxElement: Actual element that will parallax
         - must be an immediate child of .ParallaxContainer
@@ -19,7 +16,7 @@
     {
         if (firstRender)
         {
-            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/ParallaxSolutions/Parallax.razor.js");
+            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Animation/Parallax.razor.js");
             await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
         }
     }
