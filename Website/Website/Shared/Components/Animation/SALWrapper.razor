@@ -1,12 +1,7 @@
 ﻿@*
-    This component provides the ability to parallax by providing .ParallaxContainer and .ParallaxElement classes and data-parallaxspeed data attribute. Parallax transformations done on GPU
+    This component is a wrapper for the SAL library. This fixes the bug where sal elements stay on the first frame of the animation if SAL (IntersectionOberver) isn't supported.
     Workflow:
-    - .ParallaxElement: Actual element that will parallax
-        - must be an immediate child of .ParallaxContainer
-    - data-parallaxspeed: Data attribute placed on ParallaxElement to modify its scroll speed (it's a multiplier)
-        - 1 is normal scroll speed
-        - 0 is no scrolling
-    - .ParallaxContainer: Determines the parallax positioning of its parallax elements. Any parallax element should be at its original position when the container reaches the middle of the viewport.
+        - Use data-sal-wrapper="zoom-out" instead of data-sal="zoom-out"
 *@
 @inject IJSRuntime jsRuntime;
 @code 
