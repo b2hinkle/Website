@@ -1,4 +1,6 @@
 ﻿const navbarHeight = document.getElementById("PortfolioNavbar").getBoundingClientRect().height;
+let navbarBgColorForHeaderSection;  // you can tweak this in the Html
+const navbarBgColorForNonHeaderSections = "rgba(33, 37, 41, 1)";
 
 export function OnAfterRenderAsync()
 {
@@ -13,6 +15,34 @@ export function OnAfterRenderAsync()
         bodyEl.style.padding = "0px";
         bodyEl.style.margin = "0px";
     // END CSS styling
+
+    // Activate Bootstrap scrollspy on the main nav element
+    const mainNav = document.body.querySelector('#PortfolioNavbar');
+    if (mainNav)
+    {
+        const documentScrollSpy = new bootstrap.ScrollSpy(document.body,
+        {
+            target: '#PortfolioNavbar',
+            offset: document.getElementById("PortfolioNavbar").getBoundingClientRect().height + 1,
+        });
+
+
+
+        navbarBgColorForHeaderSection = mainNav.style.backgroundColor;
+        // Fires when we scrolled by a certain section
+        $(window).on('activate.bs.scrollspy', function (e) 
+        {
+            console.log(e.relatedTarget);
+            if (e.relatedTarget == "#portfolio") 
+            {
+                mainNav.style.backgroundColor = navbarBgColorForNonHeaderSections;
+            }
+            else if (e.relatedTarget == "#header") 
+            {
+                mainNav.style.backgroundColor = navbarBgColorForHeaderSection;
+            }
+        });
+    };
 }
 
 export function ScrollToElementWithNavbarOffset(elementId)
