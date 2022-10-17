@@ -1,10 +1,10 @@
 ﻿class Parallaxer
 {
-    constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inTargetClass = ".ParallaxElement", inWrapperSpeed = 1, allowOnMobile = false)
+    constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inParallaxElementClass = ".ParallaxElement", inWrapperSpeed = 1, allowOnMobile = true)
     {
         this.WrapperID = inWrapperID;
         this.ParallaxContainerClass = inParallaxContainerClass;
-        this.TargetClass = inTargetClass;
+        this.TargetClass = inParallaxElementClass;
 		this.WrapperSpeed = inWrapperSpeed;
 
         if (this.IsSupported())
@@ -178,7 +178,7 @@
     }
 }
 
-export function OnAfterRenderAsync()
+export function OnAfterRenderAsync(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile)
 {
-    const p = new Parallaxer("ParallaxWrapper", ".ParallaxContainer", ".ParallaxElement");
+    new Parallaxer(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
 }

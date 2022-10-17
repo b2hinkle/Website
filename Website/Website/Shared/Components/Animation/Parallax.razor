@@ -12,12 +12,23 @@
 @code 
 {
     private IJSObjectReference jsObjRef;    // js interactor
+    
+    [Parameter]
+    public string wrapperID { get; set; } = "ParallaxWrapper";
+    [Parameter]
+    public string parallaxContainerClass { get; set; } = ".ParallaxContainer";
+    [Parameter]
+    public string parallaxElementClass { get; set; } = ".ParallaxElement";
+    [Parameter]
+    public float wrapperSpeed { get; set; } = 1;
+    [Parameter]
+    public bool allowOnMobile { get; set; } = true;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
             jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Animation/Parallax.razor.js");
-            await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
+            await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync", wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
         }
     }
 }
