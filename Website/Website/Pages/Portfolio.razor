@@ -20,22 +20,14 @@
         
 		<div class="collapse navbar-collapse" id="navbarItems">
             <ul class="nav-pills navbar-nav ms-auto">
-                @*
-                    href here is strictly used for the navbar button highlighting for ScrollSpy. We don't have it taking us anywhere since Blazor is a pain with hash routes.
-                    Instead we're just manually scrolling using javascript, also this allows us to implement scrolling with the NavbarOffset.
-                *@
                 <li class="nav-item">
-                    <a class="nav-link" @onclick:preventDefault href="#portfolio"   @onclick="@( () => ScrollToElementWithNavbarOffset("portfolio")     )"      >Portfolio</a>
+                    <a id="portfolioNavLink" class="nav-link" style="cursor: pointer;" @onclick:preventDefault @onclick="@( () => ScrollToElementWithNavbarOffset("portfolio") )"      >Portfolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" @onclick:preventDefault href="#about"       @onclick="@( () => ScrollToElementWithNavbarOffset("about")         )"      >About</a>
+                    <a id="aboutNavLink" class="nav-link" style="cursor: pointer;" @onclick:preventDefault @onclick="@( () => ScrollToElementWithNavbarOffset("about")     )"      >About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" @onclick:preventDefault href="#contact"     @onclick="@( () => ScrollToElementWithNavbarOffset("contact")       )"      >Contact</a>
-                </li>
-                @*NOTE: Only reason we have this "Header" li is so we can take advantage of ScrollSpy's section watching logic for the header. We don't want a navbar button for the header but ScrollSpy requires it so we collapse it.*@
-                <li class="nav-item collapse">
-                    <a class="nav-link" @onclick:preventDefault href="#header">Header</a>
+                    <a id="contactNavLink" class="nav-link" style="cursor: pointer;" @onclick:preventDefault @onclick="@( () => ScrollToElementWithNavbarOffset("contact")   )"      >Contact</a>
                 </li>
             </ul>
 		</div>
