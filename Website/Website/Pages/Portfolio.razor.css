@@ -67,7 +67,7 @@
     transform:translate(-50%, -50%);
 }
 
-.navLinkForcedHover 
+.navLinkSectionInView 
 {
     color: #fff !important; /* important because js will add this class when section is in view and it should override the color bootstrap makes it */
 }

@@ -109,11 +109,11 @@
         {
             if (this.navbarItems[i] == inNavLinkEl)
             {
-                this.navbarItems[i].classList.add("navLinkForcedHover");
+                this.navbarItems[i].classList.add("navLinkSectionInView");
             }
             else
             {
-                this.navbarItems[i].classList.remove("navLinkForcedHover");
+                this.navbarItems[i].classList.remove("navLinkSectionInView");
             }
         }
     }
@@ -123,7 +123,7 @@
         {
             if (this.navbarItems[i] == inNavLinkEl)
             {
-                this.navbarItems[i].classList.remove("navLinkForcedHover");
+                this.navbarItems[i].classList.remove("navLinkSectionInView");
                 break;
             }
         }
@@ -140,7 +140,7 @@
     {
         for (let i = 0; i < this.navbarItems.length; i++)
         {
-            this.navbarItems[i].classList.remove("navLinkForcedHover");
+            this.navbarItems[i].classList.remove("navLinkSectionInView");
         }
     }*/
 }
