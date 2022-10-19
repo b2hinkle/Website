@@ -2,9 +2,10 @@
 {
     constructor()
     {
-        this.navbarHeight = document.getElementById("PortfolioNavbar").getBoundingClientRect().height;
+        this.navbar = document.getElementById("PortfolioNavbar");
         this.navbarItems = document.getElementById("navbarItems").getElementsByTagName("a");
         this.IntersectingElements = new Array();
+        this.px_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;  // conversion ratio.... (physical pixel/CSS_px)
         if (this.IsSupported())
         {
             this.Init();
@@ -16,46 +17,72 @@
         return window.innerHeight !== undefined;
     }
 
+    GetIntersectionObserverOptions()
+    {
+        const navbarHeight = this.navbar.getBoundingClientRect().height;
+        return { root: null, rootMargin: `0px 0px ${-(window.innerHeight - navbarHeight)}px 0px`, threshold: 0 };
+    }
+
+    OnIntersectionObserved(entries)
+    {
+        entries.forEach((entry) =>
+        {
+            const el = entry.target;
+            if (entry.isIntersecting)
+            {
+                this.IntersectingElements.push(el);
+                this.HighlightNavLink(el.CorrespondingNavLinkEl);
+            }
+            else
+            {
+                // remove from the IntersectingElements array
+                for (let i = 0; i < this.IntersectingElements.length; i++)
+                {
+                    if (this.IntersectingElements[i] == el)
+                    {
+                        this.IntersectingElements.splice(i, 1);
+                        break;
+                    }
+                }
+                    
+                this.UnHighlightNavLink(el.CorrespondingNavLinkEl);
+            }
+        });
+    }
+
     Init()
     {
-        const PortfolioEl = document.getElementById("portfolio");
-        PortfolioEl.CorrespondingNavLinkEl = document.getElementById("portfolioNavLink");
-        const AboutEl = document.getElementById("about");
-        AboutEl.CorrespondingNavLinkEl = document.getElementById("aboutNavLink");
-        const ContactEl = document.getElementById("contact");
-        ContactEl.CorrespondingNavLinkEl = document.getElementById("contactNavLink");
+        this.PortfolioEl = document.getElementById("portfolio");
+        this.PortfolioEl.CorrespondingNavLinkEl = document.getElementById("portfolioNavLink");
+        this.AboutEl = document.getElementById("about");
+        this.AboutEl.CorrespondingNavLinkEl = document.getElementById("aboutNavLink");
+        this.ContactEl = document.getElementById("contact");
+        this.ContactEl.CorrespondingNavLinkEl = document.getElementById("contactNavLink");
 
-        const observerOptions = { root: null, rootMargin: `0px 0px ${-(window.innerHeight - this.navbarHeight)}px 0px`, threshold: 0 } // observer options
-        const ElementObserver = new IntersectionObserver(entries =>
-        {
-            entries.forEach((entry) =>
-            {
-                const el = entry.target;
-                if (entry.isIntersecting)
-                {
-                    this.IntersectingElements.push(el);
-                    this.HighlightNavLink(el.CorrespondingNavLinkEl);
-                }
-                else
-                {
-                    // remove from the IntersectingElements array
-                    for (let i = 0; i < this.IntersectingElements.length; i++)
-                    {
-                        if (this.IntersectingElements[i] == el)
-                        {
-                            this.IntersectingElements.splice(i, 1);
-                            break;
-                        }
-                    }
+        this.ElementObserver = new IntersectionObserver(this.OnIntersectionObserved.bind(this), this.GetIntersectionObserverOptions());
+        this.ElementObserver.observe(this.PortfolioEl);
+        this.ElementObserver.observe(this.AboutEl);
+        this.ElementObserver.observe(this.ContactEl);
+
+
+        window.addEventListener("resize", this.OnResize.bind(this), false);
                     
-                    this.UnHighlightNavLink(el.CorrespondingNavLinkEl);
-                }
-            });
-        }, observerOptions);
+    }
 
-        ElementObserver.observe(PortfolioEl);
-        ElementObserver.observe(AboutEl);
-        ElementObserver.observe(ContactEl);
+    OnResize()
+    {
+        const newPx_ratio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;
+        if (newPx_ratio != this.px_ratio) // if we zoomed
+        {
+            this.px_ratio = newPx_ratio;
+            // ElementObserver out of date, create new one
+            this.IntersectingElements.splice(0, this.IntersectingElements.length); // we empty the array of intersecting els because our new IntersectionObserver will add already intersecting els when it starts observing
+            this.ElementObserver.disconnect();
+            this.ElementObserver = new IntersectionObserver(this.OnIntersectionObserved.bind(this), this.GetIntersectionObserverOptions());
+            this.ElementObserver.observe(this.PortfolioEl);
+            this.ElementObserver.observe(this.AboutEl);
+            this.ElementObserver.observe(this.ContactEl);
+        }
     }
 
     HighlightNavLink(inNavLinkEl)
@@ -88,6 +115,13 @@
         if (lastElementIndex >= 0 && this.IntersectingElements[lastElementIndex] != undefined)
         {
             this.HighlightNavLink(this.IntersectingElements[lastElementIndex].CorrespondingNavLinkEl);
+        }
+    }
+    UnHighlightAllNavLinks()
+    {
+        for (let i = 0; i < this.navbarItems.length; i++)
+        {
+            this.navbarItems[i].classList.remove("navLinkForcedHover");
         }
     }
 }
