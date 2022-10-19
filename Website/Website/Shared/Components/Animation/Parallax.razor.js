@@ -63,9 +63,9 @@
         /*this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on*/
         
         // ---------- BEGIN Init things ----------
-        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page. This means adding dynamic content to the page after load is not supported currently.
-        this.Wrapper.style.width = '100%';
-        this.Wrapper.style.position = 'fixed';
+        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page. This means adding dynamic content to the page after load is not supported currently (would just need to add a quick refresh method or something).
+        this.Wrapper.style.width = "100%";
+        this.Wrapper.style.position = "fixed";
 
         // Create the animations for parallax
         for (let i = 0; i < this.ParallaxContainers.length; i++)
@@ -99,6 +99,7 @@
 
             ParallaxContainer.OwnedParallaxAnimations = OwnedParallaxAnimations;
         }
+        addEventListener("resize", this.UpdateBodyHeight.bind(this));
         addEventListener("resize", this.RefreshAnimationKeys.bind(this)); // Also need to do this on zoom/resize since keyframes will be outdated
         // ---------- END Init things ----------
 
@@ -106,6 +107,10 @@
         this.tickID = this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
+    UpdateBodyHeight()
+    {
+        document.body.style.height = `${this.Wrapper.clientHeight}px`;
+    }
     // Important since WAAPI keys can't be dynamic
     RefreshAnimationKeys()
     {
