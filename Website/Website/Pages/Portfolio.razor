@@ -181,10 +181,13 @@
             
                 <!-- Make divider here... -->
 
+
+                @*As someone who has proven to himself that I can do , I believe I have what it takes to make a positive impact in other work environments.*@ 
+
                 <!-- About Section Content-->
-                <div class="row">
-                    <div class="col-lg-4 ms-auto"><p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p></div>
-                    <div class="col-lg-4 me-auto"><p class="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p></div>
+                <div class="row"
+                    <div class="col-lg-4 ms-auto"><p class="lead"></p></div>
+                    <div class="col-lg-4 me-auto"><p class="lead"></p></div>
                 </div>
             </div>
         </div>
@@ -276,7 +279,8 @@
         </footer>
         <!-- Copyright Section-->
         <div class="d-flex align-items-center justify-content-center text-center text-white" style="height: 15px; width: 100%; padding-top: 1.5rem; padding-bottom: 1.5rem; background-color: #1a252f;">
-            <small>Copyright &copy; Your Website 2021</small>
+            @*<small>Copyright &copy; Your Website 2021</small>*@
+            <small>Brian Hinkle @year</small>
         </div>
     </div>
 </div>
@@ -289,6 +293,7 @@
 @code 
 {
     private IJSObjectReference jsObjRef;    // js interactor
+    private int year = DateTime.Now.Year;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
