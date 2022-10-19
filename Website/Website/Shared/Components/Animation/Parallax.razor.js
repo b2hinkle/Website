@@ -63,7 +63,11 @@
         /*this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on*/
         
         // ---------- BEGIN Init things ----------
-        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page. This means adding dynamic content to the page after load is not supported currently (would just need to add a quick refresh method or something).
+        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
+        addEventListener("resize", this.UpdateBodyHeight.bind(this));  // update the body height on window resize/zoom
+        this.BodyResizeObserver = new ResizeObserver(this.OnWrapperResizeObserved.bind(this)); // update the body height on Wrapper height changes
+        this.BodyResizeObserver.observe(this.Wrapper);
+
         this.Wrapper.style.width = "100%";
         this.Wrapper.style.position = "fixed";
 
@@ -99,12 +103,24 @@
 
             ParallaxContainer.OwnedParallaxAnimations = OwnedParallaxAnimations;
         }
-        addEventListener("resize", this.UpdateBodyHeight.bind(this));
         addEventListener("resize", this.RefreshAnimationKeys.bind(this)); // Also need to do this on zoom/resize since keyframes will be outdated
+
         // ---------- END Init things ----------
 
         // Now lets animate
         this.tickID = this.RAF.call(this.Window, this.Tick.bind(this));
+    }
+
+    OnWrapperResizeObserved(entries)
+    {
+        entries.forEach((entry) =>
+        {
+            if (entry.target == this.Wrapper)
+            {
+                this.UpdateBodyHeight();
+            }
+            
+        });
     }
 
     UpdateBodyHeight()
