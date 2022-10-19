@@ -14,7 +14,18 @@
 
     IsSupported() // ensures all features we use are supported
     {
-        return window.innerHeight !== undefined;
+        return this.navbar !== undefined
+            && this.navbarItems !== undefined
+            && this.IntersectingElements !== undefined
+            && this.px_ratio !== undefined
+            && this.navbar.getBoundingClientRect !== undefined
+            && this.navbar.getBoundingClientRect().height !== undefined
+            && window.innerHeight !== undefined
+            && window.addEventListener !== undefined
+            && this.OnResize.bind !== undefined
+            && this.navbar.classList.add !== undefined
+            && this.navbar.classList.remove !== undefined
+            && window.IntersectionObserver !== undefined;
     }
 
     GetIntersectionObserverOptions()
@@ -30,6 +41,13 @@
             const el = entry.target;
             if (entry.isIntersecting)
             {
+                for (let i = 0; i < this.IntersectingElements.length; i++)
+                {
+                    if (this.IntersectingElements[i] == el)
+                    {
+                        return; // already been added
+                    }
+                }
                 this.IntersectingElements.push(el);
                 this.HighlightNavLink(el.CorrespondingNavLinkEl);
             }
@@ -76,7 +94,6 @@
         {
             this.px_ratio = newPx_ratio;
             // ElementObserver out of date, create new one
-            this.IntersectingElements.splice(0, this.IntersectingElements.length); // we empty the array of intersecting els because our new IntersectionObserver will add already intersecting els when it starts observing
             this.ElementObserver.disconnect();
             this.ElementObserver = new IntersectionObserver(this.OnIntersectionObserved.bind(this), this.GetIntersectionObserverOptions());
             this.ElementObserver.observe(this.PortfolioEl);
@@ -117,13 +134,14 @@
             this.HighlightNavLink(this.IntersectingElements[lastElementIndex].CorrespondingNavLinkEl);
         }
     }
-    UnHighlightAllNavLinks()
+    // Not currently used so commenting out
+    /*UnHighlightAllNavLinks()
     {
         for (let i = 0; i < this.navbarItems.length; i++)
         {
             this.navbarItems[i].classList.remove("navLinkForcedHover");
         }
-    }
+    }*/
 }
 
 export function OnAfterRenderAsync()
