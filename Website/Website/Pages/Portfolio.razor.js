@@ -31,7 +31,8 @@
     GetIntersectionObserverOptions()
     {
         const navbarHeight = this.navbar.getBoundingClientRect().height;
-        return { root: null, rootMargin: `0px 0px ${-(window.innerHeight - navbarHeight)}px 0px`, threshold: 0 };
+        const extraSpaceToEnsureHighlight = navbarHeight / 20;
+        return { root: null, rootMargin: `0px 0px ${-(window.innerHeight - navbarHeight - extraSpaceToEnsureHighlight)}px 0px`, threshold: 0 };
     }
 
     OnIntersectionObserved(entries)
