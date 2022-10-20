@@ -42,6 +42,7 @@
             && scrollingEl.offsetTop !== undefined
             && scrollingEl.dataset !== undefined
             && addEventListener !== undefined
+            && ResizeObserver !== undefined
             && this.RAF !== undefined
             && this.RAF.call !== undefined
             && this.Tick.bind !== undefined
