@@ -1,10 +1,10 @@
 ﻿class Parallaxer
 {
-    constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inTargetClass = ".ParallaxElement", inWrapperSpeed = 1, allowOnMobile = false)
+    constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inParallaxElementClass = ".ParallaxElement", inWrapperSpeed = 1, allowOnMobile = true)
     {
         this.WrapperID = inWrapperID;
         this.ParallaxContainerClass = inParallaxContainerClass;
-        this.TargetClass = inTargetClass;
+        this.TargetClass = inParallaxElementClass;
 		this.WrapperSpeed = inWrapperSpeed;
 
         if (this.IsSupported())
@@ -42,6 +42,7 @@
             && scrollingEl.offsetTop !== undefined
             && scrollingEl.dataset !== undefined
             && addEventListener !== undefined
+            && ResizeObserver !== undefined
             && this.RAF !== undefined
             && this.RAF.call !== undefined
             && this.Tick.bind !== undefined
@@ -63,9 +64,13 @@
         /*this.prevTimestamp = -1; // -1 will indicate the first paint we are ticking on*/
         
         // ---------- BEGIN Init things ----------
-        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page. This means adding dynamic content to the page after load is not supported currently.
-        this.Wrapper.style.width = '100%';
-        this.Wrapper.style.position = 'fixed';
+        document.body.style.height = `${this.Wrapper.clientHeight}px`; // document body will determine the height/scrolling of our page
+        addEventListener("resize", this.UpdateBodyHeight.bind(this));  // update the body height on window resize/zoom
+        this.BodyResizeObserver = new ResizeObserver(this.OnWrapperResizeObserved.bind(this)); // update the body height on Wrapper height changes
+        this.BodyResizeObserver.observe(this.Wrapper);
+
+        this.Wrapper.style.width = "100%";
+        this.Wrapper.style.position = "fixed";
 
         // Create the animations for parallax
         for (let i = 0; i < this.ParallaxContainers.length; i++)
@@ -100,12 +105,29 @@
             ParallaxContainer.OwnedParallaxAnimations = OwnedParallaxAnimations;
         }
         addEventListener("resize", this.RefreshAnimationKeys.bind(this)); // Also need to do this on zoom/resize since keyframes will be outdated
+
         // ---------- END Init things ----------
 
         // Now lets animate
         this.tickID = this.RAF.call(this.Window, this.Tick.bind(this));
     }
 
+    OnWrapperResizeObserved(entries)
+    {
+        entries.forEach((entry) =>
+        {
+            if (entry.target == this.Wrapper)
+            {
+                this.UpdateBodyHeight();
+            }
+            
+        });
+    }
+
+    UpdateBodyHeight()
+    {
+        document.body.style.height = `${this.Wrapper.clientHeight}px`;
+    }
     // Important since WAAPI keys can't be dynamic
     RefreshAnimationKeys()
     {
@@ -178,7 +200,7 @@
     }
 }
 
-export function OnAfterRenderAsync()
+export function OnAfterRenderAsync(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile)
 {
-    const p = new Parallaxer("ParallaxWrapper", ".ParallaxContainer", ".ParallaxElement");
+    new Parallaxer(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
 }

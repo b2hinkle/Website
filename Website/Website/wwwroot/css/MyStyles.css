@@ -37,18 +37,6 @@
 
 
 
-.NewDottedBG {
-    /*background-color: rgb(19, 25, 32);*/ /* basic scroll color */
-    background-color: rgb(31, 32, 41);  /*codepen thing i found color*/ 
-
-    /*background-image: radial-gradient(circle farthest-corner, rgb(31, 32, 41) 0%, rgb(19, 25, 32) 100%);*/
-    /* basic scroll gradients */
-    /*background-image: 
-        radial-gradient(farthest-side at 0 0,rgba(255,26,198,.3),rgba(255,26,198,0)),
-        radial-gradient(farthest-side at 100% 0,rgba(60,221,221,.4),rgba(60,221,221,0)),
-        radial-gradient(farthest-side at 50% 0,rgba(255,26,198,.1),rgba(255,26,198,0));*/
-}
-
 .Pattern
 {
   /*background-image: radial-gradient(rgb(42, 48, 56) 11%, rgb(255, 255, 255, 0.00) 11%);

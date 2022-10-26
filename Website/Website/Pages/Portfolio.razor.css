@@ -11,16 +11,63 @@
     height: 100vh;
 }
 
-.page-section {
+#ParallaxWrapper
+{
+    --color-simple-parallax: rgb(19, 25, 32);
+    --color-codepen: rgb(31, 32, 41);
+    --color-something: rgb(53, 53, 53);
+}
+
+.page-section 
+{
     padding: 6rem 0;
 }
 
-.page-section .page-section-heading {
+.page-section .page-section-heading 
+{
+    color: white;
     font-size: 2.25rem;
     line-height: 2rem;
 }
 
 
 
+.portfolio-section
+{
+    background-color: var(--color-simple-parallax);
+}
+
+.portfolio-section .portfolio-item 
+{
+    padding: 6rem 0;
+}
 
 
+
+.pattern-diagonal-stripes-sm 
+{
+    --stripe-col: grey;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, var(--stripe-col) 10px, var(--stripe-col) calc(2 * 10px));
+}
+
+.dots-pattern 
+{
+    height: 75px;
+    --dot-size: 26px;
+    background: url(images/dot.svg);
+    background-size: var(--dot-size) var(--dot-size);
+}
+
+
+.abs-pos-center /* requires position:relative parent */
+{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+}
+
+.navLinkSectionInView 
+{
+    color: #fff !important; /* important because js will add this class when section is in view and it should override the color bootstrap makes it */
+}
