@@ -1,3 +1,32 @@
+#PortfolioItem
+{
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	
+	-webkit-transition-property: -webkit-transform;
+	-moz-transition-property: -moz-transform;
+	-ms-transition-property: -ms-transform;
+	-o-transition-property: -o-transform;
+	transition-property: transform;
+	
+	-webkit-transition-duration: .25s;
+	-moz-transition-duration: .25s;
+	-ms-transition-duration: .25s;
+	-o-transition-duration: .25s;
+    transition-duration: .25s;
+}
+#PortfolioItem:hover
+{
+	-webkit-transform: translateZ(0) scale(1.01);
+	-moz-transform: translateZ(0) scale(1.01);
+	-ms-transform: translateZ(0) scale(1.01);
+	-o-transform: translateZ(0) scale(1.01);
+	transform: translateZ(0) scale(1.01)
+}
+
 .btn-portfolio-item-fullscreen
 {
 /* Remove default HTML button styling */
