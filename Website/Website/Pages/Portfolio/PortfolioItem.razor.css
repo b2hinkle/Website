@@ -1,0 +1,21 @@
+.btn-portfolio-item-fullscreen
+{
+/* Remove default HTML button styling */
+    background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	outline: none;
+/* ------------------- */
+
+
+    color:grey;
+    
+    transition-property: color;
+    transition-duration: .25s;
+}
+
+.btn-portfolio-item-fullscreen:hover 
+{
+    color:white;
+}

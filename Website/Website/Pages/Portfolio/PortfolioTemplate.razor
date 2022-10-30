@@ -425,7 +425,7 @@
     IJSObjectReference jsObjRef;    // js interactor
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-       jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/PortfolioTemplate.razor.js");
+       jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Portfolio/PortfolioTemplate.razor.js");
        await jsObjRef.InvokeVoidAsync("init");
     }
 }

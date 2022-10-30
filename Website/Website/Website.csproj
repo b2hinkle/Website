@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <None Remove="Pages\Portfolio.razor.js" />
+    <None Remove="Pages\PortfolioItem.razor.css" />
     <None Remove="Pages\TestPages\Index.razor.js" />
     <None Remove="Pages\TestPages\ParallaxWindowTest.razor.js" />
     <None Remove="Shared\Components\Parallax - Copy.razor.js" />
@@ -26,8 +27,8 @@
 
   <ItemGroup>
     <Content Include="Shared\Components\Animation\Parallax.razor.js" />
-    <Content Include="Pages\Portfolio.razor.js" />
-    <Content Include="Pages\PortfolioTemplate.razor.js" />
+    <Content Include="Pages\Portfolio\Portfolio.razor.js" />
+    <Content Include="Pages\Portfolio\PortfolioTemplate.razor.js" />
     <Content Include="Pages\TestPages\OldPortfolio.razor.js" />
     <Content Include="Shared\Components\Animation\SALWrapper.razor.js" />
   </ItemGroup>

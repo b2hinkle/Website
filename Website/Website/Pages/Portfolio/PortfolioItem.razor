@@ -1,0 +1,40 @@
+﻿<div class="container" style="position:relative;">
+    <div class="row align-items-center mb-5" style="background-color:rgba(255,255,255,.25);">
+        <div class="col-md-12 p-0 top-0" style="position:absolute;">
+
+            <button type="button" class="btn-portfolio-item-fullscreen">
+                <svg width="16" height="16" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path>
+                </svg>
+            </button>
+        </div>
+        <div data-sal-wrapper="zoom-out" class="col-md-4">
+            <h2 class="text-center text-white">
+                @TitleText
+            </h2>
+        </div>
+
+        <div class="col-md-8 d-flex flex-column align-items-center justify-content-center" style="position:relative; height:100%; overflow:hidden; padding:0;">
+            <video muted autoplay loop style="position: relative; width: 100%;">
+                <source src="@VideoSrc" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div data-sal-wrapper="zoom-out" class="row align-items-center">
+        <div class="col-md-2"/>
+        <div class="col-md-8 text-center text-white">
+            @Description
+        </div>
+        <div class="col-md-2"/>
+    </div>
+</div>
+
+@code 
+{
+    [Parameter]
+    public RenderFragment TitleText { get; set; }
+    [Parameter]
+    public RenderFragment Description { get; set; }
+    [Parameter]
+    public string VideoSrc { get; set; }
+}
