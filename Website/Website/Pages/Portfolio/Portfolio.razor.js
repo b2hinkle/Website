@@ -181,3 +181,9 @@ function ScrollToElementWithOffset(element, offset)
         behavior: 'smooth'
     });
 }
+
+export function ShowPopupModal()
+{
+    let ModalEl = document.getElementById("exampleModal");
+    $(ModalEl).modal('show');
+}
