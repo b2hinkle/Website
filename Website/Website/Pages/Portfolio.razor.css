@@ -71,3 +71,26 @@
 {
     color: #fff !important; /* important because js will add this class when section is in view and it should override the color bootstrap makes it */
 }
+
+
+.btn-portfolio-item-fullscreen
+{
+/* Remove default HTML button styling */
+    background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	outline: none;
+/* ------------------- */
+
+
+    color:grey;
+    
+    transition-property: color;
+    transition-duration: .25s;
+}
+
+.btn-portfolio-item-fullscreen:hover 
+{
+    color:white;
+}
