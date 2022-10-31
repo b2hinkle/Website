@@ -39,15 +39,9 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered" style="width:0; height:0;"> @* make width and height 0 so you can't see it *@
     <div class="modal-content d-flex flex-column align-items-center justify-content-center">
-        <video muted autoplay loop controls src="@ModalPortfolioItem?.VideoSrc" style="width: 50vw;" />
-        <h2>
-            @ModalPortfolioItem?.TitleText
-        </h2>
-        <p class="text-center">
-            @ModalPortfolioItem?.Description
-        </p>
+        <video muted autoplay loop controls controlsList="nofullscreen nodownload" src="@ModalPortfolioItem?.VideoSrc" style="height: 80vh;" />
     </div>
   </div>
 </div>
