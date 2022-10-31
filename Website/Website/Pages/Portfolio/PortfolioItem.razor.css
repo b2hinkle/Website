@@ -1,4 +1,4 @@
-#PortfolioItem
+#PortfolioItemVideoDiv
 {
 /* ------- Establish a rest state ------- */
 	-webkit-transform: scale(1);
@@ -18,13 +18,17 @@
 	-moz-transition-duration: .25s;
 	-ms-transition-duration: .25s;
 	-o-transition-duration: .25s;
-    transition-duration: .1s;
+    transition-duration: .25s;
 }
-/*#PortfolioItem:hover
+#PortfolioItemVideoDiv:hover 
 {
-	background-color:rgba(255,255,255,.05);
-}*/
-#PortfolioItem:active
+	-webkit-transform: translateZ(0) scale(1.1);
+	-moz-transform: translateZ(0) scale(1.1);
+	-ms-transform: translateZ(0) scale(1.1);
+	-o-transform: translateZ(0) scale(1.1);
+	transform: translateZ(0) scale(1.1)
+}
+#PortfolioItemVideoDiv:active
 {
 	-webkit-transform: translateZ(0) scale(.98);
 	-moz-transform: translateZ(0) scale(.98);
@@ -33,7 +37,7 @@
 	transform: translateZ(0) scale(.98)
 }
 
-.btn-portfolio-item-fullscreen
+#btn-portfolio-item-fullscreen
 {
 /* Remove default HTML button styling */
     background: none;
@@ -50,7 +54,16 @@
     transition-duration: .25s;
 }
 
-.btn-portfolio-item-fullscreen:hover 
+#btn-portfolio-item-fullscreen:hover 
 {
     color:white;
+}
+
+#PortfolioItemVideoDiv:hover > #btn-portfolio-item-fullscreen
+{
+	-webkit-transform: translateZ(0) scale(2);
+	-moz-transform: translateZ(0) scale(2);
+	-ms-transform: translateZ(0) scale(2);
+	-o-transform: translateZ(0) scale(2);
+	transform: translateZ(0) scale(2)
 }
