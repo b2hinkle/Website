@@ -161,7 +161,17 @@ export function OnAfterRenderAsync()
 
     const nBM = new NavBarHighlightingManager();
 
-    
+    // Playing the videos through js even though they are set to autoplay in html b/c I've noticed that occasionaly the videos don't play on load.
+    const ParallaxWrapperEl = document.getElementById("ParallaxWrapper");
+    const VideoEls = ParallaxWrapperEl.getElementsByTagName("video");
+    for (const VideoEl of VideoEls)
+    {
+        if (VideoEl !== undefined)
+        {
+            VideoEl.play();
+            console.log("play element");
+        }
+    }
 }
 
 export function ScrollToElementWithNavbarOffset(elementId)
