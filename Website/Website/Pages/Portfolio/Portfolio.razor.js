@@ -227,6 +227,12 @@ export function OnAfterRenderAsync()
 
     const VideoEls = document.getElementById("ParallaxWrapper").getElementsByTagName("video");
     const vPM = new VideoPlayManager(VideoEls);
+
+    // Manually play the header video on page load
+    const PortfolioHeaderVideoEl = document.getElementById("PortfolioHeaderVideo");
+    PortfolioHeaderVideoEl.muted = true;
+    PortfolioHeaderVideoEl.autoplay = true;
+    PortfolioHeaderVideoEl.play();
 }
 
 export function ScrollToElementWithNavbarOffset(elementId)
