@@ -145,6 +145,70 @@
     }*/
 }
 
+class VideoPlayManager
+{
+    constructor(inVideoEls)
+    {
+        // Muted html attribute on the video tag doesn't work so we have to manually set it in js so that browsers allow autoplay
+        this.VideoEls = inVideoEls;
+        for (const VideoEl of this.VideoEls)
+        {
+            if (VideoEl !== undefined)
+            {
+                VideoEl.muted = true;
+            }
+        }
+
+        if (this.IsSupported())
+        {
+            this.Init();
+        }
+        else
+        {
+            // If intersection observer way isn't supported we will just play them on page load
+            for (const VideoEl of this.VideoEls)
+            {
+                if (VideoEl !== undefined)
+                {
+                    VideoEl.autoplay = true;
+                    VideoEl.play();
+                }
+            }
+        }
+    }
+
+    IsSupported() // ensures all features we use are supported
+    {
+        return window.IntersectionObserver !== undefined;
+    }
+
+    OnIntersectionObserved(entries)
+    {
+        entries.forEach((entry) =>
+        {
+            if (entry.isIntersecting)
+            {
+                const VideoEl = entry.target;
+                VideoEl.play();
+            }
+        });
+    }
+
+    Init()
+    {
+
+        this.ElementObserver = new IntersectionObserver(this.OnIntersectionObserved.bind(this), { root: null, rootMargin: `0px 0px 0px 0px`, threshold: .5 });
+        for (const VideoEl of this.VideoEls)
+        {
+            if (VideoEl !== undefined)
+            {
+                VideoEl.autoplay = false;
+                this.ElementObserver.observe(VideoEl);
+            }
+        }
+    }
+}
+
 export function OnAfterRenderAsync()
 {
     // BEGIN CSS styling
@@ -161,17 +225,8 @@ export function OnAfterRenderAsync()
 
     const nBM = new NavBarHighlightingManager();
 
-    // Playing autoplay html attribute on the video tag doesn't work so we have to manually set it so we can autoplay
-    const ParallaxWrapperEl = document.getElementById("ParallaxWrapper");
-    const VideoEls = ParallaxWrapperEl.getElementsByTagName("video");
-    for (const VideoEl of VideoEls)
-    {
-        if (VideoEl !== undefined)
-        {
-            VideoEl.muted = true;
-            VideoEl.play();
-        }
-    }
+    const VideoEls = document.getElementById("ParallaxWrapper").getElementsByTagName("video");
+    const vPM = new VideoPlayManager(VideoEls);
 }
 
 export function ScrollToElementWithNavbarOffset(elementId)
