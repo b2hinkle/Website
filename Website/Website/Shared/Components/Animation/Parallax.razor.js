@@ -182,7 +182,13 @@
 
     TranslateElement(inEl, inX, inY, inZ)
     {
+        if (inX == 0 && inY == 0 && inZ == 0)
+        {
+            return;
+        }
+
         const styleString = `translate3d(${inX}px, ${inY}px, ${inZ}px)`;
+
 
         inEl.style.msTransform = styleString;       // IE
         inEl.style.webkitTransform = styleString;   // Chrome and Safari
