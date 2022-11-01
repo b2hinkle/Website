@@ -31,7 +31,7 @@
         const scrollingEl = document.documentElement || document.body;
         const dummyAnimation = new Animation();
         const dummyKeyframeEffect = new KeyframeEffect(null, { }, { });
-        const scrollTop = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop)
+        const scrollTop = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop);
         return this.Window !== undefined
             && this.Window.innerHeight !== undefined
             && scrollTop !== undefined
