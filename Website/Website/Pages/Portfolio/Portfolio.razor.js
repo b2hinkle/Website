@@ -168,6 +168,7 @@ export function OnAfterRenderAsync()
     {
         if (VideoEl !== undefined)
         {
+            VideoEl.muted = true;
             VideoEl.play();
             console.log("play element");
         }
