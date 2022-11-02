@@ -116,7 +116,7 @@
             <PortfolioItem TitleText="Input Setup" VideoSrc="videos/Portfolio/Demos/Demo_InputSetup.mp4" OnFullscreenBtnPressed=@ShowPopupModal>
                 <Description>
                     <p>
-                        Plugin improving the input workflow in C++. Makes use of Gameplay Tags to identify Input Actions using a configurable map in the plugin's Developer Settings. Other modules external from the game project's module can contribute to the map of Input Actions as long as they have us as a dependency.
+                        This is a C++ plugin improving the workflow for Epic's Enhanced Input plugin. It makes use of Gameplay Tags to identify Input Actions via a configurable map in the project settings. The map is stored in an EngineSubsystem and is treated as a centralized place for all Input Actions. This eliminates code redundancy@*in situations where separate classes require the same input action*@. Modules external from the game project can contribute to the Input Actions map through a provided Primary Data Asset. Game feature plugins are also supported.
                     </p>
                 </Description>
             </PortfolioItem>
