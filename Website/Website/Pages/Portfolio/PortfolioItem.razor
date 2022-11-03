@@ -7,7 +7,7 @@
 
             <div class="text-white text-center">
                 <p>Collaborators: @Collaborators</p>
-                <p>My Contribution: @MyContributions</p>
+                @*<p>My Contribution: @MyContributions</p>*@
             </div>
         </div>
 
@@ -43,8 +43,8 @@
     public string GithubLink { get; set; }
     [Parameter]
     public RenderFragment Collaborators { get; set; }
-    [Parameter]
-    public RenderFragment MyContributions { get; set; }
+    //[Parameter]
+    //public RenderFragment MyContributions { get; set; }
     [Parameter]
     public RenderFragment Description { get; set; }
     [Parameter]
