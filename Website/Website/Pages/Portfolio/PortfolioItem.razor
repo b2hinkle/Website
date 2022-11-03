@@ -4,11 +4,6 @@
             <h2 class="text-white">
                 @TitleText
             </h2>
-
-            <div class="text-white text-center">
-                <p>Collaborators: @Collaborators</p>
-                @*<p>My Contribution: @MyContributions</p>*@
-            </div>
         </div>
 
         <div class="col-md-8" style="position:relative; height:100%; overflow:hidden; padding:0;">
@@ -23,22 +18,22 @@
         </div>
     </div>
     <div class="row text-white mb-4">
-        <div class="col-md-2">
+        <div class="col-md-1">
             <img src="images/github_small.png" style="width:1.25rem; height:1.25rem; margin-right: .5rem;"/><a href="@GithubLink" target="_blank" rel="noopener noreferrer">Github</a>
         </div>
         <div class="col-md-2">
+            Team Size: @TeamSize
+        </div>
+        <div class="col-md-1">
             
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             
         </div>
-        <div class="col-md-2">
-            
-        </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             
         </div>
     </div>
@@ -59,7 +54,7 @@
     [Parameter]
     public string GithubLink { get; set; }
     [Parameter]
-    public RenderFragment Collaborators { get; set; }
+    public string TeamSize { get; set; }
     //[Parameter]
     //public RenderFragment MyContributions { get; set; }
     [Parameter]
