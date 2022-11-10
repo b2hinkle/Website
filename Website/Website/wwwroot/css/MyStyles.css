@@ -43,6 +43,7 @@
 }
 
 .Pattern {
-    background-image: radial-gradient(#393fa6 0.55px, rgba(0,0,0,0) 0.55px);
-    background-size: 41px 41px;
+    background-image: radial-gradient(farthest-side at 0 0,rgb(255, 40, 40, .34),rgba(255,26,198,0)),
+        radial-gradient(farthest-side at 100% 0,rgba(60,221,221,.4),rgba(60,221,221,0)),
+        radial-gradient(farthest-side at 50% 0,rgba(255,26,198,.1),rgba(255,26,198,0));
 }
