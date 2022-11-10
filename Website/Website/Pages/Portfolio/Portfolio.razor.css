@@ -87,6 +87,7 @@
 
 .Pattern 
 {
-    background-image: radial-gradient(2000px at 100% 75%,rgb(255, 40, 40, .1),rgba(255,26,198,0)),
-        radial-gradient(2000px at 0 75%,rgba(60,221,221,.1),rgba(60,221,221,0));
+    background-image: 
+        radial-gradient(2000px at 0 75%,rgba(60,221,221,.1),rgba(60,221,221,0)),
+        radial-gradient(2000px at 100% 75%,rgb(255, 40, 40, .1),rgba(255,26,198,0));
 }
