@@ -4,9 +4,13 @@
 
 #ParallaxWrapper
 {
-    --color-simple-parallax: rgb(19, 25, 32);
-    --color-codepen: rgb(31, 32, 41);
-    --color-something: rgb(53, 53, 53);
+    /* ----our color pallet i guess---- */
+    /*
+        rgb(19, 25, 32);
+        rgb(31, 32, 41);
+        rgb(53, 53, 53);
+    */
+    /* -------------------------------- */
 
     background-color: rgb(31, 32, 41);
 }
@@ -27,7 +31,7 @@
 
 .portfolio-section
 {
-    background-color: var(--color-simple-parallax);
+    background-color: rgb(19, 25, 32);
 }
 
 .portfolio-section .portfolio-item 
