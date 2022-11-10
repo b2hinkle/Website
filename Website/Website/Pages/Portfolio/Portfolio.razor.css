@@ -2,20 +2,13 @@
     box-sizing: border-box;
 }
 
-#BG
-{
-    position: fixed;
-    z-index: -1;
-
-    width: 100vw;
-    height: 100vh;
-}
-
 #ParallaxWrapper
 {
     --color-simple-parallax: rgb(19, 25, 32);
     --color-codepen: rgb(31, 32, 41);
     --color-something: rgb(53, 53, 53);
+
+    background-color: rgb(31, 32, 41);
 }
 
 .page-section 
@@ -77,12 +70,6 @@
     background-color:black !important;
     background-color:rgba(0, 0, 0, 0.00) !important;
     background-color:transparent !important;
-}
-
-
-.BGColor 
-{
-    background-color: rgb(31, 32, 41);
 }
 
 .Pattern 
