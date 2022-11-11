@@ -105,6 +105,6 @@
         linear-gradient(40deg, rgba(0,0,0,0) 10%, rgba(0, 0, 0, .15) 50%, rgba(0,0,0,0) 70%),
         radial-gradient(2000px at 0 75%,rgba(60,221,221,.35),rgba(60,221,221,0)),
         linear-gradient(150deg, rgba(0,0,0,0) 10%, rgba(0, 0, 0, .15) 50%, rgba(0,0,0,0) 70%),
-        radial-gradient(2000px at 100% 50%,rgba(255, 40, 40, .3),rgba(255,26,198,0));
+        radial-gradient(2000px at 100% 50%,rgba(255, 40, 40, .2),rgba(255,26,198,0));
         
 }
