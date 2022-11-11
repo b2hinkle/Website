@@ -4,6 +4,9 @@
 
 #PortfolioNavbar
 {
+    -o-animation: NavBarSlideIn 1s ease;
+    -webkit-animation: NavBarSlideIn 1s ease;
+    -moz-animation: NavBarSlideIn 1s ease;
     animation: NavBarSlideIn 1s ease;
 }
 
