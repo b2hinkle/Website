@@ -42,6 +42,7 @@
 
 <!-- Page's Content -->
 <div id="ParallaxWrapper">
+    <h1 style="position:absolute;"></h1> @* dummy heading to prevent Blazor from scrolling to one of the headings lower in the page on page load *@
     <header id="header" class="ParallaxContainer d-flex flex-column align-items-center justify-content-center" style="width:100vw; height:90vh; position:relative; overflow:hidden;">
         <video id="PortfolioHeaderVideo" muted autoplay loop playsinline disablePictureInPicture src="videos/Portfolio/Header.mp4" class="ParallaxElement" data-parallaxspeed=".25" style="position: absolute; min-height: 100%; min-width: 100%;" />
         <div style="position: relative; min-height: 100%; min-width: 100%; background-color: rgba(26, 188, 156, .5);"/>
