@@ -234,7 +234,9 @@ export function OnAfterRenderAsync()
     PortfolioHeaderVideoEl.autoplay = true;
     PortfolioHeaderVideoEl.play();
 
-    if (window.IntersectionObserver !== undefined)
+    // If supported, show a scroll indicator and show/hide it based on how far we are from the top of the page
+    if (window.IntersectionObserver !== undefined
+        && document.getElementById !== undefined)
     {
         const ScrollIndicatorEl = document.getElementById("ScrollIndicator");
         ScrollIndicatorEl.classList.add("ScrollIndicator");
