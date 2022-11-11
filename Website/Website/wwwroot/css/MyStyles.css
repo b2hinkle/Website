@@ -42,6 +42,7 @@
 {
   position: absolute;
   left: 50%;
+  pointer-events:none;
 }
 
 .ScrollIndicator {
@@ -65,6 +66,8 @@
   -moz-animation: opacity .05s linear;
   -webkit-transition: opacity .05s linear;
   transition: opacity .05s linear;
+
+  pointer-events:none;
 }
 
 .ScrollIndicator:before {
