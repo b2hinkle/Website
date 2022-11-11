@@ -233,6 +233,29 @@ export function OnAfterRenderAsync()
     PortfolioHeaderVideoEl.muted = true;
     PortfolioHeaderVideoEl.autoplay = true;
     PortfolioHeaderVideoEl.play();
+
+    if (window.IntersectionObserver !== undefined)
+    {
+        const ScrollIndicatorEl = document.getElementById("ScrollIndicator");
+        ScrollIndicatorEl.classList.add("ScrollIndicator");
+        
+        const ElementObserver = new IntersectionObserver(entries =>
+        {
+            entries.forEach(entry =>
+            {
+                if (entry.isIntersecting) 
+                {
+                    ScrollIndicatorEl.style.opacity = 1;
+                }
+                else
+                {
+                    ScrollIndicatorEl.style.opacity = .001; // avoiding 0 as small optimization
+                }
+            })
+        },
+        { root: null, rootMargin: "0px", threshold: .9 });
+        ElementObserver.observe(document.getElementById("header"));
+    }
 }
 
 export function ScrollToElementWithNavbarOffset(elementId)

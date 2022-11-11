@@ -59,6 +59,12 @@
   border-top: none;
   border-right: 2px #fff solid;
   border-bottom: 2px #fff solid;
+
+  /* used for a fade transition for when js shows and hides the ScrollIndicator via style.opacity */
+  -o-transition: opacity .05s linear;
+  -moz-animation: opacity .05s linear;
+  -webkit-transition: opacity .05s linear;
+  transition: opacity .05s linear;
 }
 
 .ScrollIndicator:before {
