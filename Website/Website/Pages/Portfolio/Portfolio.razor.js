@@ -71,15 +71,15 @@
 
     Init()
     {
-        this.PortfolioEl = document.getElementById("portfolio");
-        this.PortfolioEl.CorrespondingNavLinkEl = document.getElementById("portfolioNavLink");
+        this.ProjectsEl = document.getElementById("projects");
+        this.ProjectsEl.CorrespondingNavLinkEl = document.getElementById("projectsNavLink");
         this.AboutEl = document.getElementById("about");
         this.AboutEl.CorrespondingNavLinkEl = document.getElementById("aboutNavLink");
         this.ContactEl = document.getElementById("contact");
         this.ContactEl.CorrespondingNavLinkEl = document.getElementById("contactNavLink");
 
         this.ElementObserver = new IntersectionObserver(this.OnIntersectionObserved.bind(this), this.GetIntersectionObserverOptions());
-        this.ElementObserver.observe(this.PortfolioEl);
+        this.ElementObserver.observe(this.ProjectsEl);
         this.ElementObserver.observe(this.AboutEl);
         this.ElementObserver.observe(this.ContactEl);
 
@@ -97,7 +97,7 @@
             // ElementObserver out of date, create new one
             this.ElementObserver.disconnect();
             this.ElementObserver = new IntersectionObserver(this.OnIntersectionObserved.bind(this), this.GetIntersectionObserverOptions());
-            this.ElementObserver.observe(this.PortfolioEl);
+            this.ElementObserver.observe(this.ProjectsEl);
             this.ElementObserver.observe(this.AboutEl);
             this.ElementObserver.observe(this.ContactEl);
         }
