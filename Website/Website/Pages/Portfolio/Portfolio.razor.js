@@ -228,12 +228,6 @@ export function OnAfterRenderAsync()
     const VideoEls = document.getElementById("ParallaxWrapper").getElementsByTagName("video");
     const vPM = new VideoPlayManager(VideoEls);
 
-    // Manually play the header video on page load
-    const PortfolioHeaderVideoEl = document.getElementById("PortfolioHeaderVideo");
-    PortfolioHeaderVideoEl.muted = true;
-    PortfolioHeaderVideoEl.autoplay = true;
-    PortfolioHeaderVideoEl.play();
-
     // If supported, show a scroll indicator and show/hide it based on how far we are from the top of the page
     if (window.IntersectionObserver !== undefined
         && document.getElementById !== undefined)

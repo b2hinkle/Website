@@ -33,6 +33,37 @@
     background-color: rgb(31, 32, 41);
 }
 
+/* BEGIN Header styles */
+#header 
+{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+#HeaderVideo 
+{
+    position: absolute;
+    width: 100%;
+    height: calc((100vw*9) /16);
+}
+
+@media (max-aspect-ratio: 16/9) 
+{
+    #header
+    {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    #HeaderVideo 
+    {
+        width: calc((100vh*16)/9);
+        height: 100vh;
+    }
+}
+/* END Header styles */
+
 .page-section 
 {
     padding: 6rem 0;
