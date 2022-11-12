@@ -37,7 +37,7 @@
 #header 
 {
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     position: relative;
     overflow: hidden;
 }
@@ -50,12 +50,6 @@
 
 @media (max-aspect-ratio: 16/9) 
 {
-    #header
-    {
-        width: 100%;
-        overflow: hidden;
-    }
-
     #HeaderVideo 
     {
         width: calc((100vh*16)/9);
