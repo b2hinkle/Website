@@ -2,6 +2,7 @@
 @using Website.Shared.Components.Animation
 @using Website.Pages.Portfolio
 @layout Shared.Layouts.EmptyLayout;
+@inject NavigationManager NavManager
 @inject IJSRuntime jsRuntime;
 
 <Parallax/>
@@ -14,6 +15,7 @@
         <button id="NavbarExpandButton" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+        <button type="button" class="btn btn-sm btn-outline-light" onclick="@ResumeButtonPressed">Resume</button>
         
 		<div class="collapse navbar-collapse" id="navbarItems">
             <ul class="nav-pills navbar-nav ms-auto">
@@ -219,5 +221,10 @@ Most of the time my brother and I work together and I find collaboration makes e
     {
         ModalPortfolioItem = PortfolioItemToShowModelFor;
         await jsObjRef.InvokeVoidAsync("ShowPopupModal");
+    }
+
+    public void ResumeButtonPressed()
+    {
+        NavManager.NavigateTo("/Resume/Link/Here");
     }
 }
