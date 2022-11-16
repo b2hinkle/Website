@@ -51,7 +51,7 @@
         <div style="position: absolute; min-height: 100%; min-width: 100%; background-color: rgba(26, 188, 156, .5);"/>
         <div style="position:relative; width:100vw; height:100vh; display:flex; z-index:11;">
             <span style="align-self: flex-end; font-size: 2rem;" class="text-white">
-                BRIAN HINKLE - UNREAL ENGINE PROGRAMMER
+                BRIAN HINKLE - MULTIPLAYER GAME PROGRAMMER
             </span>
         </div>
     </header>
@@ -68,7 +68,7 @@
             <PortfolioItem TitleText="Strength collision queries" VideoSrc="videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" GithubLink="https://github.com/brian2524/GameCore" OnFullscreenBtnPressed=@ShowPopupModal>
                 <Description>
                     <p>
-                        These are custom collision queries that are dependent on the concept of strength. They become weaker as they ricochet and travel through penetrable material (the air as well). It is built on top of a collection of specialized collision queries which introduce the concept of penetrations while still keeping the distinction between blocking hits and overlaps (trigger boxes). These optionally provide exit hit results. All collision queries are generic to both line traces and shape sweeps.
+                        These are custom collision queries that are dependent on the concept of strength. They become weaker as they ricochet and travel through penetrable hits (the air as well). It is built on top of a collection of specialized collision queries which introduce the concept of penetrations while still keeping the distinction between blocking hits and overlaps (trigger boxes). These optionally provide exit hit results. All collision queries are generic to both line traces and shape sweeps.
                         <br>
                         This demo shows strength collision queries being used with sphere sweeping in a shooter-type game.
                     </p>
@@ -79,7 +79,7 @@
             <PortfolioItem TitleText="Property Wrapper" VideoSrc="videos/Portfolio/Demos/Demo_PropertyWrapper.mp4" TeamSize="2" GithubLink="https://github.com/brian2524/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
                 <Description>
                     <p>
-                        Property wrappers provide 2 main features: automatic dirtying for push model and automatic delegate broadcasting
+                        Initialy  A lightweight struct containing a property value that broadcasts a delegate on value change.
                     </p>
                 </Description>
             </PortfolioItem>
@@ -90,7 +90,7 @@
                     <p>
                         This is a C++ plugin extending Epic's Gameplay Ability System, creating a solid foundation for using GAS and eliminating boilerplate code. Its key feature, demonstrated above, is the AvatarActorExtension component.
                         <br>
-                        The AvatarActorExtension component is a generalized component that can initialize/uninitialize an Avatar Actor, given an AbilitySystemComponent (and optional AbilitySets). It stays agnostic to AbilitySystemComponent location and supports any Avatar Actor. For Avatar Actors that are Pawns, there is a more specialized "PawnAvatarActorExtension" component which inherits and provides extra GAS input binding logic. 
+                        The AvatarActorExtension component is a generalized component that can initialize/uninitialize  an Avatar Actor, given an AbilitySystemComponent (and optional AbilitySets). It stays agnostic to AbilitySystemComponent location and supports any Avatar Actor. For Avatar Actors that are Pawns, there is a more specialized "PawnAvatarActorExtension" component which inherits and provides extra GAS input binding logic. 
                     </p>
                 </Description>
             </PortfolioItem>
