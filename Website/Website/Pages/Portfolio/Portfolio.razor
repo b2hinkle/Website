@@ -101,7 +101,7 @@
             <PortfolioItem TitleText="Input Setup" VideoSrc="videos/Portfolio/Demos/Demo_InputSetup.mp4" TeamSize="2" GithubLink="https://github.com/brian2524/InputSetup" OnFullscreenBtnPressed=@ShowPopupModal>
                 <Description>
                     <p>
-                        This is a C++ plugin improving the input workflow both in code and editor. It makes use of Gameplay Tags to identify Input Actions via a configurable map in the project settings. The map is stored in an EngineSubsystem and is treated as a centralized place for all Input Actions. This removes the need for defining Input Actions in C++ and prevents code redundancy@*in situations where separate classes require the same input action*@. Modules external to the game project can also contribute to the Input Actions map through a provided Primary Data Asset. Game Features plugins are also supported for dynamic adding of input actions.
+                        This is a C++ plugin improving the input workflow both in code and editor. It makes use of Gameplay Tags to identify Input Actions via a configurable map in the project settings. The map is stored in an EngineSubsystem and is treated as a centralized place for all Input Actions. This removes the need for defining Input Actions in C++ and prevents code redundancy@*in situations where separate classes require the same input action*@. Modules external to the game project can also contribute to the Input Actions map through a provided Primary Data Asset. Adding input actions is also supported for Dynamically loaded modules (e.g. Game Features).
                     </p>
                 </Description>
             </PortfolioItem>
@@ -225,6 +225,6 @@ Most of the time my brother and I work together and I find collaboration makes e
 
     public void ResumeButtonPressed()
     {
-        NavManager.NavigateTo("/Resume/Link/Here");
+        NavManager.NavigateTo("");
     }
 }
