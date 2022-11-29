@@ -206,7 +206,7 @@
     }
 }
 
-export function OnAfterRenderAsync(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile)
+export function Init(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile)
 {
     new Parallaxer(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
 }

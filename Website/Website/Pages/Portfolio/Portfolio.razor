@@ -5,7 +5,7 @@
 @inject NavigationManager NavManager
 @inject IJSRuntime jsRuntime;
 
-<Parallax/>
+<Parallax @ref="ParallaxComponent" autoInit=false />
 <SALWrapper/>
 
 <!-- Nav Bar -->
@@ -53,13 +53,15 @@
     <header id="header" class="ParallaxContainer d-flex flex-column align-items-center justify-content-center">
         @if (isMobile == null)
         {
-            <div style="background-color:antiquewhite;"/>
+            <div style="position:absolute; height:100%; width:100%;" class="ParallaxContainer d-flex flex-column align-items-center justify-content-center">
+                <p class="text-white" style="font-size:2rem;">Loading video...</p>
+            </div>
         }
         else if (isMobile == false)
         {
             <iframe id="HeaderVideo" class="ParallaxElement" data-parallaxspeed=".25" src=@($"https://www.youtube.com/embed/{HeaderYoutubeVideoId}?yt:stretch=16:9&vq=hd1080p&autoplay=1&loop=1&playlist={HeaderYoutubeVideoId}&color=red&mute=1&playsinline=1&iv_load_policy=3&rel=0&showinfo=0&autohide=1&controls=0&modestbranding=1") allowtransparency="true" frameborder="0" allow="autoplay; encrypted-media;" />
         }
-        else if (isMobile == true)
+        else if (isMobile == true)  // can't youtube embed autoplay on mobile so we'll just use the video tag for autoplay
         {
             <video id="HeaderVideo" muted autoplay loop playsinline disablePictureInPicture src="videos/Portfolio/Header.mp4" />
         }
@@ -214,6 +216,7 @@ Most of the time my brother and I work together and I find collaboration makes e
 @code 
 {
     private IJSObjectReference jsObjRef;    // js interactor
+    private Parallax ParallaxComponent;
     private int year = DateTime.Now.Year;
     private PortfolioItem ModalPortfolioItem;
     private bool? isMobile { get; set; } = null;
@@ -228,6 +231,7 @@ Most of the time my brother and I work together and I find collaboration makes e
 
             isMobile = await jsRuntime.InvokeAsync<bool>("isMobile");
             StateHasChanged();
+            await ParallaxComponent.Init();
         }
     }
 

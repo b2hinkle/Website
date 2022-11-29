@@ -14,6 +14,8 @@
     private IJSObjectReference jsObjRef;    // js interactor
     
     [Parameter]
+    public bool autoInit { get; set; } = true;
+    [Parameter]
     public string wrapperID { get; set; } = "ParallaxWrapper";
     [Parameter]
     public string parallaxContainerClass { get; set; } = ".ParallaxContainer";
@@ -28,7 +30,14 @@
         if (firstRender)
         {
             jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Animation/Parallax.razor.js");
-            await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync", wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
+            if (autoInit)
+            {
+                await Init();
+            }
         }
+    }
+    public async Task Init()
+    {
+        await jsObjRef.InvokeVoidAsync("Init", wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
     }
 }
