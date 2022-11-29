@@ -51,7 +51,18 @@
 <div id="ParallaxWrapper">
     <h1 style="position:absolute;"></h1> @* dummy heading to prevent Blazor from scrolling to one of the headings lower in the page on page load *@
     <header id="header" class="ParallaxContainer d-flex flex-column align-items-center justify-content-center">
-        <iframe id="HeaderVideo" class="ParallaxElement" data-parallaxspeed=".25" src=@($"https://www.youtube.com/embed/{HeaderYoutubeVideoId}?yt:stretch=16:9&vq=hd1080p&autoplay=1&loop=1&playlist={HeaderYoutubeVideoId}&color=red&mute=1&playsinline=1&iv_load_policy=3&rel=0&showinfo=0&autohide=1&controls=0&modestbranding=1") allowtransparency="true" frameborder="0" allow="autoplay; encrypted-media;" />
+        @if (isMobile == null)
+        {
+            <div style="background-color:antiquewhite;"/>
+        }
+        else if (isMobile == false)
+        {
+            <iframe id="HeaderVideo" class="ParallaxElement" data-parallaxspeed=".25" src=@($"https://www.youtube.com/embed/{HeaderYoutubeVideoId}?yt:stretch=16:9&vq=hd1080p&autoplay=1&loop=1&playlist={HeaderYoutubeVideoId}&color=red&mute=1&playsinline=1&iv_load_policy=3&rel=0&showinfo=0&autohide=1&controls=0&modestbranding=1") allowtransparency="true" frameborder="0" allow="autoplay; encrypted-media;" />
+        }
+        else if (isMobile == true)
+        {
+            <video id="HeaderVideo" muted autoplay loop playsinline disablePictureInPicture src="videos/Portfolio/Header.mp4" />
+        }
         <div style="position: absolute; min-height: 100%; min-width: 100%; background-color: rgba(26, 188, 156, .5);"/>
         <div style="position:relative; width:100vw; height:100vh; display:flex; z-index:11;">
             <span style="align-self: flex-end; font-size: 2rem;" class="text-white">
@@ -61,7 +72,7 @@
     </header>
 
     <section id="projects" class="page-section portfolio-section">
-            <h2 class="page-section-heading text-center">Projects</h2>
+        <h2 class="page-section-heading text-center">Projects</h2>
     
 
 
@@ -205,6 +216,7 @@ Most of the time my brother and I work together and I find collaboration makes e
     private IJSObjectReference jsObjRef;    // js interactor
     private int year = DateTime.Now.Year;
     private PortfolioItem ModalPortfolioItem;
+    private bool? isMobile { get; set; } = null;
     private string HeaderYoutubeVideoId = "pewCBM5C0vA";
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -213,6 +225,9 @@ Most of the time my brother and I work together and I find collaboration makes e
         {
             jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Portfolio/Portfolio.razor.js");
             await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
+
+            isMobile = await jsRuntime.InvokeAsync<bool>("isMobile");
+            StateHasChanged();
         }
     }
 

@@ -92,3 +92,11 @@ function ImmediateChildrenQuerySelectAll(elem, callback)
     return Array.from(elem.children).filter(callback);
 }
 
+/**
+ * Returns true if mobile device, false if desktop
+ */
+function isMobile()
+{
+    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(navigator.userAgent);
+}
+
