@@ -13,7 +13,7 @@
 	<div class="container-fluid">
         <span class="navbar-brand">
             <a href="/" class="navbar-brand mb-0 h1">Brian Hinkle</a>
-            <button type="button" class="btn btn-sm btn-outline-light" onclick="@ResumeButtonPressed">My Resumé</button>
+            <button type="button" class="btn btn-sm btn-outline-light" onclick="window.open('@ResumeFilePath', '_blank')">My Resumé</button>
         </span>
         <button id="NavbarExpandButton" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -216,6 +216,7 @@ Most of the time my brother and I work together and I find collaboration makes e
 @code 
 {
     private IJSObjectReference jsObjRef;    // js interactor
+    private string ResumeFilePath = "Documents/Resume_Brian_Hinkle.pdf";
     private Parallax ParallaxComponent;
     private int year = DateTime.Now.Year;
     private PortfolioItem ModalPortfolioItem;
@@ -244,10 +245,5 @@ Most of the time my brother and I work together and I find collaboration makes e
     {
         ModalPortfolioItem = PortfolioItemToShowModelFor;
         await jsObjRef.InvokeVoidAsync("ShowPopupModal");
-    }
-
-    public void ResumeButtonPressed()
-    {
-        NavManager.NavigateTo("Documents/Resume_Brian_Hinkle.pdf", true);
     }
 }
