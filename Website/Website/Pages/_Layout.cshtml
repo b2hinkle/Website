@@ -8,22 +8,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="~/" />
-    
-    @*---------Added---------*@
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="PortfolioTemplateResources/assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="Setup/FontAwesomeAll.js"></script>
-        <!-- Google fonts-->
-        <link href="Setup/GoogleFonts1.css" rel="stylesheet" type="text/css" />
-        <link href="Setup/GoogleFonts2.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="SAL/sal.css" />
-    @*---------Added---------*@
-    <link href="css/MyStyles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
-
-    <link href="Website.styles.css" rel="stylesheet" />     @*this is the thing that looks for the css file associated with a certain page at the same file path (ie. Index.razor.css). File not found error if project doesn't have any of those*@
+    <link href="Website.styles.css" rel="stylesheet" />
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
 <body>
@@ -39,30 +26,7 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-    
 
-
-
-
-    <script src="_framework/blazor.server.js"></script>     @* default script with project template stays above our scripts *@
-    
-
-
-
-    @*---------Added---------*@
-    <script src="js/MyJavascriptFunctions.js"></script>    @*my custom js functions*@
-    <!-- Core theme JS-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    @*------added jquery JavaScript Bootstrap Bundle with Popper. This allowed for navbar-toggle functionality ------*@
-    <script src="Setup/jquery-3.5.1.slim.min.js"></script>
-    <script src="Setup/bootstrap.bundle.min.js"></script>
-    
-    <!-- * *                      Animate on Scroll                               * *-->
-    <script src="SAL/sal.js"></script>
-    <!-- * *                                                                      * *-->
-    
+    <script src="_framework/blazor.server.js"></script>
 </body>
 </html>
