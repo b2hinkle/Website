@@ -31,13 +31,13 @@
         const scrollingEl = document.documentElement || document.body;
         const dummyAnimation = new Animation();
         const dummyKeyframeEffect = new KeyframeEffect(null, { }, { });
-
+        const scrollTop = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop);
         return this.Window !== undefined
             && this.Window.innerHeight !== undefined
+            && scrollTop !== undefined
             && document.getElementById !== undefined
             && document.querySelectorAll !== undefined
             && scrollingEl !== undefined
-            && scrollingEl.scrollTop !== undefined
             && scrollingEl.offsetHeight !== undefined
             && scrollingEl.offsetTop !== undefined
             && scrollingEl.dataset !== undefined
@@ -153,8 +153,8 @@
         }*/
 
         // Scroll the wrapper (whole page)
-        const documentScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        this.WapperOffset += (documentScrollTop - this.WapperOffset) * this.WrapperSpeed;
+        const scrollTop = window.scrollY || window.pageYOffset || document.body.scrollTop + (document.documentElement && document.documentElement.scrollTop || 0);
+        this.WapperOffset += (scrollTop - this.WapperOffset) * this.WrapperSpeed;
         this.WrapperScrollTop = (Math.round(this.WapperOffset * 100) / 100);
         this.TranslateElement(this.Wrapper, 0, -this.WrapperScrollTop, 0);
 
@@ -182,7 +182,13 @@
 
     TranslateElement(inEl, inX, inY, inZ)
     {
+        if (inX == 0 && inY == 0 && inZ == 0)
+        {
+            return;
+        }
+
         const styleString = `translate3d(${inX}px, ${inY}px, ${inZ}px)`;
+
 
         inEl.style.msTransform = styleString;       // IE
         inEl.style.webkitTransform = styleString;   // Chrome and Safari
@@ -200,7 +206,7 @@
     }
 }
 
-export function OnAfterRenderAsync(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile)
+export function Init(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile)
 {
     new Parallaxer(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
 }

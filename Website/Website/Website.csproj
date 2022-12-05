@@ -1,39 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Data\**" />
-    <Content Remove="Data\**" />
-    <EmbeddedResource Remove="Data\**" />
-    <None Remove="Data\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Pages\Portfolio.razor.js" />
-    <None Remove="Pages\TestPages\Index.razor.js" />
-    <None Remove="Pages\TestPages\ParallaxWindowTest.razor.js" />
-    <None Remove="Shared\Components\Parallax - Copy.razor.js" />
-    <None Remove="Shared\Components\Parallax.razor.js" />
-    <None Remove="Shared\Components\ParallaxWrapper - Copy.razor.js" />
-    <None Remove="Shared\Components\ScrollTriggerParallax.razor.js" />
-    <None Remove="Shared\Layouts\MainLayout.razor.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Shared\Components\Animation\Parallax.razor.js" />
-    <Content Include="Pages\Portfolio.razor.js" />
-    <Content Include="Pages\PortfolioTemplate.razor.js" />
-    <Content Include="Pages\TestPages\OldPortfolio.razor.js" />
-    <Content Include="Shared\Components\Animation\SALWrapper.razor.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
 
 </Project>
