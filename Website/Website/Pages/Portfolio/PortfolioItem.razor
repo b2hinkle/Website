@@ -1,28 +1,38 @@
-﻿<div class="container" style="position:relative;">
-    <div class="row align-items-center" style="margin-left:0; margin-right:0; background-color:rgb(100,100,100); background-color:rgba(255,255,255,.25);"> @* fallback color if alpha isn't supported *@
-        <div data-sal-wrapper="zoom-out" class="col-md-4 d-flex flex-column align-items-center justify-content-center">
-            <h2 class="text-white">
-                @TitleText
-            </h2>
-        </div>
-
-        <div class="col-md-8" style="position:relative; height:100%; overflow:hidden; padding:0;">
-            <div id="PortfolioItemVideoDiv" onclick="@OnFullecreenBtnPressed" class="col-md-8 d-flex flex-column align-items-center justify-content-center" style="width:100%; height:100%">
+﻿<div class="container-fluid portfolio-item" style="position:relative;">
+    <div class="row" style="margin-left:0; margin-right:0;"> @* fallback color if alpha isn't supported *@
+        <div class="col-md-6" style="position:relative; height:50vh; overflow:hidden; padding:0;">
+            <div id="PortfolioItemVideoDiv" onclick="@OnFullecreenBtnPressed" class="d-flex flex-column align-items-center justify-content-center" style="width:100%; height:100%">
                 <video muted autoplay loop playsinline disablePictureInPicture src="@VideoSrc" style="position: relative; width: 100%; cursor: pointer;" />
                 <div id="PortfolioItemVideoDivDarkOverlay" />
                 <svg id="FullscreenIcon" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path>
                 </svg>
             </div>
-            
+        </div>
+
+        <div data-sal-wrapper="zoom-out" class="col-md-6 text-white">
+            <div class="text-center">
+                <h2 class="text-white">
+                    @TitleText
+                </h2>
+                <div style="margin:1rem 0;">
+                    <div class="item-info">
+                        <img src="images/github_small.png" style="width:1.25rem; height:1.25rem; margin-right: .5rem;" /><a href="@GithubLink" target="_blank" rel="noopener noreferrer">Github</a>
+                    </div>
+                    <div class="item-info text-white">
+                        Team Size: @TeamSize
+                    </div>
+                </div>
+                @Description
+            </div>
         </div>
     </div>
     <div class="row text-white mb-4">
         <div class="col-md-1">
-            <img src="images/github_small.png" style="width:1.25rem; height:1.25rem; margin-right: .5rem;"/><a href="@GithubLink" target="_blank" rel="noopener noreferrer">Github</a>
+
         </div>
         <div class="col-md-2">
-            Team Size: @TeamSize
+
         </div>
         <div class="col-md-1">
             
@@ -41,7 +51,7 @@
     <div data-sal-wrapper="zoom-out" class="row align-items-center">
         <div class="col-md-2"/>
         <div class="col-md-8 text-center text-white">
-            @Description
+            
         </div>
         <div class="col-md-2"/>
     </div>
