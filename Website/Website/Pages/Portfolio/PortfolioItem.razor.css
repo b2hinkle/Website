@@ -109,9 +109,13 @@
 {
     padding: 6rem 0;
 }
-
-.item-info 
+.portfolio-item-title
 {
-    padding: .2rem 0;
+	font-weight:800;
+	font-size: 1.25rem;
+}
+.portfolio-item-description
+{
+	padding: 1.15rem 0;
 }
 
