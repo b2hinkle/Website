@@ -225,7 +225,7 @@ export function OnAfterRenderAsync()
 
     const nBM = new NavBarHighlightingManager();
 
-    const VideoEls = document.getElementById("ParallaxWrapper").getElementsByTagName("video");
+    const VideoEls = document.getElementById("SlidleyWrapper").getElementsByTagName("video");
     const vPM = new VideoPlayManager(VideoEls);
 
     // If supported, show a scroll indicator and show/hide it based on how far we are from the top of the page

@@ -1,6 +1,6 @@
-﻿class Parallaxer
+﻿class Slidley
 {
-    constructor(inWrapperID = "ParallaxWrapper", inParallaxContainerClass = ".ParallaxContainer", inParallaxElementClass = ".ParallaxElement", inWrapperSpeed = 1, allowOnMobile = true)
+    constructor(inWrapperID = "SlidleyWrapper", inParallaxContainerClass = ".ParallaxContainer", inParallaxElementClass = ".ParallaxElement", inWrapperSpeed = 1, allowOnMobile = true)
     {
         this.WrapperID = inWrapperID;
         this.ParallaxContainerClass = inParallaxContainerClass;
@@ -208,5 +208,5 @@
 
 export function Init(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile)
 {
-    new Parallaxer(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
+    new Slidley(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
 }
