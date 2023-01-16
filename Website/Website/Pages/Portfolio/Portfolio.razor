@@ -119,6 +119,10 @@
                             for initializing/uninitializing an Avatar Actor when provided with an AbilitySystemComponent and optional AbilitySets. 
                             It stays agnostic to AbilitySystemComponent location and supports any Avatar Actor. For Avatar Actors that are Pawns, 
                             a more specialized "PawnAvatarActorExtension" component inherits and provides extra GAS input binding logic.
+                            The plugin uses the "Input Setup" plugin and expands its functionality to the ability system to provide a new and more flexible way of handling ability input
+                            binding. When an input action event fires, it calls ability input events relevant to the input action's tag.
+                            
+                            @*It uses input action tags to listen for input action events and fires relevant ability input events. It listens for input action events to fire ability input events with the input action's tag in mind. It uses the input action's identification tags to fire ability input events accordingly.*@
                         </p>
                     </Description>
                     <Contributions>
