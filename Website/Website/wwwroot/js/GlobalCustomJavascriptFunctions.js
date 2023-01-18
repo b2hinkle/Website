@@ -80,18 +80,6 @@ function getCSSCustomPropertyValue(customPropertyName, element, castAs = 'string
     return response;
 };
 
-/*!
- * Get all direct descendant elements that match a test condition
- * (c) 2021 Chris Ferdinandi, MIT License, https://gomakethings.com
- * @param  {Node}   elem     The element to get direct descendants for
- * @param  {Function} callback The test condition
- * @return {Array}           The matching direct descendants
- */
-function ImmediateChildrenQuerySelectAll(elem, callback)
-{
-    return Array.from(elem.children).filter(callback);
-}
-
 /**
  * Returns true if mobile device, false if desktop
  */
