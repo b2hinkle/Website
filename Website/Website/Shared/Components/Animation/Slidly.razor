@@ -16,7 +16,7 @@
     [Parameter]
     public bool autoInit { get; set; } = true;
     [Parameter]
-    public string wrapperID { get; set; } = "SlidleyWrapper";
+    public string wrapperID { get; set; } = "SlidlyWrapper";
     [Parameter]
     public string parallaxContainerClass { get; set; } = ".ParallaxContainer";
     [Parameter]
@@ -29,7 +29,7 @@
     {
         if (firstRender)
         {
-            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Animation/Slidley.razor.js");
+            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Animation/Slidly.razor.js");
             if (autoInit)
             {
                 await Init();

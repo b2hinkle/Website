@@ -5,7 +5,7 @@
 @inject NavigationManager NavManager
 @inject IJSRuntime jsRuntime;
 
-<Slidley @ref="SlidleyComponent" autoInit=false />
+<Slidly @ref="SlidlyComponent" autoInit=false />
 <SALWrapper/>
 
 <!-- Nav Bar -->
@@ -48,7 +48,7 @@
 <div id="ScrollIndicator" style="position:fixed; top:80%; left: 50%; z-index:5;"/>
 
 <!-- Page's Content -->
-<div id="SlidleyWrapper">
+<div id="SlidlyWrapper">
     <h1 style="position:absolute;"></h1> @* dummy heading to prevent Blazor from scrolling to one of the headings lower in the page on page load *@
     <header id="header" class="ParallaxContainer d-flex flex-column align-items-center justify-content-center">
         @if (isMobile == null)
@@ -268,7 +268,7 @@
 {
     private IJSObjectReference jsObjRef;    // js interactor
     private string ResumeFilePath = "Documents/Resume_Brian_Hinkle.pdf";
-    private Slidley SlidleyComponent;
+    private Slidly SlidlyComponent;
     private int year = DateTime.Now.Year;
     private PortfolioItem ModalPortfolioItem;
     private bool? isMobile { get; set; } = null;
@@ -283,7 +283,7 @@
 
             isMobile = await jsRuntime.InvokeAsync<bool>("isMobile");
             StateHasChanged();
-            await SlidleyComponent.Init();
+            await SlidlyComponent.Init();
         }
     }
 
