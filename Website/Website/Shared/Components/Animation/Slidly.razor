@@ -1,12 +1,12 @@
 ﻿@*
-    This component provides the ability to parallax by providing .ParallaxContainer and .ParallaxElement classes and data-parallaxspeed data attribute. Parallax transformations done on GPU
+    Slidly provides the ability to parallax by providing .ParallaxContainer and .ParallaxElement classes and data-parallaxspeed data attribute. Parallax transformations done on GPU
     Workflow:
     - .ParallaxElement: Actual element that will parallax
         - must be an immediate child of .ParallaxContainer
     - data-parallaxspeed: Data attribute placed on ParallaxElement to modify its scroll speed (it's a multiplier)
         - 1 is normal scroll speed
         - 0 is no scrolling
-    - .ParallaxContainer: Determines the parallax positioning of its parallax elements. Any parallax element should be at its original position when the container reaches the middle of the viewport.
+    - .ParallaxContainer: Determines the parallax positioning of its parallax elements. Parallax elements are at their original document-flow positions when their containers reach the middle of the viewport.
 *@
 @inject IJSRuntime jsRuntime;
 @code 
@@ -16,7 +16,7 @@
     [Parameter]
     public bool autoInit { get; set; } = true;
     [Parameter]
-    public string wrapperID { get; set; } = "ParallaxWrapper";
+    public string wrapperID { get; set; } = "SlidlyWrapper";
     [Parameter]
     public string parallaxContainerClass { get; set; } = ".ParallaxContainer";
     [Parameter]
@@ -29,7 +29,7 @@
     {
         if (firstRender)
         {
-            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Animation/Parallax.razor.js");
+            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Animation/Slidly.razor.js");
             if (autoInit)
             {
                 await Init();

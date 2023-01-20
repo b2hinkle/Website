@@ -6,4 +6,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Shared\Components\Animation\Slidly.razor.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Shared\Components\Animation\Slidly.razor.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Plugins\Slidly\Slidly.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Documents\" />
+  </ItemGroup>
+
 </Project>

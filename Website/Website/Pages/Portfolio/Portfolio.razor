@@ -5,16 +5,13 @@
 @inject NavigationManager NavManager
 @inject IJSRuntime jsRuntime;
 
-<Parallax @ref="ParallaxComponent" autoInit=false />
+<Slidly @ref="SlidlyComponent" autoInit=false />
 <SALWrapper/>
 
 <!-- Nav Bar -->
 <nav id="PortfolioNavbar" class="navbar fixed-top navbar-expand-sm navbar-dark" style="background-color: rgba(33, 37, 41, .75);">
 	<div class="container-fluid">
-        <span class="navbar-brand">
-            <a href="/" class="navbar-brand mb-0 h1">Brian Hinkle</a>
-            <button type="button" class="btn btn-sm btn-outline-light" onclick="window.open('@ResumeFilePath', '_blank')">My Resumé</button>
-        </span>
+        <a href="/" class="navbar-brand mb-0 h1">Brian Hinkle</a>
         <button id="NavbarExpandButton" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -22,7 +19,7 @@
 		<div class="collapse navbar-collapse" id="navbarItems">
             <ul class="nav-pills navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a id="projectsNavLink" class="nav-link" style="cursor: pointer;" @onclick:preventDefault @onclick="@( () => ScrollToElementWithNavbarOffset("projects") )"      >Projects</a>
+                    <a id="projectsNavLink" class="nav-link" style="cursor: pointer;" onclick:preventDefault @onclick="@( () => ScrollToElementWithNavbarOffset("projects") )"      >Projects</a>
                 </li>
                 <li class="nav-item">
                     <a id="aboutNavLink" class="nav-link" style="cursor: pointer;" @onclick:preventDefault @onclick="@( () => ScrollToElementWithNavbarOffset("about")     )"      >About</a>
@@ -48,7 +45,7 @@
 <div id="ScrollIndicator" style="position:fixed; top:80%; left: 50%; z-index:5;"/>
 
 <!-- Page's Content -->
-<div id="ParallaxWrapper">
+<div id="SlidlyWrapper">
     <h1 style="position:absolute;"></h1> @* dummy heading to prevent Blazor from scrolling to one of the headings lower in the page on page load *@
     <header id="header" class="ParallaxContainer d-flex flex-column align-items-center justify-content-center">
         @if (isMobile == null)
@@ -67,75 +64,122 @@
         }
         <div style="position: absolute; min-height: 100%; min-width: 100%; background-color: rgba(26, 188, 156, .5);"/>
         <div style="position:relative; width:100vw; height:100vh; display:flex; z-index:11;">
-            <span style="align-self: flex-end; font-size: 2rem;" class="text-white">
+            <h2 style="align-self: flex-end; font-size: 2rem;" class="text-white section-heading">
                 BRIAN HINKLE - MULTIPLAYER GAME PROGRAMMER
-            </span>
+            </h2>
         </div>
     </header>
 
     <section id="projects" class="page-section portfolio-section">
-        <h2 class="page-section-heading text-center">Projects</h2>
+        <h2 class="section-heading text-center">Projects</h2>
     
 
 
         
 
-        
-        <section class="portfolio-item">
-            <PortfolioItem TitleText="Strength collision queries" VideoSrc="videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" GithubLink="https://github.com/brian2524/GameCore/tree/master/Source/GameCore/Public/BlueprintFunctionLibraries/CollisionQuery" OnFullscreenBtnPressed=@ShowPopupModal>
-                <Description>
-                    <p>
-                        Developed custom collision queries that are dependent on the concept of strength. They become weaker as they ricochet and travel through penetrable hits (the air as well). 
-                        Implementing penetrations was done by creating a collection of specialized collision queries that introduce the concept of penetrations, providing optional exit hits and keeping the distinction 
-                        between blocking hits and overlaps. All collision queries are generic to both line traces and shape sweeps.
-                        <br>
-                        The video demonstrates strength collision queries being used with sphere-sweeping in a shooter type game.
-                    </p>
-                </Description>
-            </PortfolioItem>
-        </section>
-        <section class="portfolio-item">
-            <PortfolioItem TitleText="Ability System Setup" VideoSrc="videos/Portfolio/Demos/Demo_AbilitySystemSetup.mp4" TeamSize="2" GithubLink="https://github.com/ChristianHinko/AbilitySystemSetup" OnFullscreenBtnPressed=@ShowPopupModal>
-                <Description>
-                    <p>
-                        Developed a C++ plugin that extends Epic's Gameplay Ability System. It provides a foundation and
-                        an efficient workflow to speed up development, eliminate boilerplate code, and provide
-                        scalable design.
-                        <br>
-                        The AvatarActorExtension component (demonstrated above) is a generalized component 
-                        for initializing/uninitializing an Avatar Actor when provided with an AbilitySystemComponent and optional AbilitySets. 
-                        It stays agnostic to AbilitySystemComponent location and supports any Avatar Actor. For Avatar Actors that are Pawns, 
-                        a more specialized "PawnAvatarActorExtension" component inherits and provides extra GAS input binding logic.
-                    </p>
-                </Description>
-            </PortfolioItem>
-        </section>
-        <section class="portfolio-item">
-            <PortfolioItem TitleText="Property Wrapper" VideoSrc="videos/Portfolio/Demos/Demo_PropertyWrapper.mp4" TeamSize="2" GithubLink="https://github.com/brian2524/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
-                <Description>
-                    <p>
-                        Developed a generic property wrapper that allows you to respond to changes in your variables’ value. This simplifies codebases and keeps them clean. 
-                        The initial intention was to improve the workflow of push-model replication but use cases have become more diverse. The wrapper is implemented as a lightweight UStruct, 
-                        with functionality implemented generically across all types.
-                        <br>
-                        The video demonstrates the use of the integer property wrapper with clip ammo. 
-                        It binds to its changes to print to the screen when the clip ammo changes.
-                    </p>
-                </Description>
-            </PortfolioItem>
-        </section>
-        <section class="portfolio-item">
-            <PortfolioItem TitleText="Input Setup" VideoSrc="videos/Portfolio/Demos/Demo_InputSetup.mp4" TeamSize="2" GithubLink="https://github.com/ChristianHinko/InputSetup" OnFullscreenBtnPressed=@ShowPopupModal>
-                <Description>
-                    <p>
-                        Developed a C++ plugin that extends Enhanced Input and improves workflows both in code and in editor by streamlining the process for defining and accessing Input Actions.
-                        It makes use of Gameplay Tags to identify Input Actions via a configurable map in the project settings. 
-                        The map is stored in an EngineSubsystem, creating a centralized place for all Input Actions and eliminating duplicate code scenarios. 
-                        Modules external to the game project can also contribute to the Input Actions map through a provided Primary Data Asset. 
-                        Dynamically loaded modules (e.g. Game Features) are also supported for adding input actions.
-                    </p>
-                </Description>
-            </PortfolioItem>
+        <section class="d-flex align-items-center justify-content-center">
+            <div style="width:90vw;">
+                <PortfolioItem TitleText="Strength collision queries" VideoSrc="videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" Duration="~2 months" ProjectStatus="Finished" GithubLink="https://github.com/brian2524/GameCore/tree/master/Source/GameCore/Public/BlueprintFunctionLibraries/CollisionQuery" OnFullscreenBtnPressed=@ShowPopupModal>
+                    <Description>
+                        <p>
+                            Developed custom collision queries that are dependent on the concept of strength. They become weaker as they ricochet and travel through penetrable hits (the air as well). 
+                            This is built off a collection of specialized collision queries that build off each other, each implementing its own feature.
+                            <br>
+                            Penetration queries penetrate blocking hits until a specified condition with a hit is met, and return data preserves the distinction between blocking hits and overlaps.
+                            Exit hits can optionally be included in the return data and are ordered in the direction of the query with the entrance hits.
+                            <br>
+                            All collision queries are generic to both line traces and shape sweeps. The video demonstrates strength collision queries being used with sphere-sweeping in a shooter-type game.
+                        </p>
+                    </Description>
+                    <Contributions>
+                        <ul style="list-style-type: none; margin: 0; padding: 0;">
+                            <li>> Design brainstorming</li>
+                            <li>> Scene casting with exit hits</li>
+                            <li>> Penetration scene casting</li>
+                            <li>> Strength scene casting</li>
+                            <li>> Ricochet scene casting</li>
+                            <li>> Structures for returning query data</li>
+                            <li>> Strength/nerfing system for penetrable and ricochetable hits</li>
+                            <li>> Optimization algorithm to minimize query area as much as possible when performing scene casts for exit hits</li>
+                            <li>> Algorithm to make backwards hit data relative to the foward direction</li>
+                            <li>> Function for modifying a HitResult's data by adjusting its TraceStart and TraceEnd by time.</li>
+                            <li>> Algorithm for combining and ordering entrance and exit hits in the correct direction</li>
+                            <li>> Functions giving more control over how custom scene casts return their data</li>
+                        </ul>
+                    </Contributions>
+                </PortfolioItem>
+                <PortfolioItem TitleText="Ability System Setup" VideoSrc="videos/Portfolio/Demos/Demo_AbilitySystemSetup.mp4" TeamSize="2" Duration="~1 year" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/AbilitySystemSetup" OnFullscreenBtnPressed=@ShowPopupModal>
+                    <Description>
+                        <p>
+                            Developed a C++ plugin that extends Epic's Gameplay Ability System. It provides a foundation and
+                            an efficient workflow to speed up development, eliminate boilerplate code, and improve scalability.
+                            <br>
+                            The AvatarActorExtension component (demonstrated above) is a generalized component 
+                            for initializing/uninitializing an Avatar Actor when provided with an AbilitySystemComponent and optional AbilitySets. 
+                            It stays agnostic to AbilitySystemComponent location and supports any Avatar Actor. For Avatar Actors that are Pawns, 
+                            a more specialized "PawnAvatarActorExtension" component inherits and provides extra logic for ability input binding.
+                            <br>
+                            The plugin also provides a new and more efficient workflow for ability input binding, replacing GAS's input enum approach.
+                            This is achieved by utilizing the "Input Setup" plugin and expanding its use to the ability system. With this approach input events
+                            use their input action's tag to know its relevant abilities and GAS input events. The result is a fully in-editor workflow for assigning
+                            abilities to inputs via tags.
+                        </p>
+                    </Description>
+                    <Contributions>
+                        <ul style="list-style-type: none; margin: 0; padding: 0;">
+                            <li>> Design brainstorming</li>
+                            <li>> AbilitySet implementation</li>
+                            <li>> Ability input binding system</li>
+                            <li>> Avatar actor extension component's initialization/uninitialization</li>
+                            <li>> Base gameplay ability</li>
+                        </ul>
+                    </Contributions>
+                </PortfolioItem>
+                <PortfolioItem TitleText="Property Wrapper" VideoSrc="videos/Portfolio/Demos/Demo_PropertyWrapper.mp4" TeamSize="2" Duration="~16 months" ProjectStatus="Finished" GithubLink="https://github.com/brian2524/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
+                    <Description>
+                        <p>
+                            Developed a generic property wrapper that allows you to respond to changes in your variables’ value. This simplifies and cleans up code bases.
+                            The initial intention was to improve the workflow of push-model replication but use cases have become more diverse. The wrapper is implemented as a lightweight UStruct, 
+                            with functionality implemented generically across all types.
+                            <br>
+                            The video demonstrates the use of the integer property wrapper with clip ammo. 
+                            It binds to its changes to print to the screen when the clip ammo changes.
+                        </p>
+                    </Description>
+                    <Contributions>
+                        <ul style="list-style-type: none; margin: 0; padding: 0;">
+                            <li>> Design brainstorming for a generic implementation</li>
+                            <li>> Property wrapper initialization</li>
+                            <li>> Auto push model replication</li>
+                            <li>> Struct implicit conversion to the wrapped type</li>
+                            <li>> Value change event</li>
+                            <li>> Generic implementation for serialization and net serialization</li>
+                        </ul>
+                    </Contributions>
+                </PortfolioItem>
+                <PortfolioItem TitleText="Input Setup" VideoSrc="videos/Portfolio/Demos/Demo_InputSetup.mp4" TeamSize="2" Duration="~1 month" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/InputSetup" OnFullscreenBtnPressed=@ShowPopupModal>
+                    <Description>
+                        <p>
+                            Developed a C++ plugin that extends Enhanced Input and improves workflows both in code and in editor by streamlining the process for defining and accessing Input Actions.
+                            It makes use of Gameplay Tags to identify Input Actions via a configurable map in the project settings. 
+                            The map is stored in an EngineSubsystem, creating a centralized place for all Input Actions and eliminating duplicate code scenarios. 
+                            Modules external to the game project can also contribute to the Input Actions map through a provided Primary Data Asset. 
+                            Dynamically loaded modules (e.g. Game Features) are also supported for adding input actions.
+                        </p>
+                    </Description>
+                    <Contributions>
+                        <ul style="list-style-type: none; margin: 0; padding: 0;">
+                            <li>> Design brainstorming for maintainability and accessiblity of input actions</li>
+                            <li>> Input actions subsystem</li>
+                            <ul style="list-style-type: none;">
+                                <li>> Add/remove workflow for both game project and plugin input actions</li>
+                                <li>> Bookkeeping of Input actions</li>
+                            </ul>
+                            <li>> Pawn extension component for adding/removing PlayerMappableInputConfigs</li>
+                        </ul>
+                    </Contributions>
+                </PortfolioItem>
+            </div>
         </section>
 
 
@@ -153,25 +197,25 @@
         <div id="about" class="page-section text-white mb-0">
             <div class="container">
                 <!-- About Section Heading -->
-                <h2 class="page-section-heading text-center text-uppercase" style="padding-bottom:2rem;">About Me</h2>
+                <h2 class="section-heading text-center text-uppercase" style="padding-bottom:2rem;">About Me</h2>
             
                 <!-- Make divider here... -->
                 <div class="row">
                     <div class="col-lg-2"/>
                     <div data-sal-wrapper="fade" class="col-lg-8">
-                        <p class="lead" style="margin:0; text-indent: 3em;">
-                            Hi there! I'm an Unreal programmer passionate about creating games with scalable and modular gameplay systems!
-                            Game development started as a hobby, and it quickly became something I knew I wanted to pursue. Switching majors 
-                            to computer science improved my raw programming skills and unified existing knowledge I had in Unreal C++ with traditional C++.
+                        <p class="lead" style="margin:0; text-indent: 3em; line-height: 2;">
+                            Hi there! My name is Brian Hinkle and I'm a passionate game programmer, working as an indie for over 4 years.
+                            My passion for video games comes from them combining all creative disciplines with technology
+                            to create immersive and interactive experiences! This along with my interest in computers is what led me to game development.
                         </p>
-                        <p class="lead" style="margin:0; text-indent: 3em;">
-                            Sometimes I’d experience inefficiencies in my workflows, but these experiances were helpful because it taught me the value of efficiency
-                            and new approaches to design. One of my favorite parts of development is learning new things because it opens the door to better designs, 
-                            and I give high priority to design quality.
+                        <p class="lead" style="margin:0; text-indent: 3em; line-height: 2;">
+                            Having very ambitious game ideas is what initiated my interest in programming, as I would spend time researching and
+                            experimenting with design strategies in order to achieve what I wanted. Learning has become my favorite part of the
+                        development process because it opens doors to better designs!
                         </p>
-                        <p class="lead" style="margin:0; text-indent: 3em;">
-                            @*I find collaboration makes everything more fun! Now being graduated,
-                            I’m looking forward to meeting new people and making games!*@
+                        <p class="lead" style="margin:0; text-indent: 3em; line-height: 2;">
+                            While studying for my computer science degree, I would continue development and create plugins in the form of git submodules,
+                            some of which are listed here on this page! Now being graduated I'm excited to meet new developers and share my skills on new projects!
                         </p>
                     </div>
                     <div class="col-lg-2"/>
@@ -228,7 +272,7 @@
 {
     private IJSObjectReference jsObjRef;    // js interactor
     private string ResumeFilePath = "Documents/Resume_Brian_Hinkle.pdf";
-    private Parallax ParallaxComponent;
+    private Slidly SlidlyComponent;
     private int year = DateTime.Now.Year;
     private PortfolioItem ModalPortfolioItem;
     private bool? isMobile { get; set; } = null;
@@ -243,7 +287,7 @@
 
             isMobile = await jsRuntime.InvokeAsync<bool>("isMobile");
             StateHasChanged();
-            await ParallaxComponent.Init();
+            await SlidlyComponent.Init();
         }
     }
 

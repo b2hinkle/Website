@@ -63,10 +63,11 @@
     padding: 6rem 0;
 }
 
-.page-section .page-section-heading 
+.section-heading 
 {
     color: white;
     font-size: 2.25rem;
+    font-weight:700;
     line-height: 2rem;
 }
 
@@ -75,11 +76,6 @@
 .portfolio-section
 {
     background-color: rgb(19, 25, 32);
-}
-
-.portfolio-section .portfolio-item 
-{
-    padding: 6rem 0;
 }
 
 
