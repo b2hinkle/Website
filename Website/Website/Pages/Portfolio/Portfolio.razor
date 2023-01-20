@@ -100,14 +100,14 @@
                             <li>> Scene casting with exit hits</li>
                             <li>> Penetration scene casting</li>
                             <li>> Strength scene casting</li>
-                            <li>> Ricocheting scene casting</li>
+                            <li>> Ricochet scene casting</li>
                             <li>> Structures for returning query data</li>
                             <li>> Strength/nerfing system for penetrable and ricochetable hits</li>
                             <li>> Optimization algorithm to minimize query area as much as possible when performing scene casts for exit hits</li>
                             <li>> Algorithm to make backwards hit data relative to the foward direction</li>
-                            <li>> Algorithm that recalculates a HitResult's data when adjusting its TraceStart and TraceEnd by time. ~</li>
+                            <li>> Function for modifying a HitResult's data by adjusting its TraceStart and TraceEnd by time.</li>
                             <li>> Algorithm for combining and ordering entrance and exit hits in the correct direction</li>
-                            <li>> Functions providing more control over how custom scene casts return their data (used in penetration scene casting)</li>
+                            <li>> Functions giving more control over how custom scene casts return their data</li>
                         </ul>
                     </Contributions>
                 </PortfolioItem>
@@ -131,13 +131,9 @@
                     <Contributions>
                         <ul style="list-style-type: none; margin: 0; padding: 0;">
                             <li>> Design brainstorming</li>
-                            <li>> AbilitySets</li>
-                            <li>> AvatarActorExtension component as well as the more speciallized PawnAvatarActorExtension component</li>
-                            <ul style="list-style-type: none;">
-                                <li>> Initialization/uninitialization logic for avatar actors with the ability system</li>
-                                <li>> Initialization/uninitialization for AbilitySets</li>
-                                <li>> Ability input binding</li>
-                            </ul>
+                            <li>> AbilitySet implementation</li>
+                            <li>> Ability input binding system</li>
+                            <li>> Avatar actor extension component's initialization/uninitialization</li>
                             <li>> Base gameplay ability</li>
                         </ul>
                     </Contributions>
@@ -155,10 +151,10 @@
                     </Description>
                     <Contributions>
                         <ul style="list-style-type: none; margin: 0; padding: 0;">
-                            <li>> Design brainstorming</li>
+                            <li>> Design brainstorming for a generic implementation</li>
                             <li>> Property wrapper initialization</li>
-                            <li>> Push model replication</li>
-                            <li>> Struct implicit conversion to generic type</li>
+                            <li>> Auto push model replication</li>
+                            <li>> Struct implicit conversion to the wrapped type</li>
                             <li>> Value change event</li>
                             <li>> Generic implementation for serialization and net serialization</li>
                         </ul>
@@ -176,11 +172,11 @@
                     </Description>
                     <Contributions>
                         <ul style="list-style-type: none; margin: 0; padding: 0;">
-                            <li>> Design brainstorming</li>
+                            <li>> Design brainstorming for maintainability and accessiblity of input actions</li>
                             <li>> Input actions subsystem</li>
                             <ul style="list-style-type: none;">
-                                <li>> Adding/removing workflow for both game project and plugin input actions</li>
-                                <li>> Input actions bookkeeping </li>
+                                <li>> Add/remove workflow for both game project and plugin input actions</li>
+                                <li>> Bookkeeping of Input actions</li>
                             </ul>
                             <li>> Pawn extension component for adding/removing PlayerMappableInputConfigs</li>
                         </ul>
