@@ -44,8 +44,9 @@
 <!-- Scroll Indicator -->
 <div id="ScrollIndicator" style="position:fixed; top:80%; left: 50%; z-index:5;"/>
 
+<div class="GridPatternBG" style="position:fixed; width:100vw; height:100vh" /> @* fixed positioned bg for users to have something nice to see when something isn't there *@
 <!-- Page's Content -->
-<div id="SlidlyWrapper" class="GridPatternBG" style="overflow:hidden;"> @* hiding any overflow since I use a really large bg element that will overflow during page load *@
+<div id="SlidlyWrapper" style="overflow:hidden;"> @* hiding any overflow since I use a really large bg element that will overflow during page load *@
     <header id="header" class="ParallaxContainer d-flex flex-column align-items-center justify-content-center">
         @if (isMobile == null)
         {
