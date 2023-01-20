@@ -56,15 +56,15 @@
         }
         else if (isMobile == false)
         {
-            <iframe id="HeaderVideo" class="ParallaxElement" data-parallaxspeed=".25" src=@($"https://www.youtube.com/embed/{HeaderYoutubeVideoId}?yt:stretch=16:9&vq=hd1080p&autoplay=1&loop=1&playlist={HeaderYoutubeVideoId}&color=red&mute=1&playsinline=1&iv_load_policy=3&rel=0&showinfo=0&autohide=1&controls=0&modestbranding=1") allowtransparency="true" frameborder="0" allow="autoplay; encrypted-media;" />
+            <iframe id="HeaderVideo" class="LongFadeInOnStart ParallaxElement" data-parallaxspeed=".25" src=@($"https://www.youtube.com/embed/{HeaderYoutubeVideoId}?yt:stretch=16:9&vq=hd1080p&autoplay=1&loop=1&playlist={HeaderYoutubeVideoId}&color=red&mute=1&playsinline=1&iv_load_policy=3&rel=0&showinfo=0&autohide=1&controls=0&modestbranding=1") allowtransparency="true" frameborder="0" allow="autoplay; encrypted-media;" />
         }
         else if (isMobile == true)  // can't youtube embed autoplay on mobile so we'll just use the video tag for autoplay
         {
-            <video id="HeaderVideo" class="ParallaxElement" data-parallaxspeed=".25" muted autoplay loop playsinline disablePictureInPicture src="videos/Portfolio/Header.mp4" />
+            <video id="HeaderVideo" class="LongFadeInOnStart ParallaxElement" data-parallaxspeed=".25" muted autoplay loop playsinline disablePictureInPicture src="videos/Portfolio/Header.mp4" />
         }
-        <div style="position: absolute; min-height: 100%; min-width: 100%; background-color: rgba(26, 188, 156, .5);"/>
+        <div class="QuickFadeInOnStart" style="position: absolute; min-height: 100%; min-width: 100%; background-color: rgba(26, 188, 156, .5);" />
         <div style="position:relative; width:100vw; height:100vh; display:flex; z-index:11;">
-            <h2 style="align-self: flex-end; font-size: 2rem;" class="text-white section-heading">
+            <h2 style="align-self: flex-end; font-size: 2rem;" class="QuickFadeInOnStart text-white section-heading">
                 BRIAN HINKLE - MULTIPLAYER GAME PROGRAMMER
             </h2>
         </div>

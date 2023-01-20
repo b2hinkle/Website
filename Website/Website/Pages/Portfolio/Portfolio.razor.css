@@ -20,6 +20,32 @@
     }
 }
 
+.LongFadeInOnStart
+{
+    -o-animation: FadeIn 2s linear;
+    -webkit-animation: FadeIn 2s linear;
+    -moz-animation: FadeIn 2s linear;
+    animation: FadeIn 2s linear;
+}
+
+.QuickFadeInOnStart
+{
+    -o-animation: FadeIn 1s linear;
+    -webkit-animation: FadeIn 1s linear;
+    -moz-animation: FadeIn 1s linear;
+    animation: FadeIn 1s linear;
+}
+
+@keyframes FadeIn {
+    from {
+        opacity: .001;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 #ParallaxWrapper
 {
     /* ----our color pallet i guess---- */
