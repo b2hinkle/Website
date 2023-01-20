@@ -11,10 +11,7 @@
 <!-- Nav Bar -->
 <nav id="PortfolioNavbar" class="navbar fixed-top navbar-expand-sm navbar-dark" style="background-color: rgba(33, 37, 41, .75);">
 	<div class="container-fluid">
-        <span class="navbar-brand">
-            <a href="/" class="navbar-brand mb-0 h1">Brian Hinkle</a>
-            <button type="button" class="btn btn-sm btn-outline-light" onclick="window.open('@ResumeFilePath', '_blank')">My Résumé</button>
-        </span>
+        <a href="/" class="navbar-brand mb-0 h1">Brian Hinkle</a>
         <button id="NavbarExpandButton" type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -22,7 +19,7 @@
 		<div class="collapse navbar-collapse" id="navbarItems">
             <ul class="nav-pills navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a id="projectsNavLink" class="nav-link" style="cursor: pointer;" @onclick:preventDefault @onclick="@( () => ScrollToElementWithNavbarOffset("projects") )"      >Projects</a>
+                    <a id="projectsNavLink" class="nav-link" style="cursor: pointer;" onclick:preventDefault @onclick="@( () => ScrollToElementWithNavbarOffset("projects") )"      >Projects</a>
                 </li>
                 <li class="nav-item">
                     <a id="aboutNavLink" class="nav-link" style="cursor: pointer;" @onclick:preventDefault @onclick="@( () => ScrollToElementWithNavbarOffset("about")     )"      >About</a>

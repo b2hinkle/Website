@@ -18,4 +18,8 @@
     <None Include="wwwroot\Plugins\Slidly\Slidly.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Documents\" />
+  </ItemGroup>
+
 </Project>
