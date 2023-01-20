@@ -22,7 +22,7 @@
     [Parameter]
     public string parallaxElementClass { get; set; } = ".ParallaxElement";
     [Parameter]
-    public float wrapperSpeed { get; set; } = 1;
+    public float WrapperScrollEase { get; set; } = 1;
     [Parameter]
     public bool allowOnMobile { get; set; } = true;
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -38,6 +38,6 @@
     }
     public async Task Init()
     {
-        await jsObjRef.InvokeVoidAsync("Init", wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
+        await jsObjRef.InvokeVoidAsync("Init", wrapperID, parallaxContainerClass, parallaxElementClass, WrapperScrollEase, allowOnMobile);
     }
 }
