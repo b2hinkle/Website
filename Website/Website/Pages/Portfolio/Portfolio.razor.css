@@ -104,6 +104,17 @@
     background-color: rgb(19, 25, 32);
 }
 
+.PortfolioItemParagraph
+{
+    margin:0;
+    text-indent: 3em;
+}
+.AboutSectionParagraph
+{
+    margin:0;
+    text-indent: 3em;
+    line-height: 2;
+}
 
 
 .pattern-diagonal-stripes-sm 
