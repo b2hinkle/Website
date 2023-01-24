@@ -1,4 +1,4 @@
-﻿export function Init(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile)
+﻿export function Init(wrapperID, parallaxContainerClass, parallaxElementClass, WrapperScrollEase, allowOnMobile)
 {
-    new Slidly(wrapperID, parallaxContainerClass, parallaxElementClass, wrapperSpeed, allowOnMobile);
+    new Slidly(wrapperID, parallaxContainerClass, parallaxElementClass, WrapperScrollEase, allowOnMobile);
 }

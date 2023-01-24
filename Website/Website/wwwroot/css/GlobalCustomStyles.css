@@ -3,7 +3,15 @@
     /*--value: 5;*/
 }
 
+.GridPatternBG
+{
+    background-color:black;
+    --grid-border-colour: rgba(4, 156, 219, 0.125);
 
+    background-image: linear-gradient(var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px), linear-gradient(90deg, var(--grid-border-colour) 1px, rgba(0, 0, 0, 0) 1px);
+    background-size: 96px 96px, 96px 96px, 12px 12px, 12px 12px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
 
 .VerticalDebugBG {
     background: rgb(2,0,36);

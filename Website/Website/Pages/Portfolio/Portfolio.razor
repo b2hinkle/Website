@@ -44,27 +44,27 @@
 <!-- Scroll Indicator -->
 <div id="ScrollIndicator" style="position:fixed; top:80%; left: 50%; z-index:5;"/>
 
+<div class="GridPatternBG" style="position:fixed; width:100vw; height:100vh" /> @* fixed positioned bg for users to have something nice to see when something isn't there *@
 <!-- Page's Content -->
-<div id="SlidlyWrapper">
-    <h1 style="position:absolute;"></h1> @* dummy heading to prevent Blazor from scrolling to one of the headings lower in the page on page load *@
+<div id="SlidlyWrapper" style="overflow:hidden;"> @* hiding any overflow since I use a really large bg element that will overflow during page load *@
     <header id="header" class="ParallaxContainer d-flex flex-column align-items-center justify-content-center">
         @if (isMobile == null)
         {
-            <div style="position:absolute; height:100%; width:100%;" data-parallaxspeed=".25" class="ParallaxElement d-flex flex-column align-items-center justify-content-center">
+            <div style="position:absolute; height:100%; width:100%;" class="d-flex flex-column align-items-center justify-content-center">
                 <p class="text-white" style="font-size:2rem;">Loading video...</p>
             </div>
         }
         else if (isMobile == false)
         {
-            <iframe id="HeaderVideo" class="ParallaxElement" data-parallaxspeed=".25" src=@($"https://www.youtube.com/embed/{HeaderYoutubeVideoId}?yt:stretch=16:9&vq=hd1080p&autoplay=1&loop=1&playlist={HeaderYoutubeVideoId}&color=red&mute=1&playsinline=1&iv_load_policy=3&rel=0&showinfo=0&autohide=1&controls=0&modestbranding=1") allowtransparency="true" frameborder="0" allow="autoplay; encrypted-media;" />
+            <iframe id="HeaderVideo" class="LongFadeInOnStart ParallaxElement" data-parallaxspeed=".25" src=@($"https://www.youtube.com/embed/{HeaderYoutubeVideoId}?yt:stretch=16:9&vq=hd1080p&autoplay=1&loop=1&playlist={HeaderYoutubeVideoId}&color=red&mute=1&playsinline=1&iv_load_policy=3&rel=0&showinfo=0&autohide=1&controls=0&modestbranding=1") allowtransparency="true" frameborder="0" allow="autoplay; encrypted-media;" />
         }
         else if (isMobile == true)  // can't youtube embed autoplay on mobile so we'll just use the video tag for autoplay
         {
-            <video id="HeaderVideo" class="ParallaxElement" data-parallaxspeed=".25" muted autoplay loop playsinline disablePictureInPicture src="videos/Portfolio/Header.mp4" />
+            <video id="HeaderVideo" class="LongFadeInOnStart ParallaxElement" data-parallaxspeed=".25" muted autoplay loop playsinline disablePictureInPicture src="videos/Portfolio/Header.mp4" />
         }
-        <div style="position: absolute; min-height: 100%; min-width: 100%; background-color: rgba(26, 188, 156, .5);"/>
+        <div class="QuickFadeInOnStart" style="position: absolute; min-height: 100%; min-width: 100%; background-color: rgba(26, 188, 156, .5);" />
         <div style="position:relative; width:100vw; height:100vh; display:flex; z-index:11;">
-            <h2 style="align-self: flex-end; font-size: 2rem;" class="text-white section-heading">
+            <h2 style="align-self: flex-end; font-size: 2rem;" class="QuickFadeInOnStart text-white section-heading">
                 BRIAN HINKLE - MULTIPLAYER GAME PROGRAMMER
             </h2>
         </div>
@@ -81,101 +81,104 @@
             <div style="width:90vw;">
                 <PortfolioItem TitleText="Strength collision queries" VideoSrc="videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" Duration="~2 months" ProjectStatus="Finished" GithubLink="https://github.com/brian2524/GameCore/tree/master/Source/GameCore/Public/BlueprintFunctionLibraries/CollisionQuery" OnFullscreenBtnPressed=@ShowPopupModal>
                     <Description>
-                        <p>
-                            Developed custom collision queries that are dependent on the concept of strength. They become weaker as they ricochet and travel through penetrable hits (the air as well). 
-                            This is built off a collection of specialized collision queries that build off each other, each implementing its own feature.
-                            <br>
-                            Penetration queries penetrate blocking hits until a specified condition with a hit is met, and return data preserves the distinction between blocking hits and overlaps.
-                            Exit hits can optionally be included in the return data and are ordered in the direction of the query with the entrance hits.
-                            <br>
-                            All collision queries are generic to both line traces and shape sweeps. The video demonstrates strength collision queries being used with sphere-sweeping in a shooter-type game.
+                        <p class="PortfolioItemParagraph">
+                            Developed custom collision queries that are dependent on the concept of strength. The queries become weaker as they ricochet and
+                            travel through penetrable hits (the air as well). Functionality is made using a collection of specialized collision queries that
+                            build off of each other, each implementing its own feature.
+                        </p>
+                        <p class="PortfolioItemParagraph">
+                            Penetration scene casts pass through blocking hits until a specified condition with a hit is met, and return data preserves the
+                            distinction between blocking hits and overlaps. Exit hits can optionally be included in the return data and are ordered in the
+                            direction of the query with the entrance hits.
+                        </p>
+                        <p class="PortfolioItemParagraph">
+                            All collision queries are generic to both line traces and shape sweeps. The video demonstrates strength collision queries being
+                            used with sphere-sweeping in a shooter-type game.
                         </p>
                     </Description>
                     <Contributions>
                         <ul style="list-style-type: none; margin: 0; padding: 0;">
-                            <li>> Design brainstorming</li>
-                            <li>> Scene casting with exit hits</li>
-                            <li>> Penetration scene casting</li>
-                            <li>> Strength scene casting</li>
-                            <li>> Ricochet scene casting</li>
-                            <li>> Structures for returning query data</li>
-                            <li>> Strength/nerfing system for penetrable and ricochetable hits</li>
-                            <li>> Optimization algorithm to minimize query area as much as possible when performing scene casts for exit hits</li>
-                            <li>> Algorithm to make backwards hit data relative to the foward direction</li>
-                            <li>> Function for modifying a HitResult's data by adjusting its TraceStart and TraceEnd by time.</li>
-                            <li>> Algorithm for combining and ordering entrance and exit hits in the correct direction</li>
-                            <li>> Functions giving more control over how custom scene casts return their data</li>
+                            <li>> Developed the structures for returning query data</li>
+                            <li>> Developed strength/nerfing system for hits that penetrate and ricochet</li>
+                            <li>> Developed optimization algorithm to minimize query area as much as possible when performing scene casts for exit hits</li>
+                            <li>> Developed algorithm to make backward hit data relative to the forward direction</li>
+                            <li>> Developed function for modifying a HitResult's data by adjusting its trace points by time</li>
+                            <li>> Developed algorithm for combining and ordering entrance and exit hits in the correct direction</li>
+                            <li>> Developed method for performing a query on existing hit results, giving custom scene casts more control</li>
                         </ul>
                     </Contributions>
                 </PortfolioItem>
-                <PortfolioItem TitleText="Ability System Setup" VideoSrc="videos/Portfolio/Demos/Demo_AbilitySystemSetup.mp4" TeamSize="2" Duration="~1 year" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/AbilitySystemSetup" OnFullscreenBtnPressed=@ShowPopupModal>
+                <PortfolioItem TitleText="Ability System Setup" VideoSrc="videos/Portfolio/Demos/Demo_AbilitySystemSetup.mp4" TeamSize="2" Duration="~2 year" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/AbilitySystemSetup" OnFullscreenBtnPressed=@ShowPopupModal>
                     <Description>
-                        <p>
-                            Developed a C++ plugin that extends Epic's Gameplay Ability System. It provides a foundation and
-                            an efficient workflow to speed up development, eliminate boilerplate code, and improve scalability.
-                            <br>
-                            The AvatarActorExtension component (demonstrated above) is a generalized component 
-                            for initializing/uninitializing an Avatar Actor when provided with an AbilitySystemComponent and optional AbilitySets. 
-                            It stays agnostic to AbilitySystemComponent location and supports any Avatar Actor. For Avatar Actors that are Pawns, 
-                            a more specialized "PawnAvatarActorExtension" component inherits and provides extra logic for ability input binding.
-                            <br>
+                        <p class="PortfolioItemParagraph">
+                            Developed a C++ plugin that extends Epic's Gameplay Ability System. It provides a foundation and an efficient workflow to speed
+                            up development, eliminate boilerplate code, and improve scalability.
+                        </p>
+                        <p class="PortfolioItemParagraph">
+                            The AvatarActorExtension component (demonstrated above) is a generalized component for initializing/uninitializing an Avatar Actor
+                            when provided with an AbilitySystemComponent and optional AbilitySets. It stays agnostic to AbilitySystemComponent location and
+                            supports any Avatar Actor. For Avatar Actors that are Pawns, a more specialized "PawnAvatarActorExtension" component inherits and
+                            provides extra logic for ability input binding.
+                        </p>
+                        <p class="PortfolioItemParagraph">
                             The plugin also provides a new and more efficient workflow for ability input binding, replacing GAS's input enum approach.
-                            This is achieved by utilizing the "Input Setup" plugin and expanding its use to the ability system. With this approach input events
-                            use their input action's tag to know its relevant abilities and GAS input events. The result is a fully in-editor workflow for assigning
-                            abilities to inputs via tags.
+                            This is achieved by utilizing the "Input Setup" plugin and expanding its use to the ability system. With this approach,
+                            input events use their input action's tag to know its relevant abilities and GAS input events. The result is a fully
+                            in-editor workflow for assigning abilities to inputs via tags!
                         </p>
                     </Description>
                     <Contributions>
                         <ul style="list-style-type: none; margin: 0; padding: 0;">
-                            <li>> Design brainstorming</li>
-                            <li>> AbilitySet implementation</li>
-                            <li>> Ability input binding system</li>
-                            <li>> Avatar actor extension component's initialization/uninitialization</li>
-                            <li>> Base gameplay ability</li>
-                        </ul>
-                    </Contributions>
-                </PortfolioItem>
-                <PortfolioItem TitleText="Property Wrapper" VideoSrc="videos/Portfolio/Demos/Demo_PropertyWrapper.mp4" TeamSize="2" Duration="~16 months" ProjectStatus="Finished" GithubLink="https://github.com/brian2524/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
-                    <Description>
-                        <p>
-                            Developed a generic property wrapper that allows you to respond to changes in your variables’ value. This simplifies and cleans up code bases.
-                            The initial intention was to improve the workflow of push-model replication but use cases have become more diverse. The wrapper is implemented as a lightweight UStruct, 
-                            with functionality implemented generically across all types.
-                            <br>
-                            The video demonstrates the use of the integer property wrapper with clip ammo. 
-                            It binds to its changes to print to the screen when the clip ammo changes.
-                        </p>
-                    </Description>
-                    <Contributions>
-                        <ul style="list-style-type: none; margin: 0; padding: 0;">
-                            <li>> Design brainstorming for a generic implementation</li>
-                            <li>> Property wrapper initialization</li>
-                            <li>> Auto push model replication</li>
-                            <li>> Struct implicit conversion to the wrapped type</li>
-                            <li>> Value change event</li>
-                            <li>> Generic implementation for serialization and net serialization</li>
+                            <li>> Developed AbilitySet implementation</li>
+                            <li>> Developed ability input binding system</li>
+                            <li>> Developed avatar actor and pawn avatar actor extension components' initialization/uninitialization</li>
                         </ul>
                     </Contributions>
                 </PortfolioItem>
                 <PortfolioItem TitleText="Input Setup" VideoSrc="videos/Portfolio/Demos/Demo_InputSetup.mp4" TeamSize="2" Duration="~1 month" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/InputSetup" OnFullscreenBtnPressed=@ShowPopupModal>
                     <Description>
-                        <p>
-                            Developed a C++ plugin that extends Enhanced Input and improves workflows both in code and in editor by streamlining the process for defining and accessing Input Actions.
-                            It makes use of Gameplay Tags to identify Input Actions via a configurable map in the project settings. 
-                            The map is stored in an EngineSubsystem, creating a centralized place for all Input Actions and eliminating duplicate code scenarios. 
-                            Modules external to the game project can also contribute to the Input Actions map through a provided Primary Data Asset. 
+                        <p class="PortfolioItemParagraph">
+                            Developed a C++ plugin that extends Enhanced Input and improves workflows both in code and in editor by streamlining the process
+                            for defining and accessing Input Actions. It makes use of Gameplay Tags to identify Input Actions via a configurable map in the
+                            project settings. The map is stored in an EngineSubsystem, creating a centralized place for all Input Actions and eliminating duplicate
+                            code scenarios. Modules external to the game project can also contribute to the Input Actions map through a provided Primary Data Asset.
                             Dynamically loaded modules (e.g. Game Features) are also supported for adding input actions.
                         </p>
                     </Description>
                     <Contributions>
                         <ul style="list-style-type: none; margin: 0; padding: 0;">
-                            <li>> Design brainstorming for maintainability and accessiblity of input actions</li>
-                            <li>> Input actions subsystem</li>
+                            <li>> Brainstormed design for scalability and accessibility of input actions</li>
+                            <li>> Developed input actions subsystem</li>
                             <ul style="list-style-type: none;">
-                                <li>> Add/remove workflow for both game project and plugin input actions</li>
-                                <li>> Bookkeeping of Input actions</li>
+                                <li>> Developed the add/remove workflow for both game project and plugin input actions</li>
+                                <li>> Developed the bookkeeping of input actions</li>
                             </ul>
-                            <li>> Pawn extension component for adding/removing PlayerMappableInputConfigs</li>
+                            <li>> Developed pawn extension component for adding/removing PlayerMappableInputConfigs</li>
+                        </ul>
+                    </Contributions>
+                </PortfolioItem>
+                <PortfolioItem TitleText="Property Wrapper" VideoSrc="videos/Portfolio/Demos/Demo_PropertyWrapper.mp4" TeamSize="2" Duration="~16 months" ProjectStatus="Finished" GithubLink="https://github.com/brian2524/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
+                    <Description>
+                        <p class="PortfolioItemParagraph">
+                            Developed a generic property wrapper that allows the user to respond to changes in your variables’ value. This simplifies and
+                            cleans up code bases. Initially developed to improve the workflow of push model replication, Property Wrapper’s use has become
+                            more diverse. The wrapper is implemented as a lightweight UStruct, with functionality implemented generically across all types.
+                        </p>
+                        <p class="PortfolioItemParagraph">
+                            The video demonstrates the use of the integer property wrapper with clip ammo. It binds to its changes to print to the screen
+                            when the clip ammo changes.
+                        </p>
+                    </Description>
+                    <Contributions>
+                        <ul style="list-style-type: none; margin: 0; padding: 0;">
+                            <li>> Developed method for implementing generic type logic on a UStruct</li>
+                            <li>> Developed implementation of the property wrapper</li>
+                            <ul style="list-style-type: none;">
+                                <li>> Initialization logic</li>
+                                <li>> Auto push model replication</li>
+                                <li>> Value change event</li>
+                                <li>> Generic implementation for serialization and net serialization</li>
+                            </ul>
                         </ul>
                     </Contributions>
                 </PortfolioItem>
@@ -203,19 +206,18 @@
                 <div class="row">
                     <div class="col-lg-2"/>
                     <div data-sal-wrapper="fade" class="col-lg-8">
-                        <p class="lead" style="margin:0; text-indent: 3em; line-height: 2;">
-                            Hi there! My name is Brian Hinkle and I'm a passionate game programmer, working as an indie for over 4 years.
-                            My passion for video games comes from them combining all creative disciplines with technology
-                            to create immersive and interactive experiences! This along with my interest in computers is what led me to game development.
+                        <p class="lead AboutSectionParagraph">
+                            Hi there! My name is Brian Hinkle, and I'm a passionate game programmer working as an indie for over four years. My passion for video
+                            games comes from how they can combine all creative disciplines with technology to create immersive and interactive experiences!
                         </p>
-                        <p class="lead" style="margin:0; text-indent: 3em; line-height: 2;">
-                            Having very ambitious game ideas is what initiated my interest in programming, as I would spend time researching and
-                            experimenting with design strategies in order to achieve what I wanted. Learning has become my favorite part of the
-                        development process because it opens doors to better designs!
+                        <p class="lead AboutSectionParagraph">
+                            Having ambitious game ideas initiated my interest in programming as I wanted to build a scalable foundation in game systems. The more I
+                            studied, the more I found learning to be my favorite part of the development process, whether through work on personal projects or
+                            through my formal BS studies. Every new concept opens doors to more scalable designs!
                         </p>
-                        <p class="lead" style="margin:0; text-indent: 3em; line-height: 2;">
-                            While studying for my computer science degree, I would continue development and create plugins in the form of git submodules,
-                            some of which are listed here on this page! Now being graduated I'm excited to meet new developers and share my skills on new projects!
+                        <p class="lead AboutSectionParagraph">
+                            During the completion of my BS in computer science, I continued development by creating plugins in the form of git submodules, some of
+                            which are displayed on this page! I'm now graduated, and I'm excited to meet new developers and share my skills on new projects!
                         </p>
                     </div>
                     <div class="col-lg-2"/>
