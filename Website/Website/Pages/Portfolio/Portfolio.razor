@@ -101,8 +101,8 @@
                             <li>> Developed the structures for returning query data</li>
                             <li>> Developed strength/nerfing system for hits that penetrate and ricochet</li>
                             <li>> Developed optimization algorithm to minimize query area as much as possible when performing scene casts for exit hits</li>
-                            <li>> Developed  algorithm to make backward hit data relative to the forward direction</li>
-                            <li>> Developed function for modifying a HitResult's data by adjusting its TraceStart and TraceEnd by time</li>
+                            <li>> Developed algorithm to make backward hit data relative to the forward direction</li>
+                            <li>> Developed function for modifying a HitResult's data by adjusting its trace points by time</li>
                             <li>> Developed algorithm for combining and ordering entrance and exit hits in the correct direction</li>
                             <li>> Developed method for performing a query on existing hit results, giving custom scene casts more control</li>
                         </ul>
@@ -135,6 +135,28 @@
                         </ul>
                     </Contributions>
                 </PortfolioItem>
+                <PortfolioItem TitleText="Input Setup" VideoSrc="videos/Portfolio/Demos/Demo_InputSetup.mp4" TeamSize="2" Duration="~1 month" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/InputSetup" OnFullscreenBtnPressed=@ShowPopupModal>
+                    <Description>
+                        <p class="PortfolioItemParagraph">
+                            Developed a C++ plugin that extends Enhanced Input and improves workflows both in code and in editor by streamlining the process
+                            for defining and accessing Input Actions. It makes use of Gameplay Tags to identify Input Actions via a configurable map in the
+                            project settings. The map is stored in an EngineSubsystem, creating a centralized place for all Input Actions and eliminating duplicate
+                            code scenarios. Modules external to the game project can also contribute to the Input Actions map through a provided Primary Data Asset.
+                            Dynamically loaded modules (e.g. Game Features) are also supported for adding input actions.
+                        </p>
+                    </Description>
+                    <Contributions>
+                        <ul style="list-style-type: none; margin: 0; padding: 0;">
+                            <li>> Brainstormed design for scalability and accessibility of input actions</li>
+                            <li>> Developed input actions subsystem</li>
+                            <ul style="list-style-type: none;">
+                                <li>> Developed the add/remove workflow for both game project and plugin input actions</li>
+                                <li>> Developed the bookkeeping of input actions</li>
+                            </ul>
+                            <li>> Developed pawn extension component for adding/removing PlayerMappableInputConfigs</li>
+                        </ul>
+                    </Contributions>
+                </PortfolioItem>
                 <PortfolioItem TitleText="Property Wrapper" VideoSrc="videos/Portfolio/Demos/Demo_PropertyWrapper.mp4" TeamSize="2" Duration="~16 months" ProjectStatus="Finished" GithubLink="https://github.com/brian2524/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
                     <Description>
                         <p class="PortfolioItemParagraph">
@@ -157,28 +179,6 @@
                                 <li>> Value change event</li>
                                 <li>> Generic implementation for serialization and net serialization</li>
                             </ul>
-                        </ul>
-                    </Contributions>
-                </PortfolioItem>
-                <PortfolioItem TitleText="Input Setup" VideoSrc="videos/Portfolio/Demos/Demo_InputSetup.mp4" TeamSize="2" Duration="~1 month" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/InputSetup" OnFullscreenBtnPressed=@ShowPopupModal>
-                    <Description>
-                        <p class="PortfolioItemParagraph">
-                            Developed a C++ plugin that extends Enhanced Input and improves workflows both in code and in editor by streamlining the process
-                            for defining and accessing Input Actions. It makes use of Gameplay Tags to identify Input Actions via a configurable map in the
-                            project settings. The map is stored in an EngineSubsystem, creating a centralized place for all Input Actions and eliminating duplicate
-                            code scenarios. Modules external to the game project can also contribute to the Input Actions map through a provided Primary Data Asset.
-                            Dynamically loaded modules (e.g. Game Features) are also supported for adding input actions.
-                        </p>
-                    </Description>
-                    <Contributions>
-                        <ul style="list-style-type: none; margin: 0; padding: 0;">
-                            <li>> Brainstormed design for scalability and accessibility of input actions</li>
-                            <li>> Developed input actions subsystem</li>
-                            <ul style="list-style-type: none;">
-                                <li>> Developed the add/remove workflow for both game project and plugin input actions</li>
-                                <li>> Developed the bookkeeping of input actions</li>
-                            </ul>
-                            <li>> Developed pawn extension component for adding/removing PlayerMappableInputConfigs</li>
                         </ul>
                     </Contributions>
                 </PortfolioItem>
