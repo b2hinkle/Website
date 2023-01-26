@@ -112,8 +112,9 @@
 .AboutSectionParagraph
 {
     margin:0;
-    text-indent: 3em;
+    text-indent: 48px;
     line-height: 2;
+    font-size: .75rem;
 }
 
 
