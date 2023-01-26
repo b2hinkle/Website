@@ -1,13 +1,16 @@
 ﻿<div style="padding: 6rem 0; font-size:.75rem;">
     <div class="container text-white clearfix" style="position:relative;">
-        <div class="col-md-6 float-md-start mx-4" style="position:relative; overflow:hidden;">
-            <div id="PortfolioItemVideoDiv" onclick="@OnFullecreenBtnPressed" class="d-flex flex-column align-items-center justify-content-center" style="overflow:hidden; width:100%; height:100%;">
-                <video muted autoplay loop playsinline disablePictureInPicture src="@VideoSrc" style="width:100%; cursor: pointer;" />
-                <div id="PortfolioItemVideoDivDarkOverlay" />
-                <svg id="FullscreenIcon" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path>
-                </svg>
+        <div class="col-md-6 float-md-start mx-4" style="position:relative;">
+            <div style="width:100%; height:100%; overflow:hidden;">
+                <div id="PortfolioItemVideoDiv" onclick="@OnFullecreenBtnPressed" class="d-flex flex-column align-items-center justify-content-center" style="overflow:hidden; width:100%; height:100%;">
+                    <video muted autoplay loop playsinline disablePictureInPicture src="@VideoSrc" style="width:100%; cursor: pointer;" />
+                    <div id="PortfolioItemVideoDivDarkOverlay" />
+                    <svg id="FullscreenIcon" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path>
+                    </svg>
+                </div>
             </div>
+            <p style="color:#a1a1a1; font-size: x-small; padding-top:5px;">@VideoSubtext</p>
         </div>
 
         <span class="text-white portfolio-item-title">@TitleText</span>
@@ -51,6 +54,8 @@
     //public RenderFragment MyContributions { get; set; }
     [Parameter]
     public RenderFragment Description { get; set; }
+    [Parameter]
+    public RenderFragment VideoSubtext { get; set; }
     [Parameter]
     public string VideoSrc { get; set; }
 

@@ -79,6 +79,9 @@
         <section class="d-flex align-items-center justify-content-center">
             <div style="width:90vw;">
                 <PortfolioItem TitleText="Strength collision queries" VideoSrc="videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" Duration="~2 months" ProjectStatus="Finished" GithubLink="https://github.com/b2hinkle/GameCore/tree/master/Source/GameCore/Public/BlueprintFunctionLibraries/CollisionQuery" OnFullscreenBtnPressed=@ShowPopupModal>
+                    <VideoSubtext>
+                        Strength collision queries being used with sphere-sweeping in a shooter-type game.
+                    </VideoSubtext>
                     <Description>
                         <p class="PortfolioItemParagraph">
                             Developed custom collision queries that are dependent on the concept of strength. The queries become weaker as they ricochet and
@@ -91,8 +94,7 @@
                             direction of the query with the entrance hits.
                         </p>
                         <p class="PortfolioItemParagraph">
-                            All collision queries are generic to both line traces and shape sweeps. The video demonstrates strength collision queries being
-                            used with sphere-sweeping in a shooter-type game.
+                            All collision queries are generic to both line traces and shape sweeps.
                         </p>
                     </Description>
                     <Contributions>
@@ -108,13 +110,16 @@
                     </Contributions>
                 </PortfolioItem>
                 <PortfolioItem TitleText="Ability System Setup" VideoSrc="videos/Portfolio/Demos/Demo_AbilitySystemSetup.mp4" TeamSize="2" Duration="~2 year" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/AbilitySystemSetup" OnFullscreenBtnPressed=@ShowPopupModal>
+                    <VideoSubtext>
+                        Usage of avatar actor extension components along with ability sets.
+                    </VideoSubtext>
                     <Description>
                         <p class="PortfolioItemParagraph">
                             Developed a C++ plugin that extends Epic's Gameplay Ability System. It provides a foundation and an efficient workflow to speed
                             up development, eliminate boilerplate code, and improve scalability.
                         </p>
                         <p class="PortfolioItemParagraph">
-                            The AvatarActorExtension component (demonstrated above) is a generalized component for initializing/uninitializing an Avatar Actor
+                            The AvatarActorExtension component is a generalized component for initializing/uninitializing an Avatar Actor
                             when provided with an AbilitySystemComponent and optional AbilitySets. It stays agnostic to AbilitySystemComponent location and
                             supports any Avatar Actor. For Avatar Actors that are Pawns, a more specialized "PawnAvatarActorExtension" component inherits and
                             provides extra logic for ability input binding.
@@ -128,13 +133,16 @@
                     </Description>
                     <Contributions>
                         <ul style="list-style-type: none; margin: 0; padding: 0;">
-                            <li>> Developed AbilitySet implementation</li>
                             <li>> Developed ability input binding system</li>
                             <li>> Developed avatar actor and pawn avatar actor extension components' initialization/uninitialization</li>
+                            <li>> Developed AbilitySet implementation</li>
                         </ul>
                     </Contributions>
                 </PortfolioItem>
                 <PortfolioItem TitleText="Input Setup" VideoSrc="videos/Portfolio/Demos/Demo_InputSetup.mp4" TeamSize="2" Duration="~1 month" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/InputSetup" OnFullscreenBtnPressed=@ShowPopupModal>
+                    <VideoSubtext>
+                        Contributions to the input actions map by both the game project and a plugin.
+                    </VideoSubtext>
                     <Description>
                         <p class="PortfolioItemParagraph">
                             Developed a C++ plugin that extends Enhanced Input and improves workflows both in code and in editor by streamlining the process
@@ -157,15 +165,14 @@
                     </Contributions>
                 </PortfolioItem>
                 <PortfolioItem TitleText="Property Wrapper" VideoSrc="videos/Portfolio/Demos/Demo_PropertyWrapper.mp4" TeamSize="2" Duration="~16 months" ProjectStatus="Finished" GithubLink="https://github.com/b2hinkle/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
+                    <VideoSubtext>
+                        ClipAmmo as an integer property wrapper to print to the screen on value changes!
+                    </VideoSubtext>
                     <Description>
                         <p class="PortfolioItemParagraph">
                             Developed a generic property wrapper that allows users to respond to changes in their variables’ values. This simplifies and
                             cleans up code bases. Initially developed to improve the workflow of push model replication, Property Wrapper’s use has become
                             more diverse. The wrapper is implemented as a lightweight UStruct, with functionality implemented generically across all types.
-                        </p>
-                        <p class="PortfolioItemParagraph">
-                            The video demonstrates the use of the integer property wrapper with clip ammo. It binds to its changes to print to the screen
-                            when the clip ammo changes.
                         </p>
                     </Description>
                     <Contributions>
