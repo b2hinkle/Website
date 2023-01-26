@@ -1,8 +1,8 @@
-﻿<div class="container portfolio-item" style="position:relative;">
-    <div class="row" style="margin-left:0; margin-right:0;"> @* fallback color if alpha isn't supported *@
-        <div class="col-md-6" style="position:relative; overflow:hidden; padding:0;">
-            <div id="PortfolioItemVideoDiv" onclick="@OnFullecreenBtnPressed" class="d-flex flex-column align-items-center justify-content-center" style="width:100%; height:100%">
-                <video muted autoplay loop playsinline disablePictureInPicture src="@VideoSrc" style="position: relative; width: 100%; cursor: pointer;" />
+﻿<div style="padding: 6rem 0; font-size:.75rem;">
+    <div class="container text-white clearfix" style="position:relative;">
+        <div class="col-md-6 float-md-start mx-4" style="position:relative; overflow:hidden;">
+            <div id="PortfolioItemVideoDiv" onclick="@OnFullecreenBtnPressed" class="d-flex flex-column align-items-center justify-content-center" style="overflow:hidden; width:100%; height:100%;">
+                <video muted autoplay loop playsinline disablePictureInPicture src="@VideoSrc" style="width:100%; cursor: pointer;" />
                 <div id="PortfolioItemVideoDivDarkOverlay" />
                 <svg id="FullscreenIcon" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path>
@@ -10,25 +10,22 @@
             </div>
         </div>
 
-        <div data-sal-wrapper="fade" class="col-md-6 text-white">
-            <span class="text-white portfolio-item-title">
-                @TitleText
-            </span>
-            <div>
-                @Description
-            </div>
-            
-            <b>Team Size:</b> @TeamSize
-            <br>
-            <b>Duration:</b> @Duration
-            <br>
-            <b>Project Status:</b> @ProjectStatus
-            <br>
-            <img src="images/github_small.png" style="width:1.25rem; margin-right: .5rem;" /><a href="@GithubLink" target="_blank" rel="noopener noreferrer">Github</a>
-
+        <span class="text-white portfolio-item-title">@TitleText</span>
+        <span style="font-style:italic;">
+            <img src="images/github_small.png" style="width:1rem; margin: 0 .5rem;" /><a href="@GithubLink" target="_blank" rel="noopener noreferrer">Github</a>
+        </span>
+        <br>
+        <small style="font-style:italic;">
+            Team Size: @TeamSize | Duration: @Duration | Project Status: @ProjectStatus
+        </small>
+        <hr>
+        <div>
+            @Description
         </div>
+
     </div>
-    <div data-sal-wrapper="fade" class="row text-white">
+    <br>
+    <div class="container text-white">
         <b>Contributions:</b>
         <p>
             @Contributions
