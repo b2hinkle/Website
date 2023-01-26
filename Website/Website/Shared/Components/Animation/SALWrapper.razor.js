@@ -4,6 +4,7 @@
     {
         const s = sal({
             once: false,
+            threshold: .25 // using such a low value since mobile devices with short height will having a hard time seeing the end of a long div if it has the animation
         });
 
         const SalWrapperElements = document.querySelectorAll("[data-sal-wrapper]");
