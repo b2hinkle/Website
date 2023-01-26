@@ -1,6 +1,6 @@
 ﻿<div class="container-fluid portfolio-item" style="position:relative;">
     <div class="row" style="margin-left:0; margin-right:0;"> @* fallback color if alpha isn't supported *@
-        <div class="col-md-6" style="position:relative; height:50vh; overflow:hidden; padding:0;">
+        <div class="col-md-6" style="position:relative; overflow:hidden; padding:0;">
             <div id="PortfolioItemVideoDiv" onclick="@OnFullecreenBtnPressed" class="d-flex flex-column align-items-center justify-content-center" style="width:100%; height:100%">
                 <video muted autoplay loop playsinline disablePictureInPicture src="@VideoSrc" style="position: relative; width: 100%; cursor: pointer;" />
                 <div id="PortfolioItemVideoDivDarkOverlay" />
@@ -14,7 +14,7 @@
             <span class="text-white portfolio-item-title">
                 @TitleText
             </span>
-            <div class="portfolio-item-description">
+            <div>
                 @Description
             </div>
             
@@ -24,7 +24,7 @@
             <br>
             <b>Project Status:</b> @ProjectStatus
             <br>
-            <img src="images/github_small.png" style="width:1.25rem; height:1.25rem; margin-right: .5rem;" /><a href="@GithubLink" target="_blank" rel="noopener noreferrer">Github</a>
+            <img src="images/github_small.png" style="width:1.25rem; margin-right: .5rem;" /><a href="@GithubLink" target="_blank" rel="noopener noreferrer">Github</a>
 
         </div>
     </div>
