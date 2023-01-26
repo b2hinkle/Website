@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using Website.Shared.Components.Animation
 @using Website.Shared.Components.Portfolio
+@using Website.Shared.Components
 @inject NavigationManager NavManager
 @inject IJSRuntime jsRuntime;
 
@@ -227,6 +228,13 @@
             </div>
         </div>
 
+        @if (showGetformContactSection)
+        {
+            <div class="page-section">
+                <GetformContact />
+            </div>
+        }
+
         <!-- Footer -->
         <footer class="text-center" style="padding: 32px 0; background-color: rgba(44, 62, 80, .3); color: #fff; font-size:.75rem;">
             <div id="contact" class="container">
@@ -268,6 +276,7 @@
 
 @code 
 {
+    private bool showGetformContactSection = false;
     private IJSObjectReference jsObjRef;    // js interactor
     private Slidly SlidlyComponent;
     private int year = DateTime.Now.Year;
