@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <None Remove="Shared\Components\Animation\Slidly.razor.js" />
+    <None Remove="Shared\Components\GetformContact.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Shared\Components\Animation\Slidly.razor.js" />
+    <Content Include="Shared\Components\GetformContact.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
