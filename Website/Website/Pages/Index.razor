@@ -31,16 +31,16 @@
 		</div>
 	</div>
 </nav>
-
+@*
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content d-flex flex-column align-items-center justify-content-center">
-        <video muted autoplay loop controls playsinline disablePictureInPicture controlsList="nodownload" src="@ModalPortfolioItem?.VideoSrc" style="width:80vw;" />
+        <video muted autoplay loop controls playsinline disablePictureInPicture controlsList="nodownload" src="@ModalPortfolioItem?.DailymotionVideoId" style="width:80vw;" />
     </div>
   </div>
 </div>
-
+*@
 <!-- Scroll Indicator -->
 <div id="ScrollIndicator" style="position:fixed; top:80%; left: 50%; z-index:5;"/>
 
@@ -71,13 +71,15 @@
     </header>
 
     <section id="projects" class="page-section portfolio-section">
+
+
         <h2 class="section-heading text-center">Projects</h2>
     
 
 
         
 
-        <PortfolioItem TitleText="Strength collision queries" VideoSrc="videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" Duration="~2 months" ProjectStatus="Finished" GithubLink="https://github.com/b2hinkle/GameCore/tree/master/Source/GameCore/Public/BlueprintFunctionLibraries/CollisionQuery" OnFullscreenBtnPressed=@ShowPopupModal>
+        <PortfolioItem TitleText="Strength collision queries" DailymotionVideoId="x8i0xvw" DailymotionQuality="1080" PortfolioItemElId="PortfolioItem0" DailyMotionPlayerElId="DailyMotionEmbed0" TeamSize="2" Duration="~2 months" ProjectStatus="Finished" GithubLink="https://github.com/b2hinkle/GameCore/tree/master/Source/GameCore/Public/BlueprintFunctionLibraries/CollisionQuery" OnFullscreenBtnPressed=@ShowPopupModal>
             <VideoSubtext>
                 Strength collision queries being used with sphere-sweeping in a shooter-type game.
             </VideoSubtext>
@@ -108,7 +110,7 @@
                 </ul>
             </Contributions>
         </PortfolioItem>
-        <PortfolioItem TitleText="Ability System Setup" VideoSrc="videos/Portfolio/Demos/Demo_AbilitySystemSetup.mp4" TeamSize="2" Duration="~2 year" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/AbilitySystemSetup" OnFullscreenBtnPressed=@ShowPopupModal>
+        <PortfolioItem TitleText="Ability System Setup" DailymotionVideoId="x8i0ylk" DailymotionQuality="1080" PortfolioItemElId="PortfolioItem1" DailyMotionPlayerElId="DailyMotionEmbed1" TeamSize="2" Duration="~2 year" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/AbilitySystemSetup" OnFullscreenBtnPressed=@ShowPopupModal>
             <VideoSubtext>
                 Usage of avatar actor extension components along with ability sets.
             </VideoSubtext>
@@ -138,7 +140,7 @@
                 </ul>
             </Contributions>
         </PortfolioItem>
-        <PortfolioItem TitleText="Input Setup" VideoSrc="videos/Portfolio/Demos/Demo_InputSetup.mp4" TeamSize="2" Duration="~1 month" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/InputSetup" OnFullscreenBtnPressed=@ShowPopupModal>
+        <PortfolioItem TitleText="Input Setup" DailymotionVideoId="x8i0zfz" DailymotionQuality="1080" PortfolioItemElId="PortfolioItem2" DailyMotionPlayerElId="DailyMotionEmbed2" TeamSize="2" Duration="~1 month" ProjectStatus="Finished" GithubLink="https://github.com/ChristianHinko/InputSetup" OnFullscreenBtnPressed=@ShowPopupModal>
             <VideoSubtext>
                 Contributions to the input actions map by both the game project and a plugin.
             </VideoSubtext>
@@ -163,7 +165,7 @@
                 </ul>
             </Contributions>
         </PortfolioItem>
-        <PortfolioItem TitleText="Property Wrapper" VideoSrc="videos/Portfolio/Demos/Demo_PropertyWrapper.mp4" TeamSize="2" Duration="~16 months" ProjectStatus="Finished" GithubLink="https://github.com/b2hinkle/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
+        <PortfolioItem TitleText="Property Wrapper" DailymotionVideoId="x8i0yuv" DailymotionQuality="1080" PortfolioItemElId="PortfolioItem3" DailyMotionPlayerElId="DailyMotionEmbed3" TeamSize="2" Duration="~16 months" ProjectStatus="Finished" GithubLink="https://github.com/b2hinkle/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
             <VideoSubtext>
                 ClipAmmo as an integer property wrapper to print to the screen on value changes!
             </VideoSubtext>
