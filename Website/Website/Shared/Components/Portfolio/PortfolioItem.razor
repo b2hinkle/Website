@@ -13,41 +13,55 @@
             <p style="color:#a1a1a1; font-size: x-small; padding-top:5px;">@VideoSubtext</p>
         </div>
 
-        <span class="text-white portfolio-item-title">@TitleText</span>
-        <span style="font-style:italic;">
-            <img src="images/github_small.png" style="width:1rem; margin: 0 .5rem;" /><a href="@GithubLink" target="_blank" rel="noopener noreferrer">Github</a>
-        </span>
+        @if (TitleText != null)
+        {
+            <span class="text-white portfolio-item-title">@TitleText</span>
+        }
+        @if (GithubLink != null)
+        {
+            <span style="font-style:italic;">
+                <img src="images/github_small.png" style="width:1rem; margin: 0 .5rem;" /><a href="@GithubLink" target="_blank" rel="noopener noreferrer">Github</a>
+            </span>
+        }
         <br>
         <small style="font-style:italic;">
-            Team Size: @TeamSize | Duration: @Duration | Project Status: @ProjectStatus
+            @builtString
         </small>
         <hr>
+        @if (Description != null)
+        {
         <div data-sal-wrapper="fade" style="padding: 0 10px;">
-            @Description
-        </div>
+                @Description
+            </div>
+        }
 
     </div>
     <br>
+    @if (Contributions != null)
+    {
     <div data-sal-wrapper="fade" class="container text-white">
-        <b>Contributions:</b>
-        <p>
-            @Contributions
-        </p>
-    </div>
+            <b>Contributions:</b>
+            <p>
+                @Contributions
+            </p>
+        </div>
+    }
 </div>
 
 @code 
 {
     [Parameter]
-    public string TitleText { get; set; }
+    public string? TitleText { get; set; } = null;
     [Parameter]
-    public string GithubLink { get; set; }
+    public string? GithubLink { get; set; } = null;
     [Parameter]
-    public string TeamSize { get; set; }
+    public string? TeamSize { get; set; } = null;
     [Parameter]
-    public string Duration { get; set; }
+    public string? Duration { get; set; } = null;
     [Parameter]
-    public string ProjectStatus{ get; set; }
+    public string? ProjectStatus{ get; set; } = null;
+    private string builtString = "";
+
     [Parameter]
     public RenderFragment Contributions { get; set; }
     [Parameter]
@@ -59,6 +73,23 @@
 
     [Parameter]
     public EventCallback<PortfolioItem> OnFullscreenBtnPressed { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        builtString = "";
+        if (TeamSize != null)
+        {
+            builtString += ("Team Size: " + TeamSize + " |");
+        }
+        if (Duration != null)
+        {
+            builtString += ("Duration: " + Duration + " |");
+        }
+        if (ProjectStatus != null)
+        {
+            builtString += ("Project Status: " + ProjectStatus);
+        }
+    }
 
     async private void OnFullecreenBtnPressed()
     {
