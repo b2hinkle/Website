@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "Website": {
+    "BrianHinkle.Server": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
