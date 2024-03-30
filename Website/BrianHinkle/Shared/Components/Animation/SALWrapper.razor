@@ -11,7 +11,7 @@
     {
         if (firstRender)
         {
-            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/Components/Animation/SALWrapper.razor.js");
+            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "/_content/BrianHinkle/Shared/Components/Animation/SALWrapper.razor.js");
             await jsObjRef.InvokeVoidAsync("OnAfterRenderAsync");
         }
     }

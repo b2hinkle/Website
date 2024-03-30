@@ -7,21 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Shared\Components\Animation\Slidly.razor.js" />
-    <None Remove="Shared\Components\GetformContact.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Shared\Components\Animation\Slidly.razor.js" />
-    <Content Include="Shared\Components\GetformContact.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Plugins\Slidly\Slidly.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\Documents\" />
+    <ProjectReference Include="..\BrianHinkle\BrianHinkle.csproj" />
   </ItemGroup>
 
 </Project>
