@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\Plugins\Slidly\Slidly.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Shared\Components\Animation\Slidly.razor.js" />
     <None Remove="Shared\Components\GetformContact.razor.css" />
   </ItemGroup>
@@ -26,10 +22,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Documents\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Plugins\Slidly\Slidly.js" />
   </ItemGroup>
 
   <ItemGroup>
