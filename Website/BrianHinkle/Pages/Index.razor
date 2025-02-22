@@ -107,23 +107,28 @@
                 </ul>
             </Contributions> *@
         </PortfolioItem>
-        <PortfolioItem TitleText="Strength collision queries" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" Duration="~2 months" ProjectStatus="Finished" GithubLink="https://github.com/b2hinkle/GameCore/tree/master/Source/GameCore/Public/BlueprintFunctionLibraries/CollisionQuery" OnFullscreenBtnPressed=@ShowPopupModal>
+        <PortfolioItem TitleText="Game Core" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" Duration="~2 months" ProjectStatus="Receiving Updates" GithubLink="https://github.com/b2hinkle/GameCore/tree/master" OnFullscreenBtnPressed=@ShowPopupModal>
             <VideoSubtext>
-                Strength collision queries being used with sphere-sweeping in a shooter-type game.
+                Game Core collision queries used as sphere sweeps in a shooter-type game.
             </VideoSubtext>
             <Description>
                 <p class="PortfolioItemParagraph">
-                    Developed custom collision queries that are dependent on the concept of strength. The queries become weaker as they ricochet and
-                    travel through penetrable hits (the air as well). Functionality is made using a collection of specialized collision queries that
-                    build off of each other, each implementing its own feature.
+                    Developed C++ utilities shared across various projects, including Towers of Aghasba.
+                    This module promotes modern C++ practices in Unreal Engine and the use of inline storage for common operations.
+                    Common utilities include gameplay, math, collision, logging, debugging, and safety tools.
                 </p>
                 <p class="PortfolioItemParagraph">
-                    Penetration scene casts pass through blocking hits until a specified condition with a hit is met, and return data preserves the
-                    distinction between blocking hits and overlaps. Exit hits can optionally be included in the return data and are ordered in the
-                    direction of the query with the entrance hits.
+                    This video demonstrates some custom collision queries from the module.
+                    All queries stay agnostic to collision shape to support a wide range of needs.
                 </p>
                 <p class="PortfolioItemParagraph">
-                    All collision queries are generic to both line traces and shape sweeps.
+                    Penetration scene casts pass through blocking hits until a specified condition is met, and returned data preserves the
+                    distinction between blocking hits and overlaps. Exit hits can optionally be included in the return data, ordered in the
+                    correct direction of the query.
+                </p>
+                <p class="PortfolioItemParagraph">
+                    The queries shown in the demo are dependent on the concept of strength.
+                    Making use of penetration casting and ricocheting, they become weaker as they travel through the world.
                 </p>
             </Description>
             <Contributions>
