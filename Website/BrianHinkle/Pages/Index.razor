@@ -169,20 +169,10 @@
             </VideoSubtext>
             <Description>
                 <p class="PortfolioItemParagraph">
-                    Developed a C++ plugin that extends Epic's Gameplay Ability System. It provides a foundation and an efficient workflow to speed
-                    up development, eliminate boilerplate code, and improve scalability.
-                </p>
-                <p class="PortfolioItemParagraph">
-                    The AvatarActorExtension component is a generalized component for initializing/uninitializing an Avatar Actor
-                    when provided with an AbilitySystemComponent and optional AbilitySets. It stays agnostic to AbilitySystemComponent location and
-                    supports any Avatar Actor. For Avatar Actors that are Pawns, a more specialized "PawnAvatarActorExtension" component inherits and
-                    provides extra logic for ability input binding.
-                </p>
-                <p class="PortfolioItemParagraph">
-                    The plugin also provides a new and more efficient workflow for ability input binding, replacing GAS's input enum approach.
-                    This is achieved by utilizing the "Input Setup" plugin and expanding its use to the ability system. With this approach,
-                    input events use their input action's tag to know its relevant abilities and GAS input events. The result is a fully
-                    in-editor workflow for assigning abilities to inputs via tags!
+                    Developed a plugin providing essential integration logic for Epic’s Gameplay Ability System without imposing on design.
+                    This plugin provides a flexible foundation with generalized structs and addresses common issues encountered with the ability system.
+                    Expanding on the "Input Setup" plugin, it also provides a full in-editor workflow assigning abilities to inputs via tag.
+                    This creates more possibilities with input than the ability system originally offered.
                 </p>
             </Description>
             <Contributions>
@@ -193,7 +183,7 @@
                 </ul>
             </Contributions>
         </PortfolioItem>
-        <PortfolioItem TitleText="Property Wrapper" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_PropertyWrapper.mp4" TeamSize="2" Duration="~16 months" ProjectStatus="Finished" GithubLink="https://github.com/b2hinkle/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
+        @*<PortfolioItem TitleText="Property Wrapper" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_PropertyWrapper.mp4" TeamSize="2" Duration="~16 months" ProjectStatus="Finished" GithubLink="https://github.com/b2hinkle/GameCore/tree/master/Source/GameCore/Public/Types/PropertyWrappers" OnFullscreenBtnPressed=@ShowPopupModal>
             <VideoSubtext>
                 ClipAmmo as an integer property wrapper to print to the screen on value changes!
             </VideoSubtext>
@@ -216,7 +206,7 @@
                     </ul>
                 </ul>
             </Contributions>
-        </PortfolioItem>
+        </PortfolioItem>*@
 
 
         
