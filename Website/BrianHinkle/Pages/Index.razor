@@ -122,13 +122,14 @@
             </Description>
             <Contributions>
                 <ul style="list-style-type: none; margin: 0; padding: 0;">
-                    <li>> Developed the structures for returning query data</li>
-                    <li>> Developed strength/nerfing system for hits that penetrate and ricochet</li>
-                    <li>> Developed optimization algorithm to minimize query area as much as possible when performing scene casts for exit hits (achieved up to a 40% increase in speed)</li>
-                    <li>> Developed algorithm to make backward hit data relative to the forward direction</li>
-                    <li>> Developed function for modifying a HitResult's data by adjusting its trace points by time</li>
-                    <li>> Developed algorithm for combining and ordering entrance and exit hits in the correct direction</li>
-                    <li>> Developed method for evaluating existing hit results to allow for scene cast result reusability.</li>
+                    <li>> Developed various templating solutions (SFINAE and C++ concepts) for improved workflows.</li>
+                    <li>> Developed a type generic property wrapper for responding to value changes.</li>
+                    <li>> Implemented various custom collision traces capable of exit hits, penetration, ricochets, and strength while remaining agnostic to cast shape. 
+                        Optimized by implementing a query area minimization algorithm (achieved up to 40% speed increase).</li>
+                    <li>> Developed various string utility functions, promoting the use of inline storage and generic character types.</li>
+                    <li>> Developed checked object casting with the benefit of static casts, constrained by C++ concepts for improved compile time safety.</li>
+                    <li>> Using temporary lifetime for code execution and the named parameter idiom technique, implemented convenient tools for quick print-to-screen messages.</li>
+                    <li>> Developed a general set of utility functions for gameplay, math, collision, debugging, logging, and materials.</li>
                 </ul>
             </Contributions>
         </PortfolioItem>
