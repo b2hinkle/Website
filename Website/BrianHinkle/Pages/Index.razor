@@ -90,18 +90,36 @@
             </Description>
             <Contributions>
                 <ul style="list-style-type: none; margin: 0; padding: 0;">
-                    <li>> Active participator in core team meetings (design, engineering, tech animation, combat, multiplayer). Provided engineer insights to discussions and helped scope out mechanics and requirements. Suggested tweaks to ideas for better support of existing systems.</li>
-                    <li>> Both pre-launch and post-launch development phase experience. Meeting time requirements for milestone builds, (trailers, open playtest, Sony certification builds). Addressing TRCs promptly, identifying/resolving major memory concerns, and utilizing Playstation dev kit when necessary.</li>
-                    <li>> Played a major role in the effort of converting game systems for multiplayer gameplay, developing for client-side prediction and rollback net code where possible.</li>
-                    <li>> Led net code solution for client character movement prediction and re-simulation. Wrote in-depth documentation for all workflows.</li>
-                    <li>> Self-driven efforts throughout, including performance improvements, cutting down on network latency and bandwidth usage, development of debug tools and cheats, logic nativization, and dependency minimization.</li>
-                    <li>> Diagnosing/addressing issues immediately during playtests via debugger. Created improved testing workflows when pain points arose.</li>
+                    
+                    <li>> Pre/Post-Launch Experience</li>
+                    <ul style="list-style-type: none;">
+                        <li>> Met time requirements for milestone builds (trailers, open playtest, Sony certification).</li>
+                        <li>> Addressed Sony technical requirements and major memory concerns utilizing PS5 dev kit.</li>
+                        <li>> Practiced proper live player-base coding practices, such as save progress preservation throughout patches/updates.</li>
+                        <li>> Provided engineer insights to core team meeting discussions (design, tech animation, combat, multiplayer, engineering).</li>
+                    </ul>
+                    
+                    <li>> Implemented performant game systems, all fully supported in multiplayer environments.</li>
+                    
+                    <li>> Multiplayer</li>
+                    <ul style="list-style-type: none;">
+                        <li>> Refactored existing systems for networked gameplay, accounting for gameplay rollback in the process.</li>
+                        <li>> Led client-side prediction and rewind-and-replay solution for player movement.</li>
+                        <li>> Took initiative to resolve issues and minimize network latency within existing multiplayer systems.</li>
+                    </ul>
+                    
+                    <li>> Self-driven efforts</li>
+                    <ul style="list-style-type: none;">
+                        <li>> Performance improvements, dependency minimization, logic nativization, debug tools, documentation.</li>
+                        <li>> Diagnosed/addressed issues immediately during playtests. Improved testing workflows when pain points arose.</li>
+                    </ul>
+
                 </ul>
             </Contributions>
         </PortfolioItem>
-        <PortfolioItem TitleText="Game Core" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" Duration="~2 months" ProjectStatus="Receiving Updates" GithubLink="https://github.com/b2hinkle/GameCore/tree/master" OnFullscreenBtnPressed=@ShowPopupModal>
+        <PortfolioItem TitleText="Core Utilities" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" Duration="~2 months" ProjectStatus="Receiving Updates" GithubLink="https://github.com/b2hinkle/GameCore/tree/master" OnFullscreenBtnPressed=@ShowPopupModal>
             <VideoSubtext>
-                Game Core collision queries used as sphere sweeps in a shooter-type game.
+                Core utility queries used as sphere sweeps in a shooter-type game.
             </VideoSubtext>
             <Description>
                 <p class="PortfolioItemParagraph">
@@ -122,14 +140,15 @@
             </Description>
             <Contributions>
                 <ul style="list-style-type: none; margin: 0; padding: 0;">
-                    <li>> Developed various templating solutions (SFINAE and C++ concepts) for improved workflows.</li>
-                    <li>> Developed a type generic property wrapper for responding to value changes.</li>
-                    <li>> Implemented various custom collision traces capable of exit hits, penetration, ricochets, and strength while remaining agnostic to cast shape. 
+                    <li>> Created tagged bitfield struct, capable of bit packing via gameplay tags with generic size bit operations.</li>
+                    <li>> Implemented a type generic property wrapper for responding to value changes.</li>
+                    <li>> Implemented custom traces capable of exit hits, penetration, ricochets, and strength while remaining agnostic to cast shape.
                         Optimized by implementing a query area minimization algorithm (achieved up to 40% speed increase).</li>
-                    <li>> Developed various string utility functions, promoting the use of inline storage and generic character types.</li>
-                    <li>> Developed checked object casting with the benefit of static casts, constrained by C++ concepts for improved compile time safety.</li>
-                    <li>> Using temporary lifetime for code execution and the named parameter idiom technique, implemented convenient tools for quick print-to-screen messages.</li>
-                    <li>> Developed a general set of utility functions for gameplay, math, collision, debugging, logging, and materials.</li>
+                    <li>> Developed checked object casting with the benefit of static casts, constrained by C++ concepts for compile time safety.</li>
+                    <li>> Created templating solutions (SFINAE and C++ concepts) for improved workflows.</li>
+                    <li>> Wrote code promoting the usage of inline storage and generic character types.</li>
+                    <li>> Implemented print-to-screen tools, using temporary lifetime for code execution and the named parameter idiom technique.</li>
+                    <li>> Wrote various utility functions (e.g. math, collision, debugging, string, logging, materials).</li>
                 </ul>
             </Contributions>
         </PortfolioItem>
@@ -146,13 +165,12 @@
             </Description>
             <Contributions>
                 <ul style="list-style-type: none; margin: 0; padding: 0;">
-                    <li>> Brainstormed solution for consolidated input action access.</li>
-                    <li>> Developed input action asset references subsystem along with editor workflows.</li>
+                    <li>> Wrote subsystem for consolidated input action asset references along with editor workflows.</li>
                     <ul style="list-style-type: none;">
-                        <li>> Developed the add/remove workflow for both game project and plugin input actions.</li>
-                        <li>> Developed input action bookkeeping between game project and plugin input actions.</li>
+                        <li>> Add/remove workflow for both game project and plugin input actions.</li>
+                        <li>> Input action bookkeeping between game project and plugin input actions.</li>
                     </ul>
-                    <li>> Developed pawn extension for adding/removing PlayerMappableInputConfigs.</li>
+                    <li>> Developed modular extension logic for adding/removing input mappings.</li>
                 </ul>
             </Contributions>
         </PortfolioItem>
