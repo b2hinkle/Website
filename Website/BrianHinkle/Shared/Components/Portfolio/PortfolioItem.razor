@@ -17,7 +17,7 @@
         {
             <span class="text-white portfolio-item-title">@TitleText</span>
         }
-        @if (GithubLink1 != null || GithubLink2 != null)
+        @if (GithubLink1 != null || GithubLink2 != null || GithubLink3 != null)
         {
                 <span style="font-style:italic; margin-left: 5px;">
                     <img src="/_content/BrianHinkle/images/github_small.png" style="width:1rem; margin: 0 .5rem;" />
@@ -31,6 +31,12 @@
                     {
                         <span style="font-style:italic; margin-left: 8px;">
                             <a href="@GithubLink2" target="_blank" rel="noopener noreferrer">@GithubLink2Name</a>
+                        </span>
+                    }
+                    @if (GithubLink3 != null)
+                    {
+                        <span style="font-style:italic; margin-left: 8px;">
+                            <a href="@GithubLink3" target="_blank" rel="noopener noreferrer">@GithubLink3Name</a>
                         </span>
                     }
                 </span>
@@ -74,6 +80,10 @@
     public string? GithubLink2 { get; set; } = null;
     [Parameter]
     public string? GithubLink2Name { get; set; } = GithubLinkNameDefault;
+    [Parameter]
+    public string? GithubLink3 { get; set; } = null;
+    [Parameter]
+    public string? GithubLink3Name { get; set; } = GithubLinkNameDefault;
     [Parameter]
     public string? TeamSize { get; set; } = null;
     [Parameter]
