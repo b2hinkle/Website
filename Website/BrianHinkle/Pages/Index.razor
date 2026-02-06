@@ -118,7 +118,7 @@
                 </ul>
             </Contributions>
         </PortfolioItem>
-        <PortfolioItem TitleText="Core Utilities" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" Duration="~2 months" ProjectStatus="Receiving Updates" GithubLink1="https://github.com/b2hinkle/CppUtils_ContainerInterfaces/tree/master" GithubLink1Name="CppUtils_ContainerInterfaces" GithubLink2="https://github.com/b2hinkle/CppUtils_CustomAccess" GithubLink2Name="CppUtils_CustomAccess" GithubLink3="https://github.com/b2hinkle/GameCore/tree/master" GithubLink3Name="GameCore" OnFullscreenBtnPressed=@ShowPopupModal>
+        <PortfolioItem TitleText="Game Utilities" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_StrengthCollisionQueries.mp4" TeamSize="2" Duration="~2 months" ProjectStatus="Receiving Updates" GithubLink1="https://github.com/b2hinkle/GameCore/tree/master" GithubLink1Name="Github" OnFullscreenBtnPressed=@ShowPopupModal>
             <VideoSubtext>
                 Core utility queries used as sphere sweeps in a shooter-type game.
             </VideoSubtext>
@@ -141,20 +141,52 @@
             </Description>
             <Contributions>
                 <ul style="list-style-type: none; margin: 0; padding: 0;">
-                    <li>> Created tagged bitfield struct, capable of bit packing via gameplay tags with generic size bit operations.</li>
-                    <li>> Wrote type-generic data wrapper for user-defined encapsulation at zero runtime cost.</li>
-                    <li>> Wrote type-generic api using templates for generic container operations.</li>
-                    <li>> Implemented shape agnostic traces, capable of exit hits, penetration, ricochets, and strength.
-                            Optimized performance by up to 40% via custom query-area minimization algorithm.</li>
-                    <li>> Developed checked object casting with the benefit of static casts, constrained by C++ concepts for compile time safety.</li>
+                    <li>> Wrote a size-generic bitfield abstraction for gameplay tag driven bit packing.</li>
+                    <li>> Implemented shape-agnostic traces capable of exit hits, penetration, ricochets, and strength.
+                        Improved performance up to 40% via custom query-area minimization algorithm.</li>
+                    <li>> Developed checked object casting with the benefit of static casts, constrained by C++ concepts for compile-time safety.</li>
                     <li>> Created templating solutions (SFINAE and C++ concepts) for improved workflows.</li>
-                    <li>> Wrote code promoting the usage of inline storage and generic character types.</li>
-                    <li>> Implemented print-to-screen tools, using temporary lifetime for code execution and the named parameter idiom technique.</li>
-                    <li>> Wrote various utility functions (e.g. math, collision, debugging, string, logging, materials).</li>
+                    <li>> Wrote utilities promoting the usage of inline storage and generic character types.</li>
+                    <li>> Implemented print-to-screen tools, using temporary lifetime for code execution with the named parameter idiom technique.</li>
+                    <li>> Developed generic property wrapper for responding to value changes.</li>
+                    <li>> Wrote other various utilities (math, collision, debugging, string, logging, materials).</li>
                 </ul>
             </Contributions>
         </PortfolioItem>
-        <PortfolioItem TitleText="Ability System Setup" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_AbilitySystemSetupAndInputSetupCombined.mp4" TeamSize="2" Duration="~1 year" ProjectStatus="Receiving Updates" GithubLink1="https://github.com/ChristianHinko/AbilitySystemSetup" GithubLink1Name="AbilitySystemSetup" OnFullscreenBtnPressed=@ShowPopupModal>
+        <PortfolioItem TitleText="C++ Utilities" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_CppUtils.mp4" TeamSize="1" Duration="~2 months" ProjectStatus="Receiving Updates" OnFullscreenBtnPressed=@ShowPopupModal>
+            <VideoSubtext>
+                Example demo of both container interfaces and custom access utilities. Includes benchmark via assembly instruction analysis.
+            </VideoSubtext>
+            <Description>
+                <p class="PortfolioItemParagraph">
+                    A collection of portable C++ libraries I’ve developed for use across a wide range of engines.
+                </p>
+                <p class="PortfolioItemParagraph">
+                    <img src="/_content/BrianHinkle/images/github_small.png" style="width:1rem; margin: 0 .1rem;" />
+                    <a href="https://github.com/b2hinkle/CppUtils_ContainerInterfaces/tree/master" target="_blank" rel="noopener noreferrer">Container interfaces</a> are a zero-cost, compile-time abstraction layer for containers, eliminating the need to depend on concrete types.
+                    This allows generic code to operate on a wide variety of container types while keeping
+                    static type safety.
+                    The abstraction layer has no observable side effects and is therefore fully eliminated under the standard C++ "as-if" rule. The resulting
+                    performance is equivalent to direct, container-specific calls. The identical generated assembly demonstrates this equivalence (try it out on <a href="https://godbolt.org/z/KcbYYvhY9" target="_blank" rel="noopener noreferrer">Godbolt</a>).
+                </p>
+                <p class="PortfolioItemParagraph">
+                    <img src="/_content/BrianHinkle/images/github_small.png" style="width:1rem; margin: 0 .1rem;" />
+                    <a href="https://github.com/b2hinkle/CppUtils_CustomAccess" target="_blank" rel="noopener noreferrer">Custom Accessed</a> is a header-only library that gives full control over data access behavior at zero cost. Data can be given a user-defined API (getter/setter) via callable type(s). Behaviors are fully reusable and swappable, allowing developers to
+                    compose, share, and enforce access behavior without resorting to common encapsulation boilerplate. Encapsulation is preserved, data layout is predictable, and only explicitly defined behavior is permitted.
+                </p>
+                <p class="PortfolioItemParagraph">
+                    <img src="/_content/BrianHinkle/images/github_small.png" style="width:1rem; margin: 0 .1rem;" />
+                    <a href="https://github.com/ChristianHinkle/CppUtils_Misc" target="_blank" rel="noopener noreferrer">Misc Utilities</a> provides general purpose development utilities, including type traits, mixins, concepts, type probes, and other template metaprogramming tools.
+                </p>
+            </Description>
+@*          Did all of it (except misc, but trying to keep things organized here).
+            <Contributions>
+                <ul style="list-style-type: none; margin: 0; padding: 0;">
+                    <li>> </li>
+                </ul>
+            </Contributions>*@
+        </PortfolioItem>
+        <PortfolioItem TitleText="Ability System Setup" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_AbilitySystemSetupAndInputSetupCombined.mp4" TeamSize="2" Duration="~1 year" ProjectStatus="Receiving Updates" GithubLink1="https://github.com/ChristianHinko/AbilitySystemSetup" GithubLink1Name="Github" OnFullscreenBtnPressed=@ShowPopupModal>
             <VideoSubtext>
                 Demo of avatar actor extension components, ability sets, and modular input workflow.
             </VideoSubtext>
@@ -168,14 +200,14 @@
             </Description>
             <Contributions>
                 <ul style="list-style-type: none; margin: 0; padding: 0;">
-                    <li>> Wrote fully decoupled and modular input management solution, with support across game and plugin modules.</li>
+                    <li>> <img src="/_content/BrianHinkle/images/github_small.png" style="width:1rem; margin: 0 .1rem;" /> <a href="https://github.com/ChristianHinkle/InputSetup" target="_blank" rel="noopener noreferrer">Input Setup</a> Wrote fully decoupled and modular input management solution, with support across game and plugin modules.</li>
                     <li>> Developed a more flexible solution for ability input binding, with improved workflow and capabilities.</li>
-                    <li>> Developed avatar actor extension system, properly initializing/uninitializing avatars regardless of type or location. Extension logic stays completely separate from UObjects.</li>
+                    <li>> Developed portable avatar actor extension system, properly initializing/uninitializing avatars regardless of type or location.</li>
                     <li>> Developed various ability system related utilities.</li>
                 </ul>
             </Contributions>
         </PortfolioItem>
-        <PortfolioItem TitleText="Multiplayer Web Framework" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_MultiplayerWebFramework.mp4" TeamSize="1" Duration="~9 months" ProjectStatus="Finished" GithubLink1="https://github.com/b2hinkle/MultiplayerWebFramework" GithubLink1Name="MultiplayerWebFramework" OnFullscreenBtnPressed=@ShowPopupModal>
+        <PortfolioItem TitleText="Multiplayer Web Framework" VideoSrc="/_content/BrianHinkle/videos/Portfolio/Demos/Demo_MultiplayerWebFramework.mp4" TeamSize="1" Duration="~9 months" ProjectStatus="Finished" GithubLink1="https://github.com/b2hinkle/MultiplayerWebFramework" GithubLink1Name="Github" OnFullscreenBtnPressed=@ShowPopupModal>
             <VideoSubtext>
                 Dedicated server management through the management console.
             </VideoSubtext>
@@ -183,7 +215,7 @@
                 <p class="PortfolioItemParagraph">
                     Created an engine-agnostic solution for dedicated server management, supporting multiple host machines and game instances.
                     Using this framework, managing your servers is as easy as controlling it all from a single management console. This framework was
-                    tested during the development of a personal multiplayer game project.
+                    tested during development of personal multiplayer game projects.
                 </p>
             </Description>
             
